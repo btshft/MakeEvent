@@ -1,0 +1,15 @@
+version: 1.0.{build}
+configuration: Release
+platform: Any CPU
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+deploy:
+- provider: WebDeploy
+  server: http://make-event.azurewebsites.net
+  website: MakeEvent
+  username: bitshift.it@gmail.com
+  password:
+    secure: TG0xOct+1S1Oup8pRVasWA==
+  app_offline: true

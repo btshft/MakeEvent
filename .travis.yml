@@ -1,4 +1,0 @@
-language: csharp
-solution: MakeEvent.sln
-deploy:
-  provider: azure_web_apps
