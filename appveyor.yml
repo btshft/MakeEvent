@@ -1,10 +1,10 @@
 version: 1.0.{build}
-configuration: Release
-platform: Any CPU
 before_build:
 - cmd: nuget restore
 build:
+  publish_wap: true
   verbosity: minimal
+test: off
 deploy:
 - provider: WebDeploy
   server: https://make-event.scm.azurewebsites.net:443/msdeploy.axd?site=make-event
