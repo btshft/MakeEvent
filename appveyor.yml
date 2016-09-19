@@ -7,9 +7,9 @@ build:
   verbosity: minimal
 deploy:
 - provider: WebDeploy
-  server: http://make-event.azurewebsites.net
-  website: MakeEvent
-  username: bitshift.it@gmail.com
+  server: https://make-event.scm.azurewebsites.net:443/msdeploy.axd?site=make-event
+  website: make-event
+  username: $make-event
   password:
-    secure: TG0xOct+1S1Oup8pRVasWA==
+    secure: ur0GyTSDldSNIHMNK9lrpmPE6VJx+szKm5leN8qKZhLAiW1uOCmAaDe3yfVOAndh8mVJxetvOP3cr1RUxCc0Sg==
   app_offline: true
