@@ -1,0 +1,6 @@
+﻿language: csharp
+solution: MakeEvent.sln
+before_script:
+  - nuget restore MakeEvent.sln
+deploy:
+  provider: azure_web_apps
