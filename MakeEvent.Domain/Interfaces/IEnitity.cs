@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MakeEvent.Common.Domain
+namespace MakeEvent.Domain.Interfaces
 {
     public interface IEntity
     {

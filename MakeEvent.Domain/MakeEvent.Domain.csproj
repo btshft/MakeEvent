@@ -58,12 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Interfaces\IEnitity.cs" />
     <Compile Include="Migrations\201609251807395_BaseEntityAdded.cs" />
     <Compile Include="Migrations\201609251807395_BaseEntityAdded.Designer.cs">
       <DependentUpon>201609251807395_BaseEntityAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,16 +73,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MakeEvent.Common.Domain\MakeEvent.Common.Domain.csproj">
-      <Project>{BCA0A987-E9B2-4E8B-9399-0E3592AE5CD7}</Project>
-      <Name>MakeEvent.Common.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201609251807395_BaseEntityAdded.resx">
       <DependentUpon>201609251807395_BaseEntityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

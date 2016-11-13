@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MakeEvent.Common.Domain")]
+[assembly: AssemblyTitle("MakeEvent.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MakeEvent.Common.Domain")]
+[assembly: AssemblyProduct("MakeEvent.Common")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bca0a987-e9b2-4e8b-9399-0e3592ae5cd7")]
+[assembly: Guid("7ef0ca84-2614-44ca-9732-901f0e1f4834")]
 
 // Version information for an assembly consists of the following four values:
 //

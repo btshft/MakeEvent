@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MakeEvent.Web.IoC;
 
 namespace MakeEvent.Web
 {
@@ -14,6 +15,8 @@ namespace MakeEvent.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Dependencies.Register();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using MakeEvent.Domain.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MakeEvent.Domain
 {

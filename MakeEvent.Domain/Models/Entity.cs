@@ -1,19 +1,24 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MakeEvent.Common.Domain;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
+using MakeEvent.Domain.Interfaces;
 
-namespace MakeEvent.Domain
+namespace MakeEvent.Domain.Models
 {
-    public class ApplicationUser : IdentityUser, IEntity<string>
+    public abstract class Entity<T> : IEntity<T>
     {
         private DateTime? _createdDate;
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public T Id { get; set; }
         object IEntity.Id
         {
-            get { return this.Id; }
-            set { Id = (string) value; }
+            get { return Id; }
+            set { Id = (T)value; }
         }
+
+        public string Name { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate

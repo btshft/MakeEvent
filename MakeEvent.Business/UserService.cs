@@ -1,5 +1,6 @@
 ﻿using System;
 using MakeEvent.Domain;
+using MakeEvent.Domain.Models;
 using MakeEvent.Service;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -8,16 +9,16 @@ using Microsoft.Owin;
 
 namespace MakeEvent.Business
 {
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class UserService : UserManager<ApplicationUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
+        public UserService(IUserStore<ApplicationUser> store)
             : base(store)
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static UserService Create(IdentityFactoryOptions<UserService> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new UserService(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
