@@ -25,6 +25,23 @@ namespace MakeEvent.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //Подключение Кендо 
+            bundles.Add(new StyleBundle("~/Content/KendoStyles").Include(
+               "~/Content/Styles/kendo.material.min.css",
+               "~/Content/Styles/main.css"));
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                "~/Scripts/kendo.all.min.js",
+                 "~/Scripts/KendoSPA/KendoHelper.js"));
+
+            //ViewModels
+            bundles.Add(new ScriptBundle("~/Scripts/MainApp").Include(
+                "~/Scripts/KendoSPA/ViewModels/MainApp/Index.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/About.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/Contacts.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/News.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/Init.js"
+                ));
         }
     }
 }

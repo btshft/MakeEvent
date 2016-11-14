@@ -242,6 +242,30 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Styles\kendo.dataviz.material.min.css" />
+    <Content Include="Content\Styles\kendo.material.min.css" />
+    <Content Include="Content\Styles\kendo.material.mobile.min.css" />
+    <Content Include="Content\Styles\kendo.mobile.material.min.css" />
+    <Content Include="Content\Styles\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Material\editor.png" />
+    <Content Include="Content\Styles\Material\imagebrowser.png" />
+    <Content Include="Content\Styles\Material\indeterminate.gif" />
+    <Content Include="Content\Styles\Material\loading-image.gif" />
+    <Content Include="Content\Styles\Material\loading.gif" />
+    <Content Include="Content\Styles\Material\loading_2x.gif" />
+    <Content Include="Content\Styles\Material\markers.png" />
+    <Content Include="Content\Styles\Material\markers_2x.png" />
+    <Content Include="Content\Styles\Material\slider-h.gif" />
+    <Content Include="Content\Styles\Material\slider-v.gif" />
+    <Content Include="Content\Styles\Material\sprite.png" />
+    <Content Include="Content\Styles\Material\sprite_2x.png" />
+    <Content Include="Content\Styles\Material\sprite_kpi.png" />
+    <Content Include="Content\Styles\Material\sprite_kpi_2x.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,14 +275,32 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config" />
+    <Content Include="Content\Styles\kendo.dataviz.material.min.css.map" />
+    <Content Include="Content\Styles\kendo.material.min.css.map" />
+    <Content Include="Content\Styles\kendo.material.mobile.min.css.map" />
+    <Content Include="Content\Styles\kendo.mobile.material.min.css.map" />
+    <Content Include="Content\Styles\main.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.all.min.js" />
+    <Content Include="Scripts\KendoSPA\KendoHelper.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\About.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Contacts.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Index.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Init.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\News.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -298,6 +340,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Scripts\kendo.all.min.js.map" />
+    <Content Include="Views\Home\Partials\Layout.cshtml" />
+    <Content Include="Views\Home\Partials\Index.cshtml" />
+    <Content Include="Views\Home\Partials\News.cshtml" />
+    <Content Include="Views\Home\Partials\Contacts.cshtml" />
+    <Content Include="Views\Home\Partials\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
