@@ -45,6 +45,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\lib\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -221,21 +228,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\HandleWebApiExceptionAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\WebApi\SampleController.cs" />
+    <Compile Include="Controllers\WebApi\BaseApiController.cs" />
+    <Compile Include="Controllers\WebApi\PageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IoC\Dependencies.cs" />
+    <Compile Include="App_Start\Dependencies.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -391,6 +402,10 @@
     <ProjectReference Include="..\MakeEvent.Business\MakeEvent.Business.csproj">
       <Project>{6CE3F86E-9B70-43A9-8FF5-A18B46ADE9CD}</Project>
       <Name>MakeEvent.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakeEvent.Common\MakeEvent.Common.csproj">
+      <Project>{7ef0ca84-2614-44ca-9732-901f0e1f4834}</Project>
+      <Name>MakeEvent.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\MakeEvent.Domain\MakeEvent.Domain.csproj">
       <Project>{D74B946D-38A6-4318-A828-F2741D674AA8}</Project>

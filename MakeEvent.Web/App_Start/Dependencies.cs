@@ -5,7 +5,11 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using MakeEvent.Business;
+using MakeEvent.Business.Filtering.Builders;
+using MakeEvent.Business.Services.Implementations;
+using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Domain;
+using MakeEvent.Domain.Filters;
 using MakeEvent.Domain.Models;
 using MakeEvent.Repository.Interfaces;
 using SimpleInjector;
@@ -37,6 +41,12 @@ namespace MakeEvent.Web.IoC
 
             // Register repositories
             Container.Register<IRepository, Repository<DbContext>>(Lifestyle.Scoped);
+
+            // Register services
+            Container.Register<IPageService, PageService>(Lifestyle.Scoped);
+
+            // Register filter-builders
+            Container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(Lifestyle.Scoped);
 
             // Register OWIN
             Container.Register<UserService>(Lifestyle.Scoped);
