@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -85,22 +89,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SignInService.cs" />
-    <Compile Include="UserService.cs" />
-    <Compile Include="EmailService.cs" />
+    <Compile Include="Filtering\Builders\PageFilterBuilder.cs" />
+    <Compile Include="Models\PageDto.cs" />
+    <Compile Include="Services\Implementations\PageService.cs" />
+    <Compile Include="Services\Interfaces\IPageService.cs" />
+    <Compile Include="Services\Implementations\SignInService.cs" />
+    <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="Services\Implementations\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmsService.cs" />
+    <Compile Include="Services\Implementations\SmsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MakeEvent.Common\MakeEvent.Common.csproj">
+      <Project>{7ef0ca84-2614-44ca-9732-901f0e1f4834}</Project>
+      <Name>MakeEvent.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MakeEvent.Domain\MakeEvent.Domain.csproj">
       <Project>{D74B946D-38A6-4318-A828-F2741D674AA8}</Project>
       <Name>MakeEvent.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MakeEvent.Repository\MakeEvent.Repository.csproj">
+      <Project>{ECC35D90-68E4-42DA-994A-BBBA6102BE17}</Project>
+      <Name>MakeEvent.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

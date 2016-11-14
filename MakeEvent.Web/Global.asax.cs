@@ -17,6 +17,7 @@ namespace MakeEvent.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Dependencies.Register();
+            AutoMapperConfig.RegisterMappings();;
         }
     }
 }

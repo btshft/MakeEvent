@@ -14,21 +14,22 @@ namespace MakeEvent.Repository.Implementations
             : base(context)
         { }
 
-        public virtual void Create<TEntity>(TEntity entity, string createdBy = null)
+        public virtual TEntity Create<TEntity>(TEntity entity, string createdBy = null)
             where TEntity : class, IEntity
         {
             entity.CreatedDate = DateTime.UtcNow;
             entity.CreatedBy = createdBy;
-            Context.Set<TEntity>().Add(entity);
+            return Context.Set<TEntity>().Add(entity);
         }
 
-        public virtual void Update<TEntity>(TEntity entity, string modifiedBy = null)
+        public virtual TEntity Update<TEntity>(TEntity entity, string modifiedBy = null)
             where TEntity : class, IEntity
         {
             entity.ModifiedDate = DateTime.UtcNow;
             entity.ModifiedBy = modifiedBy;
-            Context.Set<TEntity>().Attach(entity);
+            var result = Context.Set<TEntity>().Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
+            return result;
         }
 
         public virtual void Delete<TEntity>(object id)

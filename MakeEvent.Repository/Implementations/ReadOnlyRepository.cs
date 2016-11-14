@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -18,15 +17,9 @@ namespace MakeEvent.Repository.Implementations
             Context = context;
         }
 
-        protected virtual IQueryable<TEntity> GetQueryable<TEntity>(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = null,
-            int? skip = null,
-            int? take = null)
+        protected virtual IQueryable<TEntity> GetQueryable<TEntity>(Expression<Func<TEntity, bool>> filter = null)
             where TEntity : class, IEntity
         {
-            includeProperties = includeProperties ?? string.Empty;
             IQueryable<TEntity> query = Context.Set<TEntity>();
 
             if (filter != null)
@@ -34,64 +27,34 @@ namespace MakeEvent.Repository.Implementations
                 query = query.Where(filter);
             }
 
-            query = includeProperties
-                .Split(new [] {','}, StringSplitOptions.RemoveEmptyEntries)
-                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-
-            if (orderBy != null)
-            {
-                query = orderBy(query);
-            }
-
-            if (skip.HasValue)
-            {
-                query = query.Skip(skip.Value);
-            }
-
-            if (take.HasValue)
-            {
-                query = query.Take(take.Value);
-            }
-
             return query;
         }
 
-        public virtual IEnumerable<TEntity> All<TEntity>(
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = null,
-            int? skip = null,
-            int? take = null)
+        public virtual IQueryable<TEntity> All<TEntity>()
             where TEntity : class, IEntity
         {
-            return GetQueryable(null, orderBy, includeProperties, skip, take).ToList();
+            return GetQueryable<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> Get<TEntity>(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = null,
-            int? skip = null,
-            int? take = null)
+        public virtual IQueryable<TEntity> Get<TEntity>(
+            Expression<Func<TEntity, bool>> filter = null)
             where TEntity : class, IEntity
         {
-            return GetQueryable(filter, orderBy, includeProperties, skip, take).ToList();
+            return GetQueryable(filter);
         }
 
         public virtual TEntity Single<TEntity>(
-            Expression<Func<TEntity, bool>> filter = null,
-            string includeProperties = "")
+            Expression<Func<TEntity, bool>> filter = null)
             where TEntity : class, IEntity
         {
-            return GetQueryable(filter, null, includeProperties).SingleOrDefault();
+            return GetQueryable(filter).SingleOrDefault();
         }
 
         public virtual TEntity First<TEntity>(
-           Expression<Func<TEntity, bool>> filter = null,
-           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-           string includeProperties = "")
+           Expression<Func<TEntity, bool>> filter = null)
            where TEntity : class, IEntity
         {
-            return GetQueryable(filter, orderBy, includeProperties).FirstOrDefault();
+            return GetQueryable(filter).FirstOrDefault();
         }
 
         public virtual TEntity GetById<TEntity>(object id)
