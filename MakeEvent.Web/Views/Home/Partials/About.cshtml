@@ -1,3 +1,5 @@
 ﻿<script id="aboutTemplate" type="text/x-kendo-template">
+    <textarea id="aboutEditor" data-bind="value: aboutPageContent, visible: isEdit"></textarea>
+    <div data-bind="html: aboutPageContent, visible: isOnlyView"></div>
 </script>
 

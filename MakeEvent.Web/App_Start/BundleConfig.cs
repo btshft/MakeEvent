@@ -29,6 +29,8 @@ namespace MakeEvent.Web
             //Подключение Кендо 
             bundles.Add(new StyleBundle("~/Content/KendoStyles").Include(
                "~/Content/Styles/kendo.material.min.css",
+               "~/Content/Styles/kendo.material.mobile.min.css",
+               "~/Content/Styles/kendo.common.min.css",
                "~/Content/Styles/main.css"));
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                 "~/Scripts/kendo.all.min.js",
