@@ -335,9 +335,12 @@
     <Content Include="Scripts\KendoSPA\KendoHelper.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\About.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Contacts.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Events.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Index.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Init.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\News.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Organizations.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\PersonalPage.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -375,7 +378,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Scripts\kendo.all.min.js.map" />
     <Content Include="Views\Home\Partials\Layout.cshtml" />
@@ -383,6 +386,9 @@
     <Content Include="Views\Home\Partials\News.cshtml" />
     <Content Include="Views\Home\Partials\Contacts.cshtml" />
     <Content Include="Views\Home\Partials\About.cshtml" />
+    <Content Include="Views\Home\Partials\Organizations.cshtml" />
+    <Content Include="Views\Home\Partials\Events.cshtml" />
+    <Content Include="Views\Home\Partials\Personal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

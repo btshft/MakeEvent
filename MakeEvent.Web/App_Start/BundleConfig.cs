@@ -42,6 +42,9 @@ namespace MakeEvent.Web
                 "~/Scripts/KendoSPA/ViewModels/MainApp/About.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/Contacts.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/News.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/Events.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/Organizations.js",
+                "~/Scripts/KendoSPA/ViewModels/MainApp/PersonalPage.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/Init.js"
                 ));
         }
