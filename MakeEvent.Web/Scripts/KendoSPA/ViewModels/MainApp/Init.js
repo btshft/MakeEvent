@@ -11,7 +11,7 @@
     var enter = new kendo.View("enterTemplate", { model: enterVM, init: enterVM.init.bind(enterVM), show: enterVM.show.bind(enterVM) });
     var register = new kendo.View("registerTemplate", { model: registerVM, init: registerVM.init.bind(registerVM), show: registerVM.show.bind(registerVM) });
     // routing
-    var router = new kendo.Router();
+    router = new kendo.Router();
     router.bind("init", function () {
         layout.render($("#app"));
     });
@@ -36,7 +36,8 @@
     router.route("events", function () {
         layout.showIn("#content", events)
     });
-    router.route("personalPage", function () {
+    router.route("personalPage/:id", function (id) {
+        personalVM.set('userId', id);
         layout.showIn("#content", personal)
     });
     router.route("enter", function () {

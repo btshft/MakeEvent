@@ -24,6 +24,8 @@ namespace MakeEvent.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Styles/bootstrap-social.css",
+                      "~/Content/font-awesome.min.css",
                       "~/Content/site.css"));
 
             //Подключение Кендо 
@@ -38,6 +40,7 @@ namespace MakeEvent.Web
 
             //ViewModels
             bundles.Add(new ScriptBundle("~/Scripts/MainApp").Include(
+                "~/Scripts/KendoSPA/ViewModels/MainApp/Init.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/Index.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/About.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/Contacts.js",
@@ -47,8 +50,7 @@ namespace MakeEvent.Web
                 "~/Scripts/KendoSPA/ViewModels/MainApp/PersonalPage.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/Enter.js",
                 "~/Scripts/KendoSPA/ViewModels/MainApp/Register.js",
-                 "~/Scripts/KendoSPA/ViewModels/MainApp/layout.js",
-                "~/Scripts/KendoSPA/ViewModels/MainApp/Init.js"
+                 "~/Scripts/KendoSPA/ViewModels/MainApp/layout.js"
                 ));
         }
     }

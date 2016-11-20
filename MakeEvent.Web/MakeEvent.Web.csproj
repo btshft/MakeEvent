@@ -253,10 +253,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\mainbanner.jpg" />
     <Content Include="Content\images\mainnavigation.png" />
+    <Content Include="Content\Styles\bootstrap-social.css" />
     <Content Include="Content\Styles\fonts\DejaVu\LICENSE.txt" />
     <Content Include="Content\Styles\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="Content\Styles\images\add-file.png" />
     <Content Include="Content\Styles\images\back.png" />
     <Content Include="Content\Styles\images\kendoui.svg" />
     <Content Include="Content\Styles\images\wp8_icons.png" />
