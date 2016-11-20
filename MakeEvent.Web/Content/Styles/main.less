@@ -1,4 +1,209 @@
-﻿body {
-   margin: 0;
-   padding: 0;
+﻿@darkblue: #303f9f;
+@weightbtncolor: #de5f5f;
+@weightbtncolor-hover: #e78989;
+@light-grey: #f0f0f0;
+.blur(@radius){
+    -webkit-filter: blur(@radius);
+    -moz-filter: blur(@radius);
+    -o-filter: blur(@radius);
+    -ms-filter: blur(@radius);
+    filter: blur(@radius);
 }
+.box-shadow(@horizontal:0,@vertical:0,@blur:0,@alpha:0){
+    -webkit-box-shadow: @horizontal @vertical @blur rgba(0,0,0,@alpha);
+    -moz-box-shadow:  @horizontal @vertical @blur rgba(0,0,0,@alpha);
+    box-shadow:  @horizontal @vertical @blur rgba(0,0,0,@alpha);
+}
+.calendar-gradient(@startcolor,@middlestart, @middleend,@endcolor){
+    background: @startcolor;
+    background: -moz-linear-gradient(top, @startcolor 0,#ff7a04 29%,@middlestart 71%,@middleend 94%,@endcolor 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,@startcolor),color-stop(29% @middlestart),color-stop(71%,#ff580c),color-stop(94%,@middleend),color-stop(100%,@endcolor));
+    background: -webkit-linear-gradient(top,@startcolor 0, 29%,#ff580c 71%,@middleend 94%,@endcolor 100%);
+    background: -o-linear-gradient(top,@startcolor 0, 29%,#ff580c 71%,@middleend 94%,@endcolor 100%);
+    background: -ms-linear-gradient(top,@startcolor 0,@middlestart 29%,#ff580c 71%,@middleend 94%,@endcolor 100%);
+    background: linear-gradient(to bottom,@startcolor 0,@middlestart 29%,#ff580c 71%,@middleend 94%,@endcolor 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@startcolor,endColorstr=@endcolor,GradientType=0);
+}
+body {
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    position: relative;
+    font-size: 15px;
+    background-image: url(data:image/png;base66,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFW…ryrtrkVad9d07JuvUUMIj0a4EXsHW6pQCrWkO9hv8EGABZk8+1eMS3JwAAAABJRU5ErkJggg==);
+}
+   .banner{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            width: 100%;
+            bottom: 0;
+            .banner_image{
+            background-image: url(/Content/images/mainbanner.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            .blur(3px);
+            height: 550px;
+
+            }
+   .banner_content{
+        color: white;
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 100;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 211%;
+        text-align: center;
+    .banner_buttons{
+            margin-top: 30px;
+        button{
+            text-transform: uppercase;
+            font-size:18px;
+            margin-top: 20px;
+              &:focus{
+                outline: none;
+            }
+        }
+        .weight-button{
+            text-decoration: none;
+            color: white;
+            background-color: @weightbtncolor;
+            border: none;
+            width: 250px;
+            border-radius: 5px;
+            height: 50px;
+            &:hover{
+                background-color: @weightbtncolor-hover;
+            }
+        }
+        .light-button{
+                    border-radius: 5px;
+                    color: white;
+                    border: 2px solid rgba(255,255,255,0.2);
+                    background-color: rgba(255,255,255,0.2);
+                    padding: 7px 9px !important;
+                    &:hover{
+                            border: 2px solid transparent;
+                    }
+        }
+    }
+}
+   }
+      .navbar-default{
+       margin:0;
+       background-color: transparent;
+       border-color: transparent;
+       padding: 0;
+       border-radius:0;
+       .navbar-nav{
+               margin-top: 30px;
+           & > li {
+                   margin-right: 25px;
+               & > a{
+                    color: #777777;
+                    color: white;
+                    border: 2px solid rgba(255,255,255,0.2);
+                    padding: 7px 9px !important;
+                    &:hover{
+                            background-color: rgba(255,255,255,0.2);
+                            border: 2px solid transparent;
+                    }
+               }
+           }
+}
+       a{
+           color: #fff !important;
+       }
+       .navbar-brand{
+           /*font-weight: bold;
+           margin-top: 30px;*/
+       }
+   }
+      .main{
+              width: 70%;
+              margin-left: 15%;
+              position: absolute;
+              z-index: 999;
+              background-color: white;
+              margin-top: 30%;
+              .box-shadow(@vertical: 8px, @blur: 17px, @alpha:0.3);
+              .b-bignav{
+                    background-image: url(/Content/images/mainnavigation.png);
+                    text-align: center;
+                    font-family: "Helvetica Neue",Arial,sans-serif;
+                    font-weight: 200;
+                    font-size: 28px;
+                    line-height: 32px;
+                    padding-top: 166px;
+                    padding-bottom: 35px;
+              }
+              #filter-block{
+                   background-color: @light-grey;
+                   height: 50px;
+                   .form-inline{
+                           padding-top: 10px;
+                           padding-left: 7%;
+                   }
+              }
+              h5{
+                  padding-left: 68px;
+                  padding-top: 20px;
+              }
+
+      }
+      .btn-default{
+           text-decoration: none;
+            color: white;
+            background-color: @weightbtncolor;
+            border: none;
+            &:hover{
+                background-color: @weightbtncolor-hover;
+                color:white;
+            }
+      }
+      .k-textbox{
+          width: 280px;
+      }
+      #events-list-block{
+              padding-right: 10px;
+              padding-left: 68px;
+      .event-item{
+                 position: relative;
+                    padding-left: 63px;
+                    padding-right: 63px;
+                    margin-top: 30px;
+                    .event-date{
+                            position: absolute;
+                            top: 4px;
+                            left: 0;
+                            width: 50px;
+                    
+                    .event-month{
+                        color: white;
+                        text-shadow: -1px -1px 0 rgba(255,255,255,0.2);
+                        filter: dropshadow(color=rgba(255,255,255,0.2),offx=-1,offy=-1);
+                        text-align: center;
+                        padding: 3px 0;
+                        .calendar-gradient(#ff8a00,#ff580c,#ff4910,#d83b0d);
+                        font-size: 10px;
+                    }
+                    .event-day{
+                        font-size: 1.4em;
+                        .box-shadow(@vertical:1px,@blur:2px,@alpha:0.4);
+                        color: #063458;
+                        text-align: center;
+                        padding-top: 3px;
+                        padding-bottom: 4px;
+                        border-bottom: 1px solid white;
+                        width: 48px;
+                        margin-left: 1px;
+                        background-color: @light-grey;
+                    }
+                    }
+      }
+      }
+
+      

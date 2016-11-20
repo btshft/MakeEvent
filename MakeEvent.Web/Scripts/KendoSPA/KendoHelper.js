@@ -71,5 +71,10 @@
                 deleteColumn: "Удалить столбец"
             },
         },settings));
+    },
+    insertExtTemplate: function (source, target, data) {
+        var template = kendo.template($(source).html());
+        var result = template(data);
+        $(target).html(result);
     }
 }

@@ -253,6 +253,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\mainbanner.jpg" />
+    <Content Include="Content\images\mainnavigation.png" />
     <Content Include="Content\Styles\fonts\DejaVu\LICENSE.txt" />
     <Content Include="Content\Styles\fonts\glyphs\KendoUIGlyphs.svg" />
     <Content Include="Content\Styles\images\back.png" />
@@ -335,12 +337,16 @@
     <Content Include="Scripts\KendoSPA\KendoHelper.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\About.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Contacts.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Enter.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Events.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Index.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Init.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\layout.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Main.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\News.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Organizations.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\PersonalPage.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Register.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -389,6 +395,8 @@
     <Content Include="Views\Home\Partials\Organizations.cshtml" />
     <Content Include="Views\Home\Partials\Events.cshtml" />
     <Content Include="Views\Home\Partials\Personal.cshtml" />
+    <Content Include="Views\Home\Partials\Enter.cshtml" />
+    <Content Include="Views\Home\Partials\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

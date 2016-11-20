@@ -1,2 +1,62 @@
 ﻿<script id="indexTemplate" type="text/x-kendo-template">
+    <div class="banner">
+        <div class="banner_image"></div>
+        <div class="banner_content col-sm-10 col-sm-offset-1">
+            Зарегистрируйете свою компанию. Опубликуйте событие.
+            <br/>
+            Получите эффективное привлечение участников и работу 
+            <br/>
+            с самым удобным инструментом для организаторов.
+            <div class="banner_buttons">
+                <div>
+                    <button data-bind="click: goToHelp" class="light-button">Как это работает?</button>
+                </div>
+                <div>
+                    <button class="weight-button">Начать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="b-bignav">
+            <div class="row">
+                <div class="col-md-3">Публикуйте события</div>
+                <div class="col-md-3">Привлекайте участников</div>
+                <div class="col-md-3">Принимайте оплату билетов</div>
+                <div class="col-md-3">Проверяйте билеты</div>
+           </div>
+        </div>
+            <div id="filter-block">
+                <div class="form-inline">
+                    <input type="text" class="form-control" placeholder="Поиск событий" data-bind="value: Title" />
+                    <button class="btn btn-default" data-bind="click: searchEvents">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true">
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div id="events-list-block">
+            </div>
+             <h5>
+                <a href="#events">Смотреть все мероприятия</a>
+             </h5>
+        </div>
+</script>
+<script id="categories" type="text/x-kendo-template">
+    # for(var i=0; i < data.length; i++){#
+    <div> #:data[i].Name#</div>
+    #}#
+</script>
+
+<script id="event-item" type="text/x-kendo-template">
+    # for(var i=0; i < data.length; i++){#
+    <div class="event-item">
+    <div class="event-date">
+        <div class="event-month">#: data[i].Month#</div>
+        <div class="event-day">#: data[i].Day#</div>
+    </div>
+        <h4><a href="">#: data[i].Title# </a></h4>
+        <p>#: data[i].ShortDescription#</p>
+    </div>
+    #}#
 </script>

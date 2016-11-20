@@ -8,8 +8,8 @@
     var events = new kendo.View("eventsTemplate", { model: eventsVM, init: eventsVM.init.bind(eventsVM), show: eventsVM.show.bind(eventsVM) });
     var organizations = new kendo.View("organizationsTemplate", { model: organizationsVM, init: organizationsVM.init.bind(organizationsVM), show: organizationsVM.show.bind(organizationsVM) });
     var personal = new kendo.View("personalTemplate", { model: personalVM, init: personalVM.init.bind(personalVM), show: personalVM.show.bind(personalVM) });
-
-
+    var enter = new kendo.View("enterTemplate", { model: enterVM, init: enterVM.init.bind(enterVM), show: enterVM.show.bind(enterVM) });
+    var register = new kendo.View("registerTemplate", { model: registerVM, init: registerVM.init.bind(registerVM), show: registerVM.show.bind(registerVM) });
     // routing
     var router = new kendo.Router();
     router.bind("init", function () {
@@ -38,6 +38,12 @@
     });
     router.route("personalPage", function () {
         layout.showIn("#content", personal)
+    });
+    router.route("enter", function () {
+        layout.showIn("#content", enter)
+    });
+    router.route("register", function () {
+        layout.showIn("#content", register)
     });
     router.start();
 })
