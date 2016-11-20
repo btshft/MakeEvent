@@ -310,3 +310,21 @@ body a {
 input[type=file] {
   display: inline-block;
 }
+.filter {
+  background-color: #f0f0f0;
+  height: 60px;
+  padding-left: 85px;
+}
+.filter .form-inline {
+  padding-top: 15px;
+  padding-left: 60px;
+}
+.filter .form-inline .label-search {
+  font-size: 16px;
+}
+.org-item {
+  margin-top: 30px;
+}
+.org-item:last-child {
+  padding-bottom: 30px;
+}

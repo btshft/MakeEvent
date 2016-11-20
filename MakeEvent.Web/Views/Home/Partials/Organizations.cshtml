@@ -21,7 +21,21 @@
             </div>
         </div>
     </nav>
-    <div class="pageContent"></div>
+    <div class="pageContent">
+        <div class="filter">
+            <div class="form-inline">
+                <span class="label-search">Название организации</span>
+                <input type="text" data-bind="value: filter.orgName"/>
+                <button class="btn btn-default" data-bind="click: searchOrgs">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div id="org-list-block">
+
+        </div>
+    </div>
     <footer class="footer pageFooter">
         <div class="container-fluid">
             <div class="col-md-offset-2 col-md-2">
@@ -49,6 +63,27 @@
             </div>
         </div>
     </footer>
+</script>
+<script id="org-item" type="text/x-kendo-template">
+    # for(var i=0; i < data.length; i++){#
+    <div class="org-item row">
+        <div class="org-logo col-md-2 col-md-offset-2">
+            <img src="#: data[i].LogoUrl#" />
+        </div>
+        <div class="org-info col-md-6">
+            <div class="form-inline">
+                <h4><a class="org-header" data-id="#: data[i].Id#">#: data[i].Name# </a></h4>
+            </div>
+            <div class="form-inline">
+                <label>Сайт: </label>
+                <a href="#:data[i].Site#">#:data[i].Site#</a>
+            </div>
+            <div class="form-inline">
+                   <p>#:data[i].Description#</p>
+            </div>
+        </div>
+    </div>
+    #}#
 </script>
 
 
