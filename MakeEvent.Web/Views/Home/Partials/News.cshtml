@@ -21,7 +21,11 @@
             </div>
         </div>
     </nav>
-    <div class="pageContent"></div>
+    <div class="pageContent">
+        <div id="news-list-block">
+
+        </div>
+    </div>
     <footer class="footer pageFooter">
         <div class="container-fluid">
             <div class="col-md-offset-2 col-md-2">
@@ -51,3 +55,25 @@
     </footer>
 </script>
 
+<script id="news-item" type="text/x-kendo-template">
+    # for(var i=0; i < data.length; i++){#
+    <div class="news-item row">
+        <div class="news-prev col-md-2 col-md-offset-2">
+            <img src="#: data[i].PreviewUrl#" />
+        </div>
+        <div class="org-info col-md-6">
+            <div class="form-inline">
+                <h4><a class="news-link" data-id="#: data[i].Id#">#: data[i].Title# </a></h4>
+            </div>
+            <div class="form-inline">
+                <p>#:data[i].ShortDescription#</p>
+            </div>
+
+            <div class="form-inline">
+                <a class="news-link" data-id="#: data[i].Id#">Читать далее</a>
+                <span class="news-date">#: data[i].Date#</span>
+            </div>
+        </div>
+    </div>
+    #}#
+</script>
