@@ -107,6 +107,10 @@
             $('#categories-list-block .form-inline').removeClass('active');
             $(event.target).closest('.form-inline').addClass('active');
         });
+        $('a.event-header, .viewDetails').click(function (event) {
+            var id = $(event.target).data('id');
+            router.navigate('event/' + id);
+        });
     },
     goToPersonal: function () {
         router.navigate('personalPage/' + this.user.Id);

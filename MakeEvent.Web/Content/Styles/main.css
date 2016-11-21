@@ -466,3 +466,40 @@ input.filter-input.k-textbox {
   margin-right: 5px;
   margin-left: 5px;
 }
+.singleEvent {
+  padding-top: 30px;
+  padding-left: 30px;
+}
+.singleEvent .event-header {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 18px;
+  padding-bottom: 15px;
+}
+.singleEvent .event-content {
+  text-indent: 10%;
+  text-align: justify;
+  font-size: 13px;
+}
+.event-details .event-image img {
+  width: 200px;
+  padding-top: 35px;
+}
+.event-details .event-title {
+  font-size: 12px;
+  padding-top: 10px;
+  font-weight: bold;
+  font-style: italic;
+}
+.event-details .event-date,
+.event-details .event-map {
+  font-size: 12px;
+  padding-top: 10px;
+}
+.event-details .event-map img {
+  width: 300px;
+  height: 250px;
+}
+.event-row {
+  padding-bottom: 30px;
+}

@@ -80,6 +80,7 @@
             height: '180px',
             title: 'Вход',
             visible: false,
+            modal: true,
             actions: [
                 'Close'
             ],
