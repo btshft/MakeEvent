@@ -76,5 +76,8 @@
         if ($('.comment-form').data('kendoValidator').validate()) {
 
         };
+    },
+    goToPersonal: function () {
+        router.navigate('personalPage/' + this.user.Id);
     }
 });

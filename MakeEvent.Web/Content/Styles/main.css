@@ -407,6 +407,7 @@ input.filter-input.k-textbox {
 }
 .newsfull .news-content {
   text-align: justify;
+  min-height: 133px;
 }
 .newsfull .news-content img {
   float: left;
@@ -453,4 +454,15 @@ input.filter-input.k-textbox {
 }
 .comment-form {
   padding-top: 20px;
+}
+.nav-active {
+  background-color: #de5f5f;
+  border-radius: 4px;
+  margin-top: -2px;
+}
+.nav-active a {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
