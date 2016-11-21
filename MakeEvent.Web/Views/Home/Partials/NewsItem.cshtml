@@ -1,4 +1,4 @@
-﻿<script id="newsTemplate" type="text/x-kendo-template">
+﻿<script id="newsItemTemplate" type="text/x-kendo-template">
     <nav class="navbar navbar-default classic-nav">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -21,18 +21,40 @@
             </div>
         </div>
     </nav>
-    <div class="pageContent news">
-        <div class="filter">
-            <div class="form-inline">
-                <input class="DateTime" />
-                <button class="btn btn-default">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">
-                    </span>
-                </button>
+    <div class="pageContent">
+        <div class="newsfull">
+            <div class="news-header">
+                <p data-bind="text: model.Title"></p>
+            </div>
+            <div class="news-content">
+                <img data-bind="attr:{src: model.ImgUrl}" />
+                <p data-bind="text: model.Content"></p>
+            </div>
+            <div class="news-footer">
+                <p data-bind="text: model.Date"></p>
             </div>
         </div>
-        <div id="news-list-block">
-
+        <div class="comments-block">
+            <div class="comments-header">
+                <p>Комментарии</p> 
+            </div>
+            <div class="comment" data-template="comment-template" data-bind="source: model.Comments"></div>
+            <button class="btn btn-default" data-bind="click: commentFormOpen">Добавить комментарий</button>
+            <div data-bind="visible: isAddingCommment" class="comment-form">
+                <div class="form-group">
+                   <input type="text" placeholder="Ваше ФИО" name="fio" data-bind="value: comment.Author" required/> 
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" name="email" data-bind="value: comment.Email" required />
+                </div>
+                <div class="form-group">
+                    <textarea type="text" placeholder="Комментарий" name="comment" data-bind="value: comment.Content" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn k-primary" data-bind="click: saveComment">Отправить</button>
+                    <button class="btn" data-bind="click: cancelComment">Отмена</button>
+                </div>
+            </div>
         </div>
     </div>
     <footer class="footer pageFooter">
@@ -62,27 +84,20 @@
             </div>
         </div>
     </footer>
-</script>
-
-<script id="news-item" type="text/x-kendo-template">
-    # for(var i=0; i < data.length; i++){#
-    <div class="news-item row">
-        <div class="news-prev col-md-2 col-md-offset-2">
-            <img src="#: data[i].PreviewUrl#" />
-        </div>
-        <div class="org-info col-md-6">
-            <div class="form-inline">
-                <h4><a class="news-link" data-id="#: data[i].Id#">#: data[i].Title# </a></h4>
+    <script id="comment-template" type="text/x-kendo-template">
+        <div class="panel panel-default">
+            <div class="comment-author panel-heading">
+                <label data-bind="text: Author"></label>
+                <p class="date" data-bind="text: Date"></p>
             </div>
-            <div class="form-inline">
-                <p>#:data[i].ShortDescription#</p>
-            </div>
-
-            <div class="form-inline">
-                <a class="news-link" data-id="#: data[i].Id#">Читать далее</a>
-                <span class="news-date">#: data[i].Date#</span>
+            <div class="commnet-content panel-body">
+                <p data-bind="text: Content"></p>
             </div>
         </div>
-    </div>
-    #}#
+    </script>
 </script>
+
+
+
+
+

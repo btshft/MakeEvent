@@ -21,7 +21,7 @@
             </div>
         </div>
     </nav>
-    <div class="pageContent">
+    <div class="pageContent events">
         <div class="filter">
             <div class="form-inline">
                 <input class="filter-input" placeholder="Название"/>
@@ -33,7 +33,10 @@
                 </button>
             </div>
         </div>
-        <div id="events-block-list"></div>
+        <div class="row">
+            <div class="col-md-3" id="categories-list-block"></div>
+            <div class="col-md-8" id="events-block-list"></div>
+        </div>
     </div>
     <footer class="footer pageFooter">
         <div class="container-fluid">
@@ -66,10 +69,10 @@
 <script id="eventfull-item" type="text/x-kendo-template">
         # for(var i=0; i < data.length; i++){#
         <div class="eventfull-item row">
-            <div class="event-image col-md-2 col-md-offset-2">
+            <div class="event-image col-md-2">
                 <img src="#: data[i].ImageUrl#" />
             </div>
-            <div class="event-info col-md-6">
+            <div class="event-info col-md-8">
                 <div class="form-inline">
                     <h4><a class="event-header" data-id="#: data[i].Id#">#: data[i].Title# </a></h4>
                 </div>
@@ -96,5 +99,15 @@
         #}#
 
 </script>
-
+<script id="categories" type="text/x-kendo-template">
+    <div class="form-inline active categoryItem" data-id="">
+        <label>Все события</label>
+    </div>
+    # for(var i=0; i < data.length; i++){#
+    <div class="form-inline categoryItem" data-id="#: data[i].Id#">
+    <label> #:data[i].Name#</label>
+    <span>#:data[i].EventsCount#</span>
+    </div>
+    #}#
+</script>
 

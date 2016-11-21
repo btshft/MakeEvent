@@ -27,6 +27,7 @@
   }],
     init: function () {
         this.set('isGuest', !this.isAutorized);
+        $('.pageContent.news .DateTime').kendoDatePicker();
     },
     show: function () {
         KendoHelper.insertExtTemplate('#news-item', '#news-list-block', this.news);

@@ -68,7 +68,7 @@
         $('.weight-button, .light-button, .default-btn').kendoButton();
     },
     initTextBoxes: function () {
-        $('[type=text]').kendoMaskedTextBox();
+        $('[type=text]').not('.DateTime').kendoMaskedTextBox();
     },
     openEnterWidow: function () {
         $('#enterWindow').data('kendoWindow').center().open();

@@ -30,7 +30,7 @@
     }],
     init: function () {
         this.set('isGuest', !this.isAutorized);
-        $('[type=text]').kendoMaskedTextBox();
+        $('[type=text]').not('.DateTime').kendoMaskedTextBox();
     },
     show: function () {
         KendoHelper.insertExtTemplate('#org-item', '#org-list-block', this.organizations);

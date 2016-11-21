@@ -10,6 +10,9 @@
     var personal = new kendo.View("personalTemplate", { model: personalVM, init: personalVM.init.bind(personalVM), show: personalVM.show.bind(personalVM) });
     var enter = new kendo.View("enterTemplate", { model: enterVM, init: enterVM.init.bind(enterVM), show: enterVM.show.bind(enterVM) });
     var register = new kendo.View("registerTemplate", { model: registerVM, init: registerVM.init.bind(registerVM), show: registerVM.show.bind(registerVM) });
+    var event = new kendo.View("eventItemTemplate", { model: eventVM, init: eventVM.init.bind(eventVM), show: eventVM.show.bind(eventVM) });
+    var org = new kendo.View("orgItemTemplate", { model: organizationVM, init: organizationVM.init.bind(organizationVM), show: organizationVM.show.bind(organizationVM) });
+    var newsItem = new kendo.View("newsItemTemplate", { model: newsItemVM, init: newsItemVM.init.bind(newsItemVM), show: newsItemVM.show.bind(newsItemVM) });;
     // routing
     router = new kendo.Router();
     router.bind("init", function () {
@@ -27,14 +30,26 @@
     router.route("news", function () {
         layout.showIn("#content", news);
     });
+    router.route("newsItem/:id", function (id) {
+        newsItemVM.set('newsId', id);
+        layout.showIn("#content", newsItem);
+    });
     router.route("about", function () {
         layout.showIn("#content", about);
     });
     router.route("organizations", function () {
-        layout.showIn("#content", organizations)
+        layout.showIn("#content", organizations);
+    });
+    router.route("organization/:id", function (id) {
+        organizationVM.set('orgId', id);
+        layout.showIn("#content", org);
     });
     router.route("events", function () {
-        layout.showIn("#content", events)
+        layout.showIn("#content", events);
+    });
+    router.route("event/:id", function (id) {
+        eventVM.set('eventId', id);
+        layout.showIn("#content", event);
     });
     router.route("personalPage/:id", function (id) {
         personalVM.set('userId', id);

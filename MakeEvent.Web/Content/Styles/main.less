@@ -399,6 +399,15 @@ input[type=file]{
         padding-bottom: 30px;
     }
 }
+ .org-info{
+         .box-shadow(@vertical:4px,@blur:8px,@alpha:0.4);
+         padding-bottom: 10px;
+    }
+.eventfull-item{
+     margin-top: 23px;
+    margin-bottom: 23px;
+    .box-shadow(@vertical:4px,@blur:8px,@alpha:0.4);
+}
 .news-item, .eventfull-item{
         padding-top: 20px;
     &:last-child{
@@ -410,6 +419,11 @@ input[type=file]{
         width: 100px;
     height: 100px;
     }
+    }
+    .event-image{
+        img{
+              margin-top: 40px;
+        }
     }
     .news-date{
          font-size: 11px;
@@ -424,4 +438,84 @@ input[type=file]{
 }
 input.filter-input.k-textbox {
        width: 180px;
+}
+#categories-list-block{
+        padding-top: 23px;
+        margin-left: 25px;
+        .form-inline{
+            border-radius: 5px;
+    padding-top: 3px;
+    padding-left: 10px;
+    box-sizing: content-box;
+    height: 25px;
+    cursor: pointer;
+    &:hover{
+        background-color: @light-grey;
+    }
+        &.active{
+                background-color: #3a6581;
+                color: white;
+        }
+        label{
+            cursor: pointer;
+        }
+        }
+}
+.newsfull {
+    padding-top: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+    .news-header {
+    font-size: 27px;
+    font-weight: bold;
+    font-style: italic;
+}
+    .news-content{
+        text-align: justify;
+        img {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    height: 200px;
+    width: 200px;
+}
+    }
+    .news-footer p {
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+}
+}
+.comments-block {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    .comments-header p {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+}
+    .panel{
+          .box-shadow(@vertical:4px,@blur:8px,@alpha:0.4);
+        .date{
+            display: inline-block;
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: italic;
+        }
+        .panel-heading{
+            font-size: 14px;
+                background-color: #f0f0f0;
+    border-color: #f0f0f0;
+
+        }
+        .panel-body{
+            text-indent: 40px;
+        }
+    }
+}
+.comment-form{
+    padding-top:20px;
 }

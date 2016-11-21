@@ -328,6 +328,19 @@ input[type=file] {
 .org-item:last-child {
   padding-bottom: 30px;
 }
+.org-info {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+.eventfull-item {
+  margin-top: 23px;
+  margin-bottom: 23px;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
 .news-item,
 .eventfull-item {
   padding-top: 20px;
@@ -343,6 +356,10 @@ input[type=file] {
   width: 100px;
   height: 100px;
 }
+.news-item .event-image img,
+.eventfull-item .event-image img {
+  margin-top: 40px;
+}
 .news-item .news-date,
 .eventfull-item .news-date {
   font-size: 11px;
@@ -355,4 +372,85 @@ input[type=file] {
 }
 input.filter-input.k-textbox {
   width: 180px;
+}
+#categories-list-block {
+  padding-top: 23px;
+  margin-left: 25px;
+}
+#categories-list-block .form-inline {
+  border-radius: 5px;
+  padding-top: 3px;
+  padding-left: 10px;
+  box-sizing: content-box;
+  height: 25px;
+  cursor: pointer;
+}
+#categories-list-block .form-inline:hover {
+  background-color: #f0f0f0;
+}
+#categories-list-block .form-inline.active {
+  background-color: #3a6581;
+  color: white;
+}
+#categories-list-block .form-inline label {
+  cursor: pointer;
+}
+.newsfull {
+  padding-top: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.newsfull .news-header {
+  font-size: 27px;
+  font-weight: bold;
+  font-style: italic;
+}
+.newsfull .news-content {
+  text-align: justify;
+}
+.newsfull .news-content img {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  height: 200px;
+  width: 200px;
+}
+.newsfull .news-footer p {
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+}
+.comments-block {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+.comments-block .comments-header p {
+  font-size: 24px;
+  font-style: italic;
+  font-weight: bold;
+}
+.comments-block .panel {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.comments-block .panel .date {
+  display: inline-block;
+  float: right;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
+}
+.comments-block .panel .panel-heading {
+  font-size: 14px;
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+}
+.comments-block .panel .panel-body {
+  text-indent: 40px;
+}
+.comment-form {
+  padding-top: 20px;
 }

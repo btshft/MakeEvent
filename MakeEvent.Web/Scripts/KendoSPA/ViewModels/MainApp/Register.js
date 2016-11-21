@@ -23,7 +23,7 @@
         router.navigate('personalPage/' + this.user.Id);
     },
     initTextBoxes: function () {
-        $('[type=text]').kendoMaskedTextBox();
+        $('[type=text]').not('.DateTime').kendoMaskedTextBox();
         $('.btn-default').kendoButton();
     },
     register: function () {

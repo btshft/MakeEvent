@@ -342,12 +342,15 @@
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\About.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Contacts.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Enter.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Event.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Events.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Index.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Init.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\layout.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Main.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\News.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\NewsItem.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Organization.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Organizations.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\PersonalPage.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Register.js" />
@@ -401,6 +404,9 @@
     <Content Include="Views\Home\Partials\Personal.cshtml" />
     <Content Include="Views\Home\Partials\Enter.cshtml" />
     <Content Include="Views\Home\Partials\Register.cshtml" />
+    <Content Include="Views\Home\Partials\NewsItem.cshtml" />
+    <Content Include="Views\Home\Partials\Organization.cshtml" />
+    <Content Include="Views\Home\Partials\Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
