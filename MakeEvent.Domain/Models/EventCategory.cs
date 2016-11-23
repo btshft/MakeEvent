@@ -4,17 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MakeEvent.Domain.Models
 {
-    public class Page : Entity
+    public class EventCategory : Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string Header { get; set; }
-        public string Name   { get; set; }
-        public bool IsEditable { get; set; }
-
-        public virtual ICollection<PageLocalization> PageLocalizations { get; set; }
-            = new List<PageLocalization>();
+        public virtual ICollection<Event> Events { get; set; }
+            = new List<Event>();
     }
 }

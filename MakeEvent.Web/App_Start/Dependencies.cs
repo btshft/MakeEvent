@@ -4,27 +4,25 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using MakeEvent.Business;
 using MakeEvent.Business.Filtering.Builders;
 using MakeEvent.Business.Services.Implementations;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Domain;
 using MakeEvent.Domain.Filters;
 using MakeEvent.Domain.Models;
-using MakeEvent.Repository.Interfaces;
-using SimpleInjector;
-using SimpleInjector.Integration.Web;
 using MakeEvent.Repository.Implementations;
+using MakeEvent.Repository.Interfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using SimpleInjector;
 using SimpleInjector.Advanced;
+using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
 
-namespace MakeEvent.Web.IoC
+namespace MakeEvent.Web
 {
     public static class Dependencies
     {

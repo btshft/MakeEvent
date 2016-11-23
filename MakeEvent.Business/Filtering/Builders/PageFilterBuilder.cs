@@ -16,7 +16,7 @@ namespace MakeEvent.Business.Filtering.Builders
                 return GetPredicate();
 
             if (string.IsNullOrEmpty(filter.PageName) == false)
-                AddCondition(b => b.PageName.Equals(filter.PageName, StringComparison.InvariantCultureIgnoreCase));
+                AddCondition(b => b.Name.Equals(filter.PageName, StringComparison.InvariantCultureIgnoreCase));
 
             if (filter.IsEditable.HasValue)
                 AddCondition(b => b.IsEditable == filter.IsEditable.Value);

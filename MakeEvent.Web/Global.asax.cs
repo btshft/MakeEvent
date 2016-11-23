@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using MakeEvent.Web.IoC;
+using MakeEvent.Domain.Migrations;
 
 namespace MakeEvent.Web
 {
@@ -18,6 +18,7 @@ namespace MakeEvent.Web
 
             Dependencies.Register();
             AutoMapperConfig.RegisterMappings();;
+            EfMigrator.Migrate(new Configuration());
         }
     }
 }
