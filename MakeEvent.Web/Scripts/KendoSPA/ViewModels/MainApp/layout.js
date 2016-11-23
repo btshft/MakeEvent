@@ -1,0 +1,2 @@
+﻿var layoutVM = kendo.observable({
+});

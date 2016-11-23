@@ -1,0 +1,102 @@
+﻿<script id="orgItemTemplate" type="text/x-kendo-template">
+    <nav class="navbar navbar-default classic-nav">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#index">Главная</a></li>
+                    <li class="nav-active"><a href="#organizations">Организации</a></li>
+                    <li><a href="#events">Мероприятия</a></li>
+                    <li><a href="#news">Новости</a></li>
+                    <li data-bind="visible: isGuest"><a data-bind="click: openEnterWidow">Вход</a></li>
+                    <li><a data-bind="click: goToPersonal, text: user.Login, visible: isAutorized"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="pageContent">
+        <div class="newsfull">
+            <div class="news-header">
+                <p data-bind="text: organization.Name"></p>
+            </div>
+            <div class="news-content">
+                <img data-bind="attr:{src: organization.LogoUrl}" />
+                <p data-bind="text: organization.Description"></p>
+            </div>
+            <div class="news-footer">
+                <p><a data-bind="attr: { href: organization.Site}, text:organization.Site"></a></p>
+                <p data-bind="text: organization.Phone"></p>
+            </div>
+        </div>
+        <div class="comments-block">
+            <div class="comments-header">
+                <p>Комментарии</p>
+            </div>
+            <div class="comment" data-template="comment-template" data-bind="source: organization.Comments"></div>
+            <button class="btn btn-default" data-bind="click: commentFormOpen">Добавить комментарий</button>
+            <div data-bind="visible: isAddingCommment" class="comment-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Ваше ФИО" name="fio" data-bind="value: comment.Author" required />
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" name="email" data-bind="value: comment.Email" required />
+                </div>
+                <div class="form-group">
+                    <textarea type="text" placeholder="Комментарий" name="comment" data-bind="value: comment.Content" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn k-primary" data-bind="click: saveComment">Отправить</button>
+                    <button class="btn" data-bind="click: cancelComment">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer pageFooter">
+        <div class="container-fluid">
+            <div class="col-md-offset-2 col-md-2">
+                <h5>О нас</h5>
+                <a class="block" href="">Связаться</a>
+                <a class="block" href="">Новости</a>
+            </div>
+
+            <div class="col-md-2">
+                <h5>События</h5>
+                <a class="block" href="">Организации</a>
+                <a class="block" href="">Мероприятия</a>
+            </div>
+
+            <div>
+                <h5>Мы в соцсетях</h5>
+                <a class="btn btn-social-icon btn-google">
+                    <span class="fa fa-google"></span>
+                </a>
+                <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
+                <a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a>
+                <a class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a>
+                <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
+                <a class="btn btn-social-icon btn-vk"><span class="fa fa-vk"></span></a>
+            </div>
+        </div>
+    </footer>
+    <script id="comment-template" type="text/x-kendo-template">
+        <div class="panel panel-default">
+            <div class="comment-author panel-heading">
+                <label data-bind="text: Author"></label>
+                <p class="date" data-bind="text: Date"></p>
+            </div>
+            <div class="commnet-content panel-body">
+                <p data-bind="text: Content"></p>
+            </div>
+        </div>
+    </script>
+</script>
+
+
+

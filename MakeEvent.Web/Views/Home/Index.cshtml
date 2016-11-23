@@ -1,6 +1,4 @@
 ﻿
-@Styles.Render("~/Content/css")
-@Styles.Render("~/Content/KendoStyles")
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
@@ -11,6 +9,13 @@
 @Html.Partial("Partials/About")
 @Html.Partial("Partials/Contacts")
 @Html.Partial("Partials/News")
+@Html.Partial("Partials/Events")
+@Html.Partial("Partials/Event")
+@Html.Partial("Partials/Organizations")
+@Html.Partial("Partials/Personal")
+@Html.Partial("Partials/Register")
+@Html.Partial("Partials/Organization")
+@Html.Partial("Partials/NewsItem")
 
 @Scripts.RenderFormat("<script src='{0}' defer></script>", "~/Scripts/MainApp")
 <div id="app"></div>
