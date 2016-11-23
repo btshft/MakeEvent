@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using MakeEvent.Business;
 using MakeEvent.Business.Services.Implementations;
+using MakeEvent.Business.Services.Implementations.Identity;
 using MakeEvent.Domain;
 using MakeEvent.Domain.Models;
 using Microsoft.AspNet.Identity;
@@ -15,12 +16,12 @@ namespace MakeEvent.Web.Controllers
 {
     [Authorize]
     [RequireHttps]
-    public class AccountController : Controller
+    public class AccountMvcController : Controller
     {
         private SignInService _signInService;
         private UserService _userService;
 
-        public AccountController(UserService userService, SignInService signInService )
+        public AccountMvcController(UserService userService, SignInService signInService )
         {
             UserService = userService;
             SignInService = signInService;
@@ -250,12 +251,12 @@ namespace MakeEvent.Web.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("ResetPasswordConfirmation", "AccountMvc");
             }
             var result = await UserService.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("ResetPasswordConfirmation", "AccountMvc");
             }
             AddErrors(result);
             return View();
@@ -277,7 +278,7 @@ namespace MakeEvent.Web.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "AccountMvc", new { ReturnUrl = returnUrl }));
         }
 
         //

@@ -1,3 +1,6 @@
+using MakeEvent.Domain.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace MakeEvent.Domain.Migrations
 {
     using System.Data.Entity.Migrations;
@@ -17,7 +20,13 @@ namespace MakeEvent.Domain.Migrations
 
         protected override void Seed(MakeEvent.Domain.ApplicationDbContext context)
         {
-            context.Languages.AddOrUpdate(p => p.Name);
+            context.Languages.AddOrUpdate(p => p.Name, 
+                new Language { ShortName = "EN", Name = "Английский"},
+                new Language { ShortName = "RU", Name = "Русский" });
+
+            context.Roles.AddOrUpdate(p => p.Name,
+                new IdentityRole { Name = "Organization"},
+                new IdentityRole { Name = "Admin"});
 
             //  This method will be called after migrating to the latest version.
 

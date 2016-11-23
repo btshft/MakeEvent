@@ -28,6 +28,16 @@
     },
     register: function () {
         if ($('.register-form').data('kendoValidator').validate()) {
+            var data = {
+                Name: 'Org1',
+                Email: 'some@mail.ru',
+                Password: '123456',
+                PhoneNumber: '+7(978)922-33-11',
+                Description: 'Описание',
+                Website: 'www.someweb.ru',
+                Logo: null
+            };
+            KendoHelper.ajaxLoader.ajaxPost(URLs.registerOrganization, data);
         };
     }
 })

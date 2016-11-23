@@ -11,11 +11,12 @@ namespace MakeEvent.Domain.Models
         public int Id { get; set; }
 
         public string Name  { get; set; }
-        public string Phone { get; set; }
         public string BillNumber { get; set; }
         public string City   { get; set; }
         public string Street { get; set; }
         public string Office { get; set; }
+        public string Website { get; set; }
+        public byte[] Logo { get; set; }
 
         [Required]
         public virtual ApplicationUser Owner { get; set; }

@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-namespace MakeEvent.Business.Services.Implementations
+namespace MakeEvent.Business.Services.Implementations.Identity
 {
     public class SignInService : SignInManager<ApplicationUser, string>
     {
