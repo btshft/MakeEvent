@@ -4,6 +4,7 @@
         Id: 0,
         Login: 'Test'
     },
+    isAdmin: true,
     events: [{
         Id: 1, Title: 'Бесплатное пробное занятие ораторским искусством в школе ORATORIS Антона Духовского',
         ShortDescription: 'Занятие состоится 20 и 21 ноября в 19.00. На занятии Вы узнаете пять секретов о том, как стать ещё более успешными в жизни, в общении с людьми и на публичных выступлениях. Вы станете сильнее и увереннее! Занятие будет вести Антон Духовский.',
@@ -59,8 +60,13 @@
         router.navigate('about');
     },
     goToPersonal: function () {
-        router.navigate('personalPage/' + this.user.Id);
-    },
+        if (this.isAdmin) {
+            router.navigate('adminPage');
+        }
+        else {
+            router.navigate('personalPage/' + this.user.Id);
+        }
+        },
     searchEvents: function () {
 
     },

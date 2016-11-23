@@ -599,19 +599,26 @@ input.filter-input.k-textbox {
             margin-top: 20px;
                 font-size: 24px;
     font-style: italic;
+    &.sub-tabs{
+         font-size: 18px;
+    padding-top: 10px;
+    background-color: @light-grey;
+    padding-bottom: 10px;
+    .box-shadow(@vertical:4px,@blur:8px,@alpha:0.4);
+}
     span:not(.glyphicon){
             padding: 10px;
             cursor: pointer;
     }
     .active-tab{
-        text-decoration: underline;
+    //    text-decoration: underline;
         font-weight: bold;
     }
     .tab-item{
             padding-left: 10px;
-            .k-textbox{
+            input{
                 height: 30px;
-                font-size: 20px;
+               font-size: 14px;
             }
     }
     }
@@ -622,4 +629,25 @@ input.filter-input.k-textbox {
             margin-bottom: 5px;
         }
     }
+}
+.clear-styles{
+    margin:0;
+    padding: 0;
+    font-size: initial;
+    font-style: initial;
+}
+.pageEditorBlock{
+   display: none;
+   .btn.pageEditor{
+       margin-top: 10px;
+   }
+}
+.manageBlock{
+        margin-top: 15px;
+    padding: 10px;
+    background-color: @light-grey;
+}
+.page.adminpage{
+    margin-top: -20px;
+    padding: 25px;
 }

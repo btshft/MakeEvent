@@ -8,6 +8,7 @@
 /// <reference path="kendo.all.min.js" />
 /// <reference path="kendospa/kendohelper.js" />
 /// <reference path="kendospa/viewmodels/mainapp/about.js" />
+/// <reference path="kendospa/viewmodels/mainapp/adminpage.js" />
 /// <reference path="kendospa/viewmodels/mainapp/contacts.js" />
 /// <reference path="kendospa/viewmodels/mainapp/enter.js" />
 /// <reference path="kendospa/viewmodels/mainapp/event.js" />

@@ -13,6 +13,7 @@
     var event = new kendo.View("eventItemTemplate", { model: eventVM, init: eventVM.init.bind(eventVM), show: eventVM.show.bind(eventVM) });
     var org = new kendo.View("orgItemTemplate", { model: organizationVM, init: organizationVM.init.bind(organizationVM), show: organizationVM.show.bind(organizationVM) });
     var newsItem = new kendo.View("newsItemTemplate", { model: newsItemVM, init: newsItemVM.init.bind(newsItemVM), show: newsItemVM.show.bind(newsItemVM) });;
+    var adminPage = new kendo.View("adminTemplate", { model: adminVM, init: adminVM.init.bind(adminVM), show: adminVM.show.bind(adminVM) });
     // routing
     router = new kendo.Router();
     router.bind("init", function () {
@@ -60,6 +61,9 @@
     });
     router.route("register", function () {
         layout.showIn("#content", register)
+    });
+    router.route("adminPage", function () {
+        layout.showIn("#content", adminPage)
     });
     router.start();
 })

@@ -340,6 +340,7 @@
     <Content Include="Scripts\kendo.all.min.js" />
     <Content Include="Scripts\KendoSPA\KendoHelper.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\About.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\MainApp\AdminPage.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Contacts.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Enter.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Event.js" />
@@ -407,6 +408,7 @@
     <Content Include="Views\Home\Partials\NewsItem.cshtml" />
     <Content Include="Views\Home\Partials\Organization.cshtml" />
     <Content Include="Views\Home\Partials\Event.cshtml" />
+    <Content Include="Views\Home\Partials\AdminPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
