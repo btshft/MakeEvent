@@ -11,7 +11,7 @@ namespace MakeEvent.Domain.Filters
 
         public override IOrderedQueryable<Page> ApplySortingTo(IQueryable<Page> queryable)
         {
-            return ApplySortingTo(queryable, p => p.PageName);
+            return ApplySortingTo(queryable, p => p.Name);
         }
     }
 }

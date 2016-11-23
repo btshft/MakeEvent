@@ -7,17 +7,17 @@ namespace MakeEvent.Domain
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("MainDb", throwIfV1Schema: false)
+            : base("AzureConnectionString", throwIfV1Schema: false)
         { }
 
         public virtual IDbSet<Page> Pages { get; set; }
+        public virtual IDbSet<Language> Languages { get; set; }
+        public virtual IDbSet<Organization> Organizations { get; set; }
+        public virtual IDbSet<Comment> Comments { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        public virtual IDbSet<PageLocalization> PageLocalizations { get; set; }
+        public virtual IDbSet<NewsLocalization> NewsLocalizations { get; set; }
 
-            Database.SetInitializer<ApplicationDbContext>(null);
-        }
 
         public static ApplicationDbContext Create()
         {

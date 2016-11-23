@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(MakeEvent.Web.Startup))]
+[assembly: OwinStartup(typeof(MakeEvent.Web.Startup))]
 namespace MakeEvent.Web
 {
     public partial class Startup
