@@ -1,5 +1,5 @@
 ﻿var indexVM = kendo.observable({
-    isAutorized: true,
+    isAutorized: false,
     user: {
         Id: 0,
         Login: 'Test'

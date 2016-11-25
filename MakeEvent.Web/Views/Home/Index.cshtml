@@ -19,4 +19,12 @@
 @Html.Partial("Partials/AdminPage")
 
 @Scripts.RenderFormat("<script src='{0}' defer></script>", "~/Scripts/MainApp")
+
+<script type="text/javascript">
+    URLs = {
+        // Организации
+        registerOrganization: '@Url.Content("~/organization/register")'
+    };
+ </script>
+
 <div id="app"></div>

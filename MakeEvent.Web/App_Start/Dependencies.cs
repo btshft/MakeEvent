@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using MakeEvent.Business.Filtering.Builders;
 using MakeEvent.Business.Services.Implementations;
+using MakeEvent.Business.Services.Implementations.Identity;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Domain;
 using MakeEvent.Domain.Filters;
@@ -42,6 +43,7 @@ namespace MakeEvent.Web
 
             // Register services
             Container.Register<IPageService, PageService>(Lifestyle.Scoped);
+            Container.Register<IAccountService, AccountService>(Lifestyle.Scoped);
 
             // Register filter-builders
             Container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(Lifestyle.Scoped);

@@ -1,13 +1,13 @@
 ﻿var KendoHelper = {
     templateLoader: {
-            loadExtTemplate: function(path){
+            loadExtTemplate: function(path) {
                 var tmplLoader = $.get(path)
-                    .success(function(result){
+                    .success(function(result) {
                         $("body").append(result);
                     })
-                    .error(function(result){
+                    .error(function(result) {
                         console.log("Error Loading Templates");
-                    })
+                    });
             }
     },
     initEditor: function (elem, settings) {
@@ -76,5 +76,34 @@
         var template = kendo.template($(source).html());
         var result = template(data);
         $(target).html(result);
-    }
+    },
+        ajaxLoader: (function ($, host) {
+        return {
+            ajaxPost: function (path, data, callbacks, async) {
+                async = typeof (async) != "undefined" ? async : true;
+                $.ajax({
+                    url: path,
+                    method: "POST",
+                    data: data,
+                    dataType: "json",
+                    async: async,
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    complete: callbacks.complete
+                });
+            },
+            ajaxGet: function (path, data, callbacks, async) {
+                async = typeof (async) != "undefined" ? async : true;
+                $.ajax({
+                    url: path,
+                    data: data,
+                    dataType: "json",
+                    async: async,
+                    success: callbacks.success,
+                    error: callbacks.error,
+                    complete: callbacks.complete
+                });
+            }
+        };
+    })(jQuery, document)
 }

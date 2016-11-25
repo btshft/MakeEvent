@@ -1,6 +1,7 @@
 ﻿using System;
 using MakeEvent.Business;
 using MakeEvent.Business.Services.Implementations;
+using MakeEvent.Business.Services.Implementations.Identity;
 using MakeEvent.Domain;
 using MakeEvent.Domain.Models;
 using Microsoft.AspNet.Identity;
