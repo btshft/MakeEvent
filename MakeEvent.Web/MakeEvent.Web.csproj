@@ -256,8 +256,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\event-icon.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\mainbanner.jpg" />
     <Content Include="Content\images\mainnavigation.png" />
+    <Content Include="Content\images\news-icon.png" />
     <Content Include="Content\images\org-logo.png" />
     <Content Include="Content\Styles\bootstrap-social.css" />
     <Content Include="Content\Styles\fonts\DejaVu\LICENSE.txt" />
@@ -294,6 +298,7 @@
     <Content Include="Content\Styles\Material\sprite_kpi.png" />
     <Content Include="Content\Styles\Material\sprite_kpi_2x.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -329,6 +334,11 @@
     <Content Include="Content\Styles\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
     <Content Include="Content\Styles\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
     <Content Include="Content\Styles\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\make-event - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
