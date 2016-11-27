@@ -122,6 +122,8 @@ body a {
   line-height: 32px;
   padding-top: 166px;
   padding-bottom: 35px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 .main #filter-block {
   background-color: #f0f0f0;
