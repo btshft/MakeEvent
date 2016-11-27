@@ -20,7 +20,7 @@ namespace MakeEvent.Repository.Interfaces
         TEntity First<TEntity>(Expression<Func<TEntity, bool>> filter = null)
             where TEntity : class, IEntity;
 
-        TEntity GetById<TEntity>(object id)
+        TEntity GetById<TEntity>(params object[] id)
             where TEntity : class, IEntity;
 
         int Count<TEntity>(Expression<Func<TEntity, bool>> filter = null)

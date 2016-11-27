@@ -10,8 +10,7 @@ namespace MakeEvent.Domain.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public byte[] Image { get; set; }
-
+        public string EncodedImage { get; set; }
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]

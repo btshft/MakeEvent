@@ -4,10 +4,10 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace MakeEvent.Business.Services.Interfaces
 {
-    public interface IAccountService
+    public interface IAuthorizationService
     {
-        OperationResult RegisterOrganization(OrganizationDto organization);
         OperationResult<SignInStatus> Login(string userName, string password);
         OperationResult Logout();
     }
 }
+

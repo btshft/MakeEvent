@@ -31,7 +31,7 @@ namespace MakeEvent.Web.Controllers
         {
             get
             {
-                return _signInService ?? HttpContext.GetOwinContext().Get<SignInService>();
+                return _signInService ?? OwinContextExtensions.Get<SignInService>(HttpContext.GetOwinContext());
             }
             private set 
             { 

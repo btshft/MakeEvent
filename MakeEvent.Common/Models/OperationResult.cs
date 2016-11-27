@@ -20,10 +20,10 @@ namespace MakeEvent.Common.Models
         public static OperationResult<T> Success<T>(T result)
             => new OperationResult<T> { Result = result, Succeeded = true };
 
-        public static OperationResult Fail(IEnumerable<string> errors)
+        public static OperationResult Fail(params string[] errors)
             => new OperationResult { Errors = errors };
 
-        public static OperationResult<T> Fail<T>(IEnumerable<string> errors)
+        public static OperationResult<T> Fail<T>(params string[] errors)
             => new OperationResult<T> { Errors = errors };
     }
 }

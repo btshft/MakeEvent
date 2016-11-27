@@ -10,8 +10,10 @@ namespace MakeEvent.Domain.Models
         [Key, Column(Order = 1)]
         public int LanguageId { get; set; }
 
-        public string Header { get; set; }
+        public string Header  { get; set; }
         public string Content { get; set; }
+        public string Description { get; set; }
+        public string ShortDescription { get; set; }
 
         public virtual Language Language { get; set; }
         public virtual News News { get; set; }

@@ -232,15 +232,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EfMigrator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\LocaleConfiguration.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\HandleWebApiExceptionAttribute.cs" />
     <Compile Include="Controllers\AccountMvcController.cs" />
+    <Compile Include="Controllers\WebApi\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\WebApi\AccountController.cs" />
     <Compile Include="Controllers\WebApi\BaseApiController.cs" />
+    <Compile Include="Controllers\WebApi\EventCategoryController.cs" />
+    <Compile Include="Controllers\WebApi\EventController.cs" />
+    <Compile Include="Controllers\WebApi\NewsController.cs" />
+    <Compile Include="Controllers\WebApi\OrganizationController.cs" />
     <Compile Include="Controllers\WebApi\PageController.cs" />
     <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -248,11 +253,16 @@
     </Compile>
     <Compile Include="App_Start\Dependencies.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EventCategoryViewModel.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NewsLocalizationViewModel.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
-    <Compile Include="Models\PageViewModel.cs" />
+    <Compile Include="Models\PageLocalizationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\SimpleAuthorizationProvider.cs" />
     <Compile Include="Settings\WebConfiguration.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

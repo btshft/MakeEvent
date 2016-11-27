@@ -57,7 +57,7 @@ namespace MakeEvent.Repository.Implementations
             return GetQueryable(filter).FirstOrDefault();
         }
 
-        public virtual TEntity GetById<TEntity>(object id)
+        public virtual TEntity GetById<TEntity>(params object[] id)
             where TEntity : class, IEntity
         {
             return Context.Set<TEntity>().Find(id);

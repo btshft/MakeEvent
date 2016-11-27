@@ -43,7 +43,11 @@ namespace MakeEvent.Web
 
             // Register services
             Container.Register<IPageService, PageService>(Lifestyle.Scoped);
-            Container.Register<IAccountService, AccountService>(Lifestyle.Scoped);
+            Container.Register<IAuthorizationService, AuthorizationService>(Lifestyle.Scoped);
+            Container.Register<IOrganizationService, OrganizationService>(Lifestyle.Scoped);
+            Container.Register<IEventService, EventService>();
+            Container.Register<IEventCategoryService, EventCategoryService>();
+            Container.Register<INewsService, NewsService>(Lifestyle.Scoped);
 
             // Register filter-builders
             Container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(Lifestyle.Scoped);

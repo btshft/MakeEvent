@@ -20,5 +20,10 @@ namespace MakeEvent.Web
             AutoMapperConfig.RegisterMappings();;
             EfMigrator.Migrate(new Configuration());
         }
+
+        protected void Application_BeginRequest()
+        {
+            LocaleConfiguration.SetupLocale(allowedLocales: "en,ru");
+        }
     }
 }

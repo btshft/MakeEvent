@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MakeEvent.Domain.Models
 {
-    public class PageLocalization
+    public class PageLocalization : Entity
     {
         [Key, Column(Order = 0)]
         public int PageId { get; set; }

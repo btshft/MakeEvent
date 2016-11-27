@@ -98,14 +98,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Language.cs" />
     <Compile Include="Filtering\Builders\PageFilterBuilder.cs" />
     <Compile Include="Models\CommentDto.cs" />
+    <Compile Include="Models\EventCategoryDto.cs" />
     <Compile Include="Models\EventDto.cs" />
+    <Compile Include="Models\NewsDto.cs" />
+    <Compile Include="Models\NewsLocalizationDto.cs" />
     <Compile Include="Models\OrganizationDto.cs" />
-    <Compile Include="Models\PageDto.cs" />
-    <Compile Include="Services\Implementations\AccountService.cs" />
+    <Compile Include="Models\PageLocalizationDto.cs" />
+    <Compile Include="Services\Implementations\AuthorizationService.cs" />
+    <Compile Include="Services\Implementations\EventCategoryService.cs" />
+    <Compile Include="Services\Implementations\EventService.cs" />
+    <Compile Include="Services\Implementations\NewsService.cs" />
+    <Compile Include="Services\Implementations\OrganizationService.cs" />
     <Compile Include="Services\Implementations\PageService.cs" />
-    <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Services\Interfaces\IAuthorizationService.cs" />
+    <Compile Include="Services\Interfaces\IEventCategoryService.cs" />
+    <Compile Include="Services\Interfaces\IEventService.cs" />
+    <Compile Include="Services\Interfaces\INewsService.cs" />
+    <Compile Include="Services\Interfaces\IOrganizationService.cs" />
     <Compile Include="Services\Interfaces\IPageService.cs" />
     <Compile Include="Services\Implementations\Identity\SignInService.cs" />
     <Compile Include="Services\Implementations\Identity\UserService.cs" />

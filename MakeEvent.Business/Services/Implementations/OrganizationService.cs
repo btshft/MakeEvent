@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoMapper;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Implementations.Identity;
@@ -8,32 +7,25 @@ using MakeEvent.Common.Models;
 using MakeEvent.Domain.Models;
 using MakeEvent.Repository.Interfaces;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 
 namespace MakeEvent.Business.Services.Implementations
 {
-    public class AccountService : IAccountService
+    public class OrganizationService : IOrganizationService
     {
         private readonly IRepository _repository;
         private readonly UserService _userService;
-        private readonly SignInService _signInService;
-        private readonly IAuthenticationManager _authenticationManager;
 
-        public AccountService(
-            IRepository repository, 
-            UserService userService,
-            SignInService signInService,
-            IAuthenticationManager authenticationManager)
+        public OrganizationService(IRepository repository, UserService userService)
         {
-            _repository    = repository;
-            _userService   = userService;
-            _signInService = signInService;
-            _authenticationManager = authenticationManager;
+            _repository = repository;
+            _userService = userService;
         }
 
-        public OperationResult RegisterOrganization(OrganizationDto organization)
+        public OperationResult Create(OrganizationDto organization)
         {
+            if (organization == null)
+                throw new ArgumentNullException(nameof(organization));
+
             if (organization.Id > 0)
                 throw new ApplicationException("Произошла ошибка при регистрации организации");
 
@@ -60,23 +52,29 @@ namespace MakeEvent.Business.Services.Implementations
             return new OperationResult { Errors = result.Errors, Succeeded = result.Succeeded };
         }
 
-        public OperationResult<SignInStatus> Login(string userName, string password)
+        public OperationResult Update(OrganizationDto organization)
         {
-            var result = _signInService
-                .PasswordSignIn(userName, password, isPersistent: false, shouldLockout: false);
+            if (organization == null)
+                throw new ArgumentNullException(nameof(organization));
 
-            return new OperationResult<SignInStatus>
-            {
-                Result = result,
-                Succeeded = result == SignInStatus.Success,
-                Errors = (result == SignInStatus.Success)
-                    ? null : new List<string> { $"Ошибка при входе. Причина: {result}"} 
-            };
-        }
+            if (organization.Id < 1 || string.IsNullOrEmpty(organization.OwnerId))
+                throw new ApplicationException("Произошла ошибка при обновлении организации");
 
-        public OperationResult Logout()
-        {
-            _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var owner = _repository.GetById<ApplicationUser>(organization.OwnerId);
+
+            owner.Email = organization.Email;
+            owner.PhoneNumber = organization.PhoneNumber;
+
+            _repository.Update(owner);
+
+            var domainOrg = _repository.GetById<Organization>(organization.Id);
+
+            domainOrg.Owner = owner;
+            domainOrg.Logo = organization.Logo;
+            domainOrg.Website = organization.Website;
+
+            _repository.Update(domainOrg);
+            _repository.Save();
 
             return OperationResult.Success();
         }
