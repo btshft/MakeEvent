@@ -10,7 +10,7 @@ namespace MakeEvent.Web.Models
         [Required]
         public string AuthorId { get; set; }
 
-        public byte[] Image { get; set; }
+        public string EncodedImage { get; set; }
 
         public string DefaultHeader { get; set; }
         public string DefaultDescription { get; set; }

@@ -16,7 +16,7 @@ namespace MakeEvent.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Dependencies.Register();
+            Dependencies.Configure();
             AutoMapperConfig.RegisterMappings();;
             EfMigrator.Migrate(new Configuration());
         }

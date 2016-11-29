@@ -26,7 +26,7 @@ namespace MakeEvent.Business.Services.Implementations
             if (organization == null)
                 throw new ArgumentNullException(nameof(organization));
 
-            if (organization.Id > 0)
+            if (!string.IsNullOrEmpty(organization.OwnerId))
                 throw new ApplicationException("Произошла ошибка при регистрации организации");
 
             var user = new ApplicationUser
@@ -57,7 +57,7 @@ namespace MakeEvent.Business.Services.Implementations
             if (organization == null)
                 throw new ArgumentNullException(nameof(organization));
 
-            if (organization.Id < 1 || string.IsNullOrEmpty(organization.OwnerId))
+            if (string.IsNullOrEmpty(organization.OwnerId))
                 throw new ApplicationException("Произошла ошибка при обновлении организации");
 
             var owner = _repository.GetById<ApplicationUser>(organization.OwnerId);
@@ -67,11 +67,9 @@ namespace MakeEvent.Business.Services.Implementations
 
             _repository.Update(owner);
 
-            var domainOrg = _repository.GetById<Organization>(organization.Id);
+            var domainOrg = _repository.GetById<Organization>(organization.OwnerId);
 
-            domainOrg.Owner = owner;
-            domainOrg.Logo = organization.Logo;
-            domainOrg.Website = organization.Website;
+            domainOrg = Mapper.Map(organization, domainOrg);
 
             _repository.Update(domainOrg);
             _repository.Save();

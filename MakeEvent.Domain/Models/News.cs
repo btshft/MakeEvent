@@ -11,10 +11,6 @@ namespace MakeEvent.Domain.Models
         public int Id { get; set; }
 
         public string EncodedImage { get; set; }
-        public string AuthorId { get; set; }
-
-        [ForeignKey("AuthorId")]
-        public virtual ApplicationUser Author { get; set; }
 
         public virtual ICollection<NewsLocalization> NewsLocalizations { get; set; }
             = new List<NewsLocalization>();

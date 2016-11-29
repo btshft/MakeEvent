@@ -22,7 +22,7 @@ namespace MakeEvent.Domain
 
         public virtual IDbSet<PageLocalization> PageLocalizations { get; set; }
         public virtual IDbSet<NewsLocalization> NewsLocalizations { get; set; }
-
+        public virtual IDbSet<EventCategoryLocalization> EventCategoryLocalizations { get; set; }
 
         public static ApplicationDbContext Create()
         {

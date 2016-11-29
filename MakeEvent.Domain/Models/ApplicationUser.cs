@@ -39,8 +39,7 @@ namespace MakeEvent.Domain.Models
 
         public virtual ICollection<Comment> Comments { get; set; }
              = new List<Comment>();
-        public virtual ICollection<News> News { get; set; }
-            = new List<News>();
+
         public virtual ICollection<Ticket> Tickets { get; set; }
             = new List<Ticket>();
     }
