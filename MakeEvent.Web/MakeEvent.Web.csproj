@@ -238,6 +238,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\HandleWebApiExceptionAttribute.cs" />
     <Compile Include="Controllers\AccountMvcController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\WebApi\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -432,6 +433,8 @@
     <Content Include="Views\Home\Partials\Organization.cshtml" />
     <Content Include="Views\Home\Partials\Event.cshtml" />
     <Content Include="Views\Home\Partials\AdminPage.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
