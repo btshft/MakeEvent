@@ -28,9 +28,14 @@ namespace MakeEvent.Web
                 cfg.CreateMap<EventViewModel, EventDto>();
 
                 cfg.CreateMap<EventCategory, EventCategoryDto>();
-                cfg.CreateMap<EventCategoryDto, EventCategory>();
+                cfg.CreateMap<EventCategoryDto, EventCategory>()
+                    .ForMember(d => d.EventCategoryLocalizations, opt => opt.Ignore());
+
                 cfg.CreateMap<EventCategoryDto, EventCategoryViewModel>();
                 cfg.CreateMap<EventCategoryViewModel, EventCategoryDto>();
+
+                cfg.CreateMap<EventCategoryLocalization, EventCategoryLocalizationDto>();
+                cfg.CreateMap<EventCategoryLocalizationDto, EventCategoryLocalization>();
 
                 cfg.CreateMap<News, NewsDto>();
                 cfg.CreateMap<NewsDto, News>()
@@ -51,6 +56,7 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<PageLocalizationViewModel, PageLocalizationDto>()
                     .AfterMap((source, dest) => dest.Html = WebUtility.HtmlEncode(source.Html));
+
             });
         }
     }

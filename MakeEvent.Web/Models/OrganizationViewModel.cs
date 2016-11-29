@@ -4,8 +4,7 @@ namespace MakeEvent.Web.Models
 {
     public class OrganizationViewModel
     {
-        [Required]
-        public string Name { get; set; }
+        public string OwnerId { get; set; }
 
         [Required, EmailAddress]
         public string Email { get; set; }
@@ -23,6 +22,6 @@ namespace MakeEvent.Web.Models
         public string Website { get; set; }
 
         //[Required]
-        public byte[] Logo { get; set; }
+        public string EncodedLogo { get; set; }
     }
 }

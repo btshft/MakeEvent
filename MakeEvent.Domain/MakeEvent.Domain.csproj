@@ -75,6 +75,7 @@
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventCategory.cs" />
+    <Compile Include="Models\EventCategoryLocalization.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsLocalization.cs" />

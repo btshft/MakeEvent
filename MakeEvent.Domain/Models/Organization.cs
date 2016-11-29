@@ -6,19 +6,18 @@ namespace MakeEvent.Domain.Models
 {
     public class Organization : Entity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Key, ForeignKey("Owner")]
+        public string OwnerId { get; set; }
 
         public string Name  { get; set; }
         public string BillNumber { get; set; }
-        public string City   { get; set; }
-        public string Street { get; set; }
-        public string Office { get; set; }
+        public string City    { get; set; }
+        public string Street  { get; set; }
+        public string Office  { get; set; }
         public string Website { get; set; }
-        public byte[] Logo { get; set; }
+        public string EncodedLogo { get; set; }
+        public string Description { get; set; }
 
-        [Required]
         public virtual ApplicationUser Owner { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }

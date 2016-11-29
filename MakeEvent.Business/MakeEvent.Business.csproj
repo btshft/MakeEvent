@@ -102,6 +102,7 @@
     <Compile Include="Filtering\Builders\PageFilterBuilder.cs" />
     <Compile Include="Models\CommentDto.cs" />
     <Compile Include="Models\EventCategoryDto.cs" />
+    <Compile Include="Models\EventCategoryLocalizationDto.cs" />
     <Compile Include="Models\EventDto.cs" />
     <Compile Include="Models\NewsDto.cs" />
     <Compile Include="Models\NewsLocalizationDto.cs" />

@@ -12,6 +12,9 @@ namespace MakeEvent.Domain.Models
 
         public string Name { get; set; }
 
+        public virtual ICollection<EventCategoryLocalization> EventCategoryLocalizations { get; set; }
+            = new List<EventCategoryLocalization>();
+
         public virtual ICollection<Event> Events { get; set; }
             = new List<Event>();
     }

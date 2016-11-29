@@ -11,7 +11,7 @@ namespace MakeEvent.Domain.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int CategoryId { get; set; }
-        public int OrganizationId { get; set; }
+        public string OrganizationId { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }
