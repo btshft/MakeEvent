@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
 namespace MakeEvent.Web.Models
 {
@@ -6,7 +6,8 @@ namespace MakeEvent.Web.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public string DefaultName { get; set; }
+
+        public ICollection<EventCategoryLocalizationViewModel> EventCategoryLocalizations { get; set; }
     }
 }

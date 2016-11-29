@@ -62,7 +62,7 @@ namespace MakeEvent.Business.Services.Implementations
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
             identity.AddClaim(new Claim(ClaimTypes.Role, string.Join(",", user.Roles)));
 
-            var signInProperties = new AuthenticationProperties { IsPersistent = true };
+            var signInProperties = new AuthenticationProperties { IsPersistent = false };
 
             _authenticationManager.SignIn(signInProperties, identity);
 

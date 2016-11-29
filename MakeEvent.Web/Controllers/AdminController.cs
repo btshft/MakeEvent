@@ -16,9 +16,12 @@ namespace MakeEvent.Web.Controllers
         }
 
         // GET: Admin
-        public ActionResult Index()
+        public ActionResult Index(LoggedUserViewModel vm)
         {
-            return View();
+            if (!User.Identity.IsAuthenticated || !User.IsInRole("Admin"))
+                return RedirectToAction("Login");
+
+            return View(vm);
         }
 
 
@@ -56,7 +59,7 @@ namespace MakeEvent.Web.Controllers
                 Role = "Admin"
             };
 
-            return View("Index", resultModel);
+            return RedirectToAction("Index", "Admin", resultModel);
         }
 
         [HttpPost]
@@ -65,7 +68,7 @@ namespace MakeEvent.Web.Controllers
             if (User.Identity.IsAuthenticated)
                 _authorizationService.Logout();
 
-            return View("Login");
+            return RedirectToAction("Login");
         }
     }
 }
