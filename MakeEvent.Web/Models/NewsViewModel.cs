@@ -7,9 +7,6 @@ namespace MakeEvent.Web.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        public string AuthorId { get; set; }
-
         public string EncodedImage { get; set; }
 
         public string DefaultHeader { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using MakeEvent.Business.Services.Implementations.Identity;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Web.Models;
 using Microsoft.AspNet.Identity;
@@ -9,10 +10,12 @@ namespace MakeEvent.Web.Controllers
     public class AdminController : Controller
     {
         private readonly IAuthorizationService _authorizationService;
+        private readonly UserService _userService;
 
-        public AdminController(IAuthorizationService authorizationService)
+        public AdminController(IAuthorizationService authorizationService, UserService userService)
         {
             _authorizationService = authorizationService;
+            _userService = userService;
         }
 
         // GET: Admin
@@ -20,6 +23,22 @@ namespace MakeEvent.Web.Controllers
         {
             if (!User.Identity.IsAuthenticated || !User.IsInRole("Admin"))
                 return RedirectToAction("Login");
+
+            if (vm == null)
+            {
+                var user = _userService.FindById(User.Identity.GetUserId());
+                var model = new LoggedUserViewModel
+                {
+                    Id         = user.Id,
+                    FirstName  = user.FirstName,
+                    LastName   = user.LastName,
+                    MiddleName = user.MiddleName,
+                    UserName   = user.UserName,
+                    Role       = "Admin"
+                };
+
+                return View(model);
+            }
 
             return View(vm);
         }
@@ -51,12 +70,12 @@ namespace MakeEvent.Web.Controllers
 
             var resultModel = new LoggedUserViewModel
             {
-                Id = user.Id,
+                Id         = user.Id,
                 FirstName  = user.FirstName,
                 LastName   = user.LastName,
                 MiddleName = user.MiddleName,
                 UserName   = user.UserName,
-                Role = "Admin"
+                Role       = "Admin"
             };
 
             return RedirectToAction("Index", "Admin", resultModel);
@@ -65,8 +84,7 @@ namespace MakeEvent.Web.Controllers
         [HttpPost]
         public ActionResult Logoff()
         {
-            if (User.Identity.IsAuthenticated)
-                _authorizationService.Logout();
+            _authorizationService.Logout();
 
             return RedirectToAction("Login");
         }

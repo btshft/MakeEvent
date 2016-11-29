@@ -12,11 +12,9 @@ namespace MakeEvent.Web.Controllers.WebApi
     public class OrganizationController : BaseApiController
     {
         private readonly IOrganizationService _organizationService;
-        private readonly IAuthorizationService _authorizationService;
 
-        public OrganizationController(IOrganizationService organizationService, IAuthorizationService authorizationService)
+        public OrganizationController(IOrganizationService organizationService)
         {
-            _authorizationService = authorizationService;
             _organizationService = organizationService;
         }
 
@@ -29,11 +27,6 @@ namespace MakeEvent.Web.Controllers.WebApi
 
             var organizationDto = Mapper.Map<OrganizationDto>(organization);
             var result = _organizationService.Create(organizationDto);
-
-            if (result.Succeeded)
-            {
-                _authorizationService.Login(organization.Email, organization.Password);
-            }
 
             return new DataSourceResult { Errors = result.Errors };
         }
