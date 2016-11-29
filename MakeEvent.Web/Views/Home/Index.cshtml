@@ -22,8 +22,21 @@
 
 <script type="text/javascript">
     URLs = {
-        // Организации
-        registerOrganization: '@Url.Content("~/organization/register")'
+        // Администратор: Новости
+        saveNews: '@Url.Content("~/api/news/save")',
+        getNews:  '@Url.Content("~/api/news/all")',
+        getNewsLocalization: '@Url.Content("~/api/news/getlocalization")',
+        deleteNews: '@Url.Content("~/api/news/delete")',
+
+        // Администратор:  Страницы
+        savePageLocalization: '@Url.Content("~/api/page/savelocalization")',
+        getPageLocalization: '@Url.Content("~/api/page/getlocalization")',
+
+        // Администратор: Категории мероприятий
+        saveEventCategory:  '@Url.Content("~/api/eventcategory/save")',
+        getEventCategories: '@Url.Content("~/api/eventcategory/all")',
+        getEventCategoryLocalization: '@Url.Content("~/api/eventcategory/getlocalization")',
+        deleteEventCategory: '@Url.Content("~/api/eventcategory/delete")'
     };
  </script>
 
