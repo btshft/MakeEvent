@@ -27,6 +27,14 @@ namespace MakeEvent.Web
                       "~/Content/Styles/bootstrap-social.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/materialize").Include(
+                     "~/Content/materialize/css/materialize.css"));
+
+            bundles.Add(new StyleBundle("~/Content/admin").Include(
+                     "~/Content/Styles/admin.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
+                    "~/Scripts/materialize/materialize.js"));
 
             //Подключение Кендо 
             bundles.Add(new StyleBundle("~/Content/KendoStyles").Include(
