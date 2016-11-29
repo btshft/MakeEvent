@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using SimpleInjector.Extensions.ExecutionContextScoping;
 
 [assembly: OwinStartup(typeof(MakeEvent.Web.Startup))]
 namespace MakeEvent.Web

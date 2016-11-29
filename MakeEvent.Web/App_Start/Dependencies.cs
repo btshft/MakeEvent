@@ -17,8 +17,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Owin;
 using SimpleInjector;
 using SimpleInjector.Advanced;
+using SimpleInjector.Extensions.ExecutionContextScoping;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
@@ -27,56 +29,56 @@ namespace MakeEvent.Web
 {
     public static class Dependencies
     {
-        public static Container Container 
-            = new Container();
-
-        public static void Register()
+        public static void Configure()
         {
-            Container.Options.DefaultScopedLifestyle = new WebRequestLifestyle(
+            var container = new Container();
+
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle(
                 disposeInstanceWhenWebRequestEnds: true);
 
             // Register db-context
-            Container.Register<DbContext, ApplicationDbContext>(Lifestyle.Scoped);
+            container.Register<DbContext, ApplicationDbContext>(Lifestyle.Scoped);
 
             // Register repositories
-            Container.Register<IRepository, Repository<DbContext>>(Lifestyle.Scoped);
+            container.Register<IRepository, Repository<DbContext>>(Lifestyle.Scoped);
 
             // Register services
-            Container.Register<IPageService, PageService>(Lifestyle.Scoped);
-            Container.Register<IAuthorizationService, AuthorizationService>(Lifestyle.Scoped);
-            Container.Register<IOrganizationService, OrganizationService>(Lifestyle.Scoped);
-            Container.Register<IEventService, EventService>();
-            Container.Register<IEventCategoryService, EventCategoryService>();
-            Container.Register<INewsService, NewsService>(Lifestyle.Scoped);
+            container.Register<IPageService, PageService>(Lifestyle.Scoped);
+            container.Register<IAuthorizationService, AuthorizationService>(Lifestyle.Scoped);
+            container.Register<IOrganizationService, OrganizationService>(Lifestyle.Scoped);
+            container.Register<IEventService, EventService>();
+            container.Register<IEventCategoryService, EventCategoryService>();
+            container.Register<INewsService, NewsService>(Lifestyle.Scoped);
 
             // Register filter-builders
-            Container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(Lifestyle.Scoped);
+            container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(
+                Lifestyle.Scoped);
 
             // Register OWIN
-            Container.Register<UserService>(Lifestyle.Scoped);
-            Container.Register<SignInService>(Lifestyle.Scoped);
+            container.Register<UserService>(Lifestyle.Scoped);
+            container.Register<SignInService>(Lifestyle.Scoped);
 
-            Container.Register<IUserStore<ApplicationUser>>(
-                () => new UserStore<ApplicationUser>(Container.GetInstance<DbContext>()), Lifestyle.Scoped);
+            container.Register<IUserStore<ApplicationUser>>(
+                () => new UserStore<ApplicationUser>(container.GetInstance<DbContext>()), Lifestyle.Scoped);
 
-            Container.Register<IAuthenticationManager>(() =>
-                Container.IsVerifying()
+            container.Register<IAuthenticationManager>(() =>
+                container.IsVerifying()
                     ? new OwinContext(new Dictionary<string, object>()).Authentication
                     : HttpContext.Current.GetOwinContext().Authentication, Lifestyle.Scoped);
 
             // Register MVC controllers
-            Container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+            container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
             // Register WebAPI controllers
-            Container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
             // Verify
-            Container.Verify();
+            container.Verify();
 
             // Setup resolvers
-            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(Container));
+            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver 
-                = new SimpleInjectorWebApiDependencyResolver(Container);
+                = new SimpleInjectorWebApiDependencyResolver(container);
         }
     }
 }
