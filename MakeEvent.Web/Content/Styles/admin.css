@@ -1,0 +1,49 @@
+﻿body .card-panel.hoverable.login-form {
+  margin-top: 10%;
+  padding-top: 30px;
+}
+body #page .container {
+  margin-left: 300px;
+}
+body #categoryBlock {
+  margin-left: 30px;
+  margin-top: 35px;
+}
+body .logo {
+  background-color: #64b5f6;
+}
+body .logo img {
+  width: 140px;
+  margin-left: 15px;
+  margin-top: 14px;
+  border-radius: 72px;
+  background-color: white;
+}
+body .btn:focus {
+  outline: none;
+}
+body .waves-button-input {
+  outline: none;
+}
+body input:not([type]):focus:not([readonly]),
+body input[type=text]:focus:not([readonly]),
+body input[type=password]:focus:not([readonly]),
+body input[type=email]:focus:not([readonly]),
+body input[type=url]:focus:not([readonly]),
+body input[type=time]:focus:not([readonly]),
+body input[type=date]:focus:not([readonly]),
+body input[type=datetime]:focus:not([readonly]),
+body input[type=datetime-local]:focus:not([readonly]),
+body input[type=tel]:focus:not([readonly]),
+body input[type=number]:focus:not([readonly]),
+body input[type=search]:focus:not([readonly]),
+body textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #ef5350;
+  box-shadow: 0 1px 0 0 #ef5350;
+}
+body .text-danger {
+  font-size: 12px;
+  color: #ef5350;
+}
+
+
