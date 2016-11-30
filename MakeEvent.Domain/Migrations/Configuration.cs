@@ -37,12 +37,14 @@ namespace MakeEvent.Domain.Migrations
 
         private void SeedEventCategories(ApplicationDbContext context)
         {
-            var categoryCelebrations = new EventCategory();
-            var categoryLections  = new EventCategory();
-            var categoryWorkshops = new EventCategory();
-            var categoryConcerts  = new EventCategory();
+            var categoryCelebrations = new EventCategory { Id = 1 };
+            var categoryLections    = new EventCategory { Id = 2 };
+            var categoryWorkshops   = new EventCategory { Id = 3 };
+            var categoryConcerts    = new EventCategory { Id = 4 };
+            var unspecifiedCategory = new EventCategory { Id = 5, IsDefault = true };
 
             context.EventCategories.AddOrUpdate(c => c.Id,
+                unspecifiedCategory,
                 categoryConcerts,
                 categoryCelebrations,
                 categoryLections,
@@ -50,6 +52,9 @@ namespace MakeEvent.Domain.Migrations
 
             var localizations = new List<EventCategoryLocalization>
             {
+                new EventCategoryLocalization { EventCategoryId = 5, Name = "Uncategorized", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = 5, Name = "Без категории", LanguageId = 2 },
+
                 new EventCategoryLocalization { EventCategoryId = 1, Name = "Concerts", LanguageId = 1 },
                 new EventCategoryLocalization { EventCategoryId = 1, Name = "Концерты", LanguageId = 2 },
 

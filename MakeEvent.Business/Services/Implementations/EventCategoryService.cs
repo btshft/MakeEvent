@@ -81,6 +81,18 @@ namespace MakeEvent.Business.Services.Implementations
             if (exists == null)
                 return OperationResult.Fail($"Категория с id = {eventCategoryId} не найдена.");
 
+            var defaultCategory = _repository.Get<EventCategory>(c => c.IsDefault)
+                .Single();
+
+            if (defaultCategory.Id == eventCategoryId)
+                return OperationResult.Fail($"Данная категория не может быть удалена.");
+
+            var events = _repository.Get<Event>(e => e.CategoryId == eventCategoryId);
+            foreach (var @event in events)
+            {
+                @event.CategoryId = defaultCategory.Id;
+            }
+
             _repository.Delete<EventCategory>(eventCategoryId);
             _repository.Save();
 
