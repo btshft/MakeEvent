@@ -24,23 +24,24 @@ namespace MakeEvent.Web.Controllers
             if (!User.Identity.IsAuthenticated || !User.IsInRole("Admin"))
                 return RedirectToAction("Login");
 
-            if (vm == null)
-            {
-                var user = _userService.FindById(User.Identity.GetUserId());
-                var model = new LoggedUserViewModel
-                {
-                    Id         = user.Id,
-                    FirstName  = user.FirstName,
-                    LastName   = user.LastName,
-                    MiddleName = user.MiddleName,
-                    UserName   = user.UserName,
-                    Role       = "Admin"
-                };
+            //if (vm == null)
+            //{
+            //    var user = _userService.FindById(User.Identity.GetUserId());
+            //    var model = new LoggedUserViewModel
+            //    {
+            //        Id         = user.Id,
+            //        FirstName  = user.FirstName,
+            //        LastName   = user.LastName,
+            //        MiddleName = user.MiddleName,
+            //        UserName   = user.UserName,
+            //        Role       = "Admin"
+            //    };
 
-                return View(model);
-            }
+            //    return View(model);
+            //}
 
-            return View(vm);
+            //return View(vm);
+            return RedirectToAction("Index", "Category");
         }
 
 

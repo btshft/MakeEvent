@@ -1,0 +1,62 @@
+﻿@model MakeEvent.Web.Models.ViewModels.Admin.NewsViewModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <h4>NewsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleRu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleRu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescriptionRu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescriptionRu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentRu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentRu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleEn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescriptionEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescriptionEn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentEn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
