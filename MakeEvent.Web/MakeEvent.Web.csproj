@@ -398,6 +398,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\kendo.all.min.js" />
     <Content Include="Scripts\KendoSPA\KendoHelper.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\AdminApp\Category.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\AdminApp\Init.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\AdminApp\News.js" />
+    <Content Include="Scripts\KendoSPA\ViewModels\AdminApp\Pages.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\About.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\AdminPage.js" />
     <Content Include="Scripts\KendoSPA\ViewModels\MainApp\Contacts.js" />
@@ -473,6 +477,9 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Partials\News.cshtml" />
+    <Content Include="Views\Admin\Partials\Pages.cshtml" />
+    <Content Include="Views\Admin\Partials\Categories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

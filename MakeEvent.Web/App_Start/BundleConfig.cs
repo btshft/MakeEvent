@@ -64,6 +64,11 @@ namespace MakeEvent.Web
                 "~/Scripts/KendoSPA/ViewModels/MainApp/AdminPage.js",
                  "~/Scripts/KendoSPA/ViewModels/MainApp/layout.js"
                 ));
+            bundles.Add(new ScriptBundle("~/Scripts/adminApp").Include(
+                "~/Scripts/KendoSPA/ViewModels/AdminApp/Init.js",
+                "~/Scripts/KendoSPA/ViewModels/AdminApp/Category.js",
+                "~/Scripts/KendoSPA/ViewModels/AdminApp/Pages.js",
+                "~/Scripts/KendoSPA/ViewModels/AdminApp/News.js"));
         }
     }
 }
