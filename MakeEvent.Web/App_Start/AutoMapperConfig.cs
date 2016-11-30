@@ -36,6 +36,8 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<EventCategoryLocalization, EventCategoryLocalizationDto>();
                 cfg.CreateMap<EventCategoryLocalizationDto, EventCategoryLocalization>();
+                cfg.CreateMap<EventCategoryLocalizationDto, EventCategoryLocalizationViewModel>();
+                cfg.CreateMap<EventCategoryLocalizationViewModel, EventCategoryLocalizationDto>();
 
                 cfg.CreateMap<News, NewsDto>();
                 cfg.CreateMap<NewsDto, News>()
