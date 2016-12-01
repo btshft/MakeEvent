@@ -18,7 +18,7 @@ namespace MakeEvent.Domain.Models
         [DataType(DataType.DateTime)]
         public DateTime? ModifiedDate { get; set; }
 
-        public Guid   Key        { get; set; }
+        public string Key        { get; set; }
         public string CreatedBy  { get; set; }
         public string ModifiedBy { get; set; }
 

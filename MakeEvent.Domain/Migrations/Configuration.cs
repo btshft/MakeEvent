@@ -38,11 +38,11 @@ namespace MakeEvent.Domain.Migrations
 
         private void SeedEventCategories(ApplicationDbContext context)
         {
-            var celebrationsKey = Guid.NewGuid();
-            var lectionsKey     = Guid.NewGuid();
-            var workshopsKey    = Guid.NewGuid();
-            var concertsKey     = Guid.NewGuid();
-            var unspectifiedKey = Guid.NewGuid();
+            var celebrationsKey = "Celebrations";
+            var lectionsKey     = "Lections";
+            var workshopsKey    = "Workshops";
+            var concertsKey     = "Concerts";
+            var unspectifiedKey = "Unspecified";
 
             var categoryCelebrations = new EventCategory { Key = celebrationsKey };
             var categoryLections     = new EventCategory { Key = lectionsKey };
@@ -67,20 +67,20 @@ namespace MakeEvent.Domain.Migrations
 
             var localizations = new List<EventCategoryLocalization>
             {
-                new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = Guid.NewGuid(), Name = "Uncategorized", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = unspectifiedId,Key = Guid.NewGuid(), Name = "Без категории", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = "UnspecifiedEn", Name = "Uncategorized", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = "UnspecifiedRu", Name = "Без категории", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = concertsId, Key = Guid.NewGuid(), Name = "Concerts", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = concertsId, Key = Guid.NewGuid(), Name = "Концерты", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = concertsId, Key = "ConcertsEn", Name = "Concerts", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = concertsId, Key = "ConcertsRu", Name = "Концерты", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = celebrationsId ,Key = Guid.NewGuid(), Name = "Celebrations", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = Guid.NewGuid(), Name = "Праздники", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = "CelebrationsEn", Name = "Celebrations", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = "CelebrationsRu", Name = "Праздники", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = Guid.NewGuid(), Name = "Lections", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = Guid.NewGuid(), Name = "Лекции", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = "LectionsEn", Name = "Lections", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = "LectionsRu", Name = "Лекции", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = Guid.NewGuid(), Name = "Workshops", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = Guid.NewGuid(), Name = "Мастер-классы", LanguageId = 2 }
+                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = "WorkshopsEn", Name = "Workshops", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = "WorkshopsRu", Name = "Мастер-классы", LanguageId = 2 }
             };
 
             context.EventCategoryLocalizations.AddOrUpdate(c => c.Key, localizations.ToArray());

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MakeEvent.Web.Models.ViewModels.Organization
+﻿namespace MakeEvent.Web.Models.Organization
 {
-    public class TicketViewModel
+    public class TicketMvcViewModel
     {
         public int Id { get; set; }
         public string TypeName { get; set; }

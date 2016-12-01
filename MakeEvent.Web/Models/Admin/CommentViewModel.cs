@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace MakeEvent.Web.Models.ViewModels.Admin
+namespace MakeEvent.Web.Models.Admin
 {
-    public class Comment
+    public class CommentViewModel
     {
         public int Id { get; set; }
         public int NewsId { get; set; }

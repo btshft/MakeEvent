@@ -1,9 +1,9 @@
-﻿using MakeEvent.Web.Models.ViewModels.Organization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MakeEvent.Web.Models.Organization;
 
 namespace MakeEvent.Web.Controllers
 {
@@ -12,14 +12,14 @@ namespace MakeEvent.Web.Controllers
         // GET: Organization
         public ActionResult Index()
         {
-            var model = new Organization();
+            var model = new OrganizationMvcViewModel();
             return View(model);
         }
 
         // GET: Organization/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(new Organization());
+            return View(new OrganizationMvcViewModel());
         }
 
         // POST: Organization/Edit/5

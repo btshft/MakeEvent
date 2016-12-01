@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MakeEvent.Web.Models.ViewModels.Organization
+﻿namespace MakeEvent.Web.Models.Organization
 {
-    public class Organization
+    public class OrganizationMvcViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,6 +10,7 @@ namespace MakeEvent.Web.Models.ViewModels.Organization
         public string Office { get; set; }
         public string Website { get; set; }
         public string Description { get; set; }
+
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
     }

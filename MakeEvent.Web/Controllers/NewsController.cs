@@ -39,7 +39,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpGet    ]
+        [HttpGet]
         public ActionResult Create()
         {
             return View(new NewsMvcViewModel());
@@ -113,6 +113,12 @@ namespace MakeEvent.Web.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult	GetImage(int id)
+        {
+            return null;
         }
     }
 }

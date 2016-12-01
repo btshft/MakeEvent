@@ -1,9 +1,9 @@
-﻿using MakeEvent.Web.Models.ViewModels.Admin;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MakeEvent.Web.Models.Admin;
 
 namespace MakeEvent.Web.Controllers
 {
@@ -12,8 +12,8 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments
         public ActionResult Index()
         {
-            var models = new List<Comment>();
-            models.Add(new Comment{
+            var models = new List<CommentViewModel>();
+            models.Add(new CommentViewModel{
             Id=0,
             NewsId=1,
             AuthorName="Foo",
@@ -21,7 +21,7 @@ namespace MakeEvent.Web.Controllers
             IsVisible=true,
             CreatedDate=DateTime.Now,
             Text="example"});
-            models.Add(new Comment
+            models.Add(new CommentViewModel
             {
                 Id = 2,
                 NewsId = 1,
@@ -37,7 +37,7 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments/Details/5
         public ActionResult Details(int id)
         {
-            return View(new Comment
+            return View(new CommentViewModel
             {
                 Id = 2,
                 NewsId = 1,
@@ -74,7 +74,7 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(new Comment
+            return View(new CommentViewModel
             {
                 Id = 2,
                 NewsId = 1,
@@ -105,7 +105,7 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(new Comment
+            return View(new CommentViewModel
             {
                 Id = 2,
                 NewsId = 1,
