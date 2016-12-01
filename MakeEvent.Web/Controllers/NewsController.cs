@@ -1,141 +1,118 @@
-﻿using MakeEvent.Web.Models.ViewModels.Admin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MakeEvent.Business.Models;
+using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Attributes;
+using MakeEvent.Web.Models.Admin;
 
 namespace MakeEvent.Web.Controllers
 {
+    [RequireHttps, Localized]
     public class NewsController : Controller
     {
-        // GET: News
+        private readonly INewsService _newsService;
+
+        public NewsController(INewsService newsService)
+        {
+            _newsService = newsService;
+        }
+
+        [HttpGet]
         public ActionResult Index()
         {
-            var models = new List<NewsViewModel>();
-            models.Add(new NewsViewModel{
-                Id = 0,
-                TitleEn = "Title",
-                TitleRu = "Заголовок",
-                ContentEn = "Content",
-                ContentRu = "Контент",
-                ShortDescriptionEn = "Description",
-                ShortDescriptionRu = "Описание"
-            });
-            models.Add(new NewsViewModel
-            {
-                Id = 1,
-                TitleEn = "Title1",
-                TitleRu = "Заголовок1",
-                ContentEn = "Content1",
-                ContentRu = "Контент1",
-                ShortDescriptionEn = "Description1",
-                ShortDescriptionRu = "Описание1"
-            });
-            return View(models);
+            var news = _newsService.All();
+            var model = news.Result
+                .Select(Mapper.Map<NewsMvcViewModel>);
+
+            return View(model);
         }
 
-        // GET: News/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            var model = new NewsViewModel
-            {
-                Id = 0,
-                TitleEn = "Title",
-                TitleRu = "Заголовок",
-                ContentEn = "Content",
-                ContentRu = "Контент",
-                ShortDescriptionEn = "Description",
-                ShortDescriptionRu = "Описание"
-            };
+            var category = _newsService.Get(id).Result;
+            var model = Mapper.Map<NewsMvcViewModel>(category);
+
             return View(model);
         }
 
-        // GET: News/Create
+        [HttpGet    ]
         public ActionResult Create()
         {
-            return View();
+            return View(new NewsMvcViewModel());
         }
 
-        // POST: News/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(NewsMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var result = _newsService.Save(Mapper.Map<NewsDto>(model));
+
+            if (!result.Succeeded)
             {
-                return View();
+                ModelState.AddModelError("", $"Ошибки при добавлении ноовсти:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
             }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: News/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
+            var category = _newsService.Get(id).Result;
+            var model = Mapper.Map<NewsMvcViewModel>(category);
 
-            var model = new NewsViewModel
-            {
-                Id = 0,
-                TitleEn = "Title",
-                TitleRu = "Заголовок",
-                ContentEn = "Content",
-                ContentRu = "Контент",
-                ShortDescriptionEn = "Description",
-                ShortDescriptionRu = "Описание"
-            };
             return View(model);
         }
 
-        // POST: News/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, NewsMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (model.Id == 0)
             {
-                return View();
+                throw new HttpException((int)HttpStatusCode.InternalServerError, "Не указан идентификатор категории");
             }
+
+            var result = _newsService.Save(Mapper.Map<NewsDto>(model));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении новости:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: News/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            var model = new NewsViewModel
-            {
-                Id = 0,
-                TitleEn = "Title",
-                TitleRu = "Заголовок",
-                ContentEn = "Content",
-                ContentRu = "Контент",
-                ShortDescriptionEn = "Description",
-                ShortDescriptionRu = "Описание"
-            };
+            var category = _newsService.Get(id).Result;
+            var model = Mapper.Map<NewsMvcViewModel>(category);
+
             return View(model);
         }
 
-        // POST: News/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, NewsMvcViewModel model)
         {
-            try
+            var result = _newsService.Delete(id);
+            if (!result.Succeeded)
             {
-                // TODO: Add delete logic here
+                ModelState.AddModelError("", $"Ошибки при удалении категории:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

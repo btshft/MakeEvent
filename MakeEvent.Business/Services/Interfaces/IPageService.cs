@@ -1,11 +1,14 @@
-﻿using MakeEvent.Business.Models;
+﻿using System.Collections.Generic;
+using MakeEvent.Business.Models;
 using MakeEvent.Common.Models;
 
 namespace MakeEvent.Business.Services.Interfaces
 {
     public interface IPageService
     {
-        OperationResult<PageLocalizationDto> SaveLocalization(string pageName, PageLocalizationDto localization);
+        OperationResult<IList<PageDto>> All();
+        OperationResult<PageDto> Get(int pageId);
+        OperationResult<PageLocalizationDto> SaveLocalizations(string pageName, params PageLocalizationDto[] localizations);
         OperationResult<PageLocalizationDto> GetLocalization(string pageName, int languageId);
     }
 }

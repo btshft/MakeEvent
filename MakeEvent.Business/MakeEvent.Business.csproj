@@ -98,7 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Language.cs" />
+    <Compile Include="Enums\CultureLanguage.cs" />
     <Compile Include="Filtering\Builders\PageFilterBuilder.cs" />
     <Compile Include="Models\CommentDto.cs" />
     <Compile Include="Models\EventCategoryDto.cs" />
@@ -107,6 +107,7 @@
     <Compile Include="Models\NewsDto.cs" />
     <Compile Include="Models\NewsLocalizationDto.cs" />
     <Compile Include="Models\OrganizationDto.cs" />
+    <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\PageLocalizationDto.cs" />
     <Compile Include="Services\Implementations\AuthorizationService.cs" />
     <Compile Include="Services\Implementations\EventCategoryService.cs" />

@@ -8,7 +8,7 @@ namespace MakeEvent.Web.Attributes
     {
         public override void OnException(ExceptionContext filterContext)
         {
-            if (filterContext.HttpContext.Request.IsAjaxRequest() && filterContext.Exception != null)
+            if (filterContext.Exception != null)
             {
 
                 filterContext.Result = new JsonResult

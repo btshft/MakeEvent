@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using MakeEvent.Business.Enums;
 
 namespace MakeEvent.Web.Controllers
 {
@@ -22,6 +24,26 @@ namespace MakeEvent.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetLanguage(CultureLanguage language, string returnUrl)
+        {
+            switch (language)
+            {
+                case CultureLanguage.EN:
+                    Session["localization"] = "EN";
+                    break;
+
+                default:
+                    Session["localization"] = "RU";
+                    break;
+            }
+
+            if (Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute))
+                return Redirect(returnUrl);
+
+            return View("Index");
         }
     }
 }

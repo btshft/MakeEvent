@@ -1,6 +1,6 @@
 ﻿namespace MakeEvent.Business.Enums
 {
-    public enum Language
+    public enum CultureLanguage
     {
         Undefined = 0,
         EN = 1,

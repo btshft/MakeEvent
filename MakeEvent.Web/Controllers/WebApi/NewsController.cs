@@ -40,17 +40,17 @@ namespace MakeEvent.Web.Controllers.WebApi
 
         [HttpGet]
         [Route("api/news/all")]
-        public DataSourceResult All(Language? defaultLanguage = null)
+        public DataSourceResult All(CultureLanguage? defaultLanguage = null)
         {
             var models = _newsService.All().Result.Select(Mapper.Map<NewsViewModel>).ToList();
             foreach (var news in models)
             {
                 var culture = Thread.CurrentThread.CurrentCulture;
-                var languageId = (defaultLanguage.HasValue && defaultLanguage.Value != Language.Undefined)
+                var languageId = (defaultLanguage.HasValue && defaultLanguage.Value != CultureLanguage.Undefined)
                     ? (int) defaultLanguage.Value
                     : (culture.IetfLanguageTag.Equals("EN", StringComparison.InvariantCultureIgnoreCase))
-                        ? (int) Language.EN
-                        : (int) Language.RU;
+                        ? (int) CultureLanguage.EN
+                        : (int) CultureLanguage.RU;
 
                 var localization = _newsService.GetLocalization(news.Id, languageId).Result;
 

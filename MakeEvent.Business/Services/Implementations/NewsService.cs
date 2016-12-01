@@ -66,6 +66,15 @@ namespace MakeEvent.Business.Services.Implementations
             return OperationResult.Success(result);
         }
 
+        public OperationResult<NewsDto> Get(int newsId)
+        {
+            var news = _repository.GetById<News>(newsId);
+
+            return news == null
+                ? OperationResult.Fail<NewsDto>("Не удалось найти новость")
+                : OperationResult.Success(Mapper.Map<NewsDto>(news));
+        }
+
         public OperationResult<IList<NewsDto>> All()
         {
             var news = _repository.Get<News>()

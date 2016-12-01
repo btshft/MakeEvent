@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Common.Models;
@@ -17,7 +20,25 @@ namespace MakeEvent.Business.Services.Implementations
             _repository = repository;
         }
 
-        public OperationResult<PageLocalizationDto> SaveLocalization(string pageName, PageLocalizationDto localization)
+        public OperationResult<IList<PageDto>> All()
+        {
+            var pages = _repository.Get<Page>()
+                .ProjectTo<PageDto>()
+                .ToList();
+
+            return OperationResult.Success<IList<PageDto>>(pages);
+        }
+
+        public OperationResult<PageDto> Get(int pageId)
+        {
+            var page = _repository.GetById<Page>(pageId);
+
+            return page == null
+                ? OperationResult.Fail<PageDto>("Не удалось найти новость")
+                : OperationResult.Success(Mapper.Map<PageDto>(page));
+        }
+
+        public OperationResult<PageLocalizationDto> SaveLocalizations(string pageName, params PageLocalizationDto[] localizations)
         {
             var domaingPage =
                 _repository.First<Page>(
@@ -27,18 +48,29 @@ namespace MakeEvent.Business.Services.Implementations
                 return OperationResult.Fail<PageLocalizationDto>(
                     $"Страница с Name = {pageName} не найдена.");
 
-            localization.PageId = domaingPage.Id;
+            var results = new List<OperationResult<PageLocalizationDto>>();
 
-            var existedLocalization = _repository
-                .GetById<PageLocalization>(localization.PageId, localization.LanguageId);
+            foreach (var localization in localizations)
+            {
+                localization.PageId = domaingPage.Id;
 
-            var result = (existedLocalization != null)
-                ? UpdatePageLocalization(localization, existedLocalization)
-                : CreatePageLocalization(localization);
+                var existedLocalization = _repository
+                    .GetById<PageLocalization>(localization.PageId, localization.LanguageId);
+
+                var result = (existedLocalization != null)
+                    ? UpdatePageLocalization(localization, existedLocalization)
+                    : CreatePageLocalization(localization);
+
+                results.Add(result);
+            }
 
             _repository.Save();
 
-            return result;
+            return new OperationResult<PageLocalizationDto>
+            {
+                Succeeded = results.All(r => r.Succeeded),
+                Errors    = results.Where(r => r.Errors != null).SelectMany(r => r.Errors)  
+            };
         }
 
         public OperationResult<PageLocalizationDto> GetLocalization(string pageName, int languageId)

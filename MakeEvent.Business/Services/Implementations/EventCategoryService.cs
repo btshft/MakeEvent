@@ -66,6 +66,15 @@ namespace MakeEvent.Business.Services.Implementations
             return OperationResult.Success(result);
         }
 
+        public OperationResult<EventCategoryDto> Get(int categoryId)
+        {
+            var category = _repository.GetById<EventCategory>(categoryId);
+
+            return category == null 
+                ? OperationResult.Fail<EventCategoryDto>("Не удалось найти категорию") 
+                : OperationResult.Success(Mapper.Map<EventCategoryDto>(category));
+        }
+
         public OperationResult<IList<EventCategoryDto>> All()
         {
             var eventCategories = _repository.Get<EventCategory>()

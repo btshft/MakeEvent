@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using MakeEvent.Web.Attributes;
 
 namespace MakeEvent.Web
 {
@@ -6,7 +7,7 @@ namespace MakeEvent.Web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleMvcExceptionAttribute());
         }
     }
 }

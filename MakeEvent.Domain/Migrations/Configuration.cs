@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using MakeEvent.Domain.Models;
@@ -37,38 +38,52 @@ namespace MakeEvent.Domain.Migrations
 
         private void SeedEventCategories(ApplicationDbContext context)
         {
-            var categoryCelebrations = new EventCategory { Id = 1 };
-            var categoryLections    = new EventCategory { Id = 2 };
-            var categoryWorkshops   = new EventCategory { Id = 3 };
-            var categoryConcerts    = new EventCategory { Id = 4 };
-            var unspecifiedCategory = new EventCategory { Id = 5, IsDefault = true };
+            var celebrationsKey = Guid.NewGuid();
+            var lectionsKey     = Guid.NewGuid();
+            var workshopsKey    = Guid.NewGuid();
+            var concertsKey     = Guid.NewGuid();
+            var unspectifiedKey = Guid.NewGuid();
 
-            context.EventCategories.AddOrUpdate(c => c.Id,
+            var categoryCelebrations = new EventCategory { Key = celebrationsKey };
+            var categoryLections     = new EventCategory { Key = lectionsKey };
+            var categoryWorkshops    = new EventCategory { Key = workshopsKey };
+            var categoryConcerts     = new EventCategory { Key = concertsKey };
+            var unspecifiedCategory  = new EventCategory { Key = unspectifiedKey, IsDefault = true };
+
+            context.EventCategories.AddOrUpdate(c => c.Key,
                 unspecifiedCategory,
                 categoryConcerts,
                 categoryCelebrations,
                 categoryLections,
                 categoryWorkshops);
 
+            context.SaveChanges();
+
+            var celebrationsId = context.EventCategories.Single(c => c.Key == celebrationsKey).Id;
+            var lectionsId     = context.EventCategories.Single(c => c.Key == lectionsKey).Id;
+            var workshopsId    = context.EventCategories.Single(c => c.Key == workshopsKey).Id;
+            var concertsId     = context.EventCategories.Single(c => c.Key == concertsKey).Id;
+            var unspectifiedId = context.EventCategories.Single(c => c.Key == unspectifiedKey).Id;
+
             var localizations = new List<EventCategoryLocalization>
             {
-                new EventCategoryLocalization { EventCategoryId = 5, Name = "Uncategorized", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = 5, Name = "Без категории", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = Guid.NewGuid(), Name = "Uncategorized", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = unspectifiedId,Key = Guid.NewGuid(), Name = "Без категории", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = 1, Name = "Concerts", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = 1, Name = "Концерты", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = concertsId, Key = Guid.NewGuid(), Name = "Concerts", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = concertsId, Key = Guid.NewGuid(), Name = "Концерты", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = 2, Name = "Celebrations", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = 2, Name = "Праздники", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = celebrationsId ,Key = Guid.NewGuid(), Name = "Celebrations", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = Guid.NewGuid(), Name = "Праздники", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = 3, Name = "Lections", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = 3, Name = "Лекции", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = Guid.NewGuid(), Name = "Lections", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = Guid.NewGuid(), Name = "Лекции", LanguageId = 2 },
 
-                new EventCategoryLocalization { EventCategoryId = 4, Name = "Workshops", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = 4, Name = "Мастер-классы", LanguageId = 2 }
+                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = Guid.NewGuid(), Name = "Workshops", LanguageId = 1 },
+                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = Guid.NewGuid(), Name = "Мастер-классы", LanguageId = 2 }
             };
 
-            context.EventCategoryLocalizations.AddOrUpdate(c => c.Name, localizations.ToArray());
+            context.EventCategoryLocalizations.AddOrUpdate(c => c.Key, localizations.ToArray());
 
         }
 
@@ -102,10 +117,10 @@ namespace MakeEvent.Domain.Migrations
                 {
                     var newAdmin = new ApplicationUser()
                     {
-                        UserName = "admin@event.com",
+                        UserName  = "admin@event.com",
                         FirstName = "Admin",
-                        LastName = "Admin",
-                        Email = "admin@event.com"
+                        LastName  = "Admin",
+                        Email     = "admin@event.com"
                     };
                     userManager.Create(newAdmin, "123456");
                     userManager.AddToRole(newAdmin.Id, "Admin");
@@ -116,10 +131,10 @@ namespace MakeEvent.Domain.Migrations
                 {
                     var newOrganization = new ApplicationUser()
                     {
-                        UserName = "organization@event.com",
+                        UserName  = "organization@event.com",
                         FirstName = "Organization",
-                        LastName = "Organization",
-                        Email = "organization@event.com"
+                        LastName  = "Organization",
+                        Email     = "organization@event.com"
                     };
                     userManager.Create(newOrganization, "123456");
                     userManager.AddToRole(newOrganization.Id, "Organization");

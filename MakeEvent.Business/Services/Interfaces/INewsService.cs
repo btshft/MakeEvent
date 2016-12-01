@@ -8,6 +8,7 @@ namespace MakeEvent.Business.Services.Interfaces
     public interface INewsService
     {
         OperationResult<NewsDto> Save(NewsDto news);
+        OperationResult<NewsDto> Get(int newsId);
         OperationResult<IList<NewsDto>> All();
         OperationResult Delete(int newsId);
         OperationResult<NewsLocalizationDto> GetLocalization(int newsId, int languageId);

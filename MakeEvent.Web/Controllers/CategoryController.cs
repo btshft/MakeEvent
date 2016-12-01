@@ -1,121 +1,118 @@
-﻿using MakeEvent.Web.Models.ViewModels.Admin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MakeEvent.Business.Models;
+using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Attributes;
+using MakeEvent.Web.Models.Admin;
 
 namespace MakeEvent.Web.Controllers
 {
-    public class CategoryController : Controller
+    [RequireHttps, Localized]
+    public class CategoryController : BaseController
     {
-        // GET: Category
+        private readonly IEventCategoryService _eventCategoryService;
+
+        public CategoryController(IEventCategoryService eventCategoryService)
+        {
+            _eventCategoryService = eventCategoryService;
+        }
+
+        [HttpGet]
         public ActionResult Index()
         {
-            var models = new List<CategoryViewModel>();
-            models.Add(new CategoryViewModel
-            {
-                Id = 0,
-                NameEn = "English",
-                NameRu = "Русский"
-            });
-            models.Add(new CategoryViewModel
-            {
-                Id = 1,
-                NameEn = "English1",
-                NameRu = "Русский1"
-            });
-            return View(models);
+            var categories = _eventCategoryService.All();
+            var model = categories.Result
+                .Select(Mapper.Map<EventCategoryMvcViewModel>);
+
+            return View(model);
         }
 
-        // GET: Category/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            var model = new CategoryViewModel
-            {
-                Id = 0,
-                NameEn = "English",
-                NameRu = "Русский"
-            };
+            var category = _eventCategoryService.Get(id).Result;
+            var model = Mapper.Map<EventCategoryMvcViewModel>(category);
+
             return View(model);
         }
 
-        // GET: Category/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(new EventCategoryMvcViewModel());
         }
 
-        // POST: Category/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EventCategoryMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var result = _eventCategoryService.Save(Mapper.Map<EventCategoryDto>(model));
+
+            if (!result.Succeeded)
             {
-                return View();
+                ModelState.AddModelError("", $"Ошибки при добавлении категории:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
             }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Category/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            var model = new CategoryViewModel
-            {
-                Id = 0,
-                NameEn = "English",
-                NameRu = "Русский"
-            };
+            var category = _eventCategoryService.Get(id).Result;
+            var model = Mapper.Map<EventCategoryMvcViewModel>(category);
+
             return View(model);
         }
 
-        // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EventCategoryMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (model.Id == 0)
             {
-                return View();
+                throw new HttpException((int) HttpStatusCode.InternalServerError, "Не указан идентификатор категории");
             }
+
+            var result = _eventCategoryService.Save(Mapper.Map<EventCategoryDto>(model));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении категории:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Category/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            var model = new CategoryViewModel
-            {
-                Id = 0,
-                NameEn = "English",
-                NameRu = "Русский"
-            };
+            var category = _eventCategoryService.Get(id).Result;
+            var model = Mapper.Map<EventCategoryMvcViewModel>(category);
+
             return View(model);
         }
 
-        // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, EventCategoryMvcViewModel model)
         {
-            try
+            var result = _eventCategoryService.Delete(id);
+            if (!result.Succeeded)
             {
-                // TODO: Add delete logic here
+                ModelState.AddModelError("", $"Ошибки при удалении категории:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

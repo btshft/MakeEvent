@@ -29,7 +29,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return ModelState.ToDataSourceResult();
 
             var dto = Mapper.Map<PageLocalizationDto>(model);
-            var result = _pageService.SaveLocalization(model.PageName, dto);
+            var result = _pageService.SaveLocalizations(model.PageName, dto);
 
             return new DataSourceResult { Errors = result.Errors };
         }

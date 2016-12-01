@@ -10,8 +10,9 @@ namespace MakeEvent.Domain.Models
         [Key, Column(Order = 1)]
         public int LanguageId { get; set; }
 
-        [Required]
-        public string Html { get; set; }
+
+        public string Title { get; set; }
+        public string Html  { get; set; }
 
         public virtual Page Page { get; set; }
         public virtual Language Language { get; set; }

@@ -1,19 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MakeEvent.Web.Models.ViewModels.Admin
+namespace MakeEvent.Web.Models.Admin
 {
-    public class NewsViewModel
+    public class NewsMvcViewModel
     {
         public int Id { get; set; }
-        public string TitleRu { get; set; }
-        public string ShortDescriptionRu { get; set; }
-        public string ContentRu { get; set; }
-        public string TitleEn { get; set; }
-        public string ShortDescriptionEn { get; set; }
-        public string ContentEn { get; set; }
 
+        [Required]
+        public string TitleRu { get; set; }
+
+        [Required]
+        public string ShortDescriptionRu { get; set; }
+
+        [Required]
+        public string ContentRu { get; set; }
+
+        [Required]
+        public string TitleEn { get; set; }
+
+        [Required]
+        public string ShortDescriptionEn { get; set; }
+
+        [Required]
+        public string ContentEn { get; set; }
     }
 }
