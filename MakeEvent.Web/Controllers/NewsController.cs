@@ -54,7 +54,10 @@ namespace MakeEvent.Web.Controllers
         // GET: News/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new NewsViewModel
+            {
+                ImageData = null
+        });
         }
 
         // POST: News/Create
@@ -136,6 +139,22 @@ namespace MakeEvent.Web.Controllers
             {
                 return View();
             }
+        }
+        public FileContentResult GetImage(int newsId)
+        {
+            //TODO: Подогнать под нашу модель
+            //Game game = repository.Games
+            //    .FirstOrDefault(g => g.GameId == gameId);
+
+            //if (game != null)
+            //{
+            //    return File(game.ImageData, game.ImageMimeType);
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            return null;
         }
     }
 }

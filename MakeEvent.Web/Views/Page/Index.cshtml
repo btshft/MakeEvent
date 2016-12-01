@@ -34,10 +34,10 @@
             @Html.DisplayFor(modelItem => item.TitleEn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ContentRu)
+            @Html.Raw(item.ContentRu)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ContentEn)
+            @Html.Raw(item.ContentEn)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
