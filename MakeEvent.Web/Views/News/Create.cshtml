@@ -2,9 +2,9 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    
+
     <div class="form-horizontal">
         <h4>NewsViewModel</h4>
         <hr />
@@ -56,7 +56,30 @@
                 @Html.ValidationMessageFor(model => model.ContentEn, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div class="form-group">
+            <div style="position:relative;">
+                <label>Картинка</label>
+                <a class='btn' href='javascript:;'>
+                    Выберите файл...
+                    <input type="file" name="Image" size="40"
+                           style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                           onchange='$("#upload-file-info").html($(this).val());'>
+                </a>
+                <span class='label label-info' id="upload-file-info"></span>
+            </div>
+            @if (Model.ImageData == null)
+                {
+                <div class="form-control-static">Нет картинки</div>
+            }
+            else
+            {
+                <img class="img-thumbnail" width="150" height="150"
+                     src="@Url.Action("GetImage", "News",
+                        new { Model.Id })" />
+            }
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

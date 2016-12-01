@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace MakeEvent.Web.Models.Admin
 {
@@ -11,8 +16,7 @@ namespace MakeEvent.Web.Models.Admin
 
         [Required]
         public string ShortDescriptionRu { get; set; }
-
-        [Required]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         public string ContentRu { get; set; }
 
         [Required]
@@ -20,8 +24,9 @@ namespace MakeEvent.Web.Models.Admin
 
         [Required]
         public string ShortDescriptionEn { get; set; }
-
-        [Required]
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         public string ContentEn { get; set; }
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
     }
 }
