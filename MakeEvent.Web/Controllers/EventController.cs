@@ -1,4 +1,6 @@
-﻿using MakeEvent.Web.Models.Organization;
+﻿using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Models.Admin;
+using MakeEvent.Web.Models.Organization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +71,19 @@ namespace MakeEvent.Web.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
+            var categories = new List<EventCategoryMvcViewModel>();
+            categories.Add(new EventCategoryMvcViewModel
+            {
+                Id = 0,
+                LocalizedName = "Category 1"
+            });
+            categories.Add(new EventCategoryMvcViewModel
+            {
+                Id = 0,
+                LocalizedName = "Category 1"
+            });
+            SelectList categ = new SelectList(categories, "Id", "LocalizedName");
+            ViewBag.Categories = categ;
             return View(new EventMvcViewModel
             {
                 ImageData = null,
@@ -95,6 +110,19 @@ namespace MakeEvent.Web.Controllers
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
+            var categories = new List<EventCategoryMvcViewModel>();
+            categories.Add(new EventCategoryMvcViewModel
+            {
+                Id = 0,
+                LocalizedName = "Category 1"
+            });
+            categories.Add(new EventCategoryMvcViewModel
+            {
+                Id = 0,
+                LocalizedName = "Category 1"
+            });
+            SelectList categ = new SelectList(categories, "Id", "LocalizedName");
+            ViewBag.Categories = categ;
             return View(new EventMvcViewModel
             {
                 Id = 2,
