@@ -24,7 +24,7 @@ namespace MakeEvent.Web.Controllers
         public ActionResult Index()
         {
             var categories = _eventCategoryService.All();
-            var model = categories.Result
+            var model = categories.Data
                 .Select(Mapper.Map<EventCategoryMvcViewModel>);
 
             return View(model);
@@ -33,7 +33,7 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var category = _eventCategoryService.Get(id).Result;
+            var category = _eventCategoryService.Get(id).Data;
             var model = Mapper.Map<EventCategoryMvcViewModel>(category);
 
             return View(model);
@@ -65,7 +65,7 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var category = _eventCategoryService.Get(id).Result;
+            var category = _eventCategoryService.Get(id).Data;
             var model = Mapper.Map<EventCategoryMvcViewModel>(category);
 
             return View(model);
@@ -96,7 +96,7 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var category = _eventCategoryService.Get(id).Result;
+            var category = _eventCategoryService.Get(id).Data;
             var model = Mapper.Map<EventCategoryMvcViewModel>(category);
 
             return View(model);

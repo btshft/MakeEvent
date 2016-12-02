@@ -6,10 +6,12 @@ using MakeEvent.Business.Models;
 using MakeEvent.Web.Models.Organization;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Common.Models;
+using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models;
 
 namespace MakeEvent.Web.Controllers
 {
+    [RequireHttps, Localized]
     public class OrganizationController : Controller
     {
         private readonly IAuthorizationService _authorizationService;
@@ -32,9 +34,9 @@ namespace MakeEvent.Web.Controllers
             if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index", "Home");
 
-            var organization = _organizationService.Get(id).Result;
+            var organization = _organizationService.Get(id).Data;
             var image = (organization != null && organization.ImageId.HasValue)
-                ? _imageService.Get(organization.ImageId.Value).Result
+                ? _imageService.Get(organization.ImageId.Value).Data
                 : null;
 
             var model = Mapper.Map<OrganizationMvcViewModel>(organization);
@@ -53,9 +55,9 @@ namespace MakeEvent.Web.Controllers
             if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index", "Home");
 
-            var organization = _organizationService.Get(id).Result;
+            var organization = _organizationService.Get(id).Data;
             var image = (organization != null && organization.ImageId.HasValue)
-                ? _imageService.Get(organization.ImageId.Value).Result
+                ? _imageService.Get(organization.ImageId.Value).Data
                 : null;
 
             var model = Mapper.Map<OrganizationMvcViewModel>(organization);
@@ -97,13 +99,13 @@ namespace MakeEvent.Web.Controllers
             }
 
             var organization = Mapper.Map<OrganizationDto>(model);
-            organization.ImageId = imageResult?.Result.Id;
+            organization.ImageId = imageResult?.Data.Id;
 
             var organizationResult = _organizationService.Save(organization);
 
             if (!organizationResult.Succeeded)
             {
-                ModelState.AddModelError("", $"Ошибки при обновлении новости:</br>"
+                ModelState.AddModelError("", $"Ошибки при обновлении организации:</br>"
                                             + $"{string.Join("</br>", organizationResult.Errors)}");
                 return View(model);
             }
@@ -115,13 +117,13 @@ namespace MakeEvent.Web.Controllers
         public ActionResult GetImage(string id)
         {
             var organizationResult = _organizationService.Get(id);
-            var organization = organizationResult.Result;
+            var organization = organizationResult.Data;
             var imageResult = (organization != null && organizationResult.Succeeded && organization.ImageId.HasValue)
                 ? _imageService.Get(organization.ImageId.Value)
                 : null;
 
             return (imageResult != null && imageResult.Succeeded)
-                ? File(imageResult.Result.Content, imageResult.Result.MimeType)
+                ? File(imageResult.Data.Content, imageResult.Data.MimeType)
                 : null;
         }
 
@@ -183,7 +185,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var organization = Mapper.Map<OrganizationDto>(model);
-            organization.ImageId = imageResult?.Result.Id;
+            organization.ImageId = imageResult?.Data.Id;
 
             var oranizationResult = _organizationService.Save(organization);
             if (!oranizationResult.Succeeded)

@@ -67,7 +67,7 @@ namespace MakeEvent.Web.Controllers
                 return View();
             }
 
-            var user = result.Result;
+            var user = result.Data;
 
             var resultModel = new LoggedUserViewModel
             {

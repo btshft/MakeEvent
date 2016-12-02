@@ -3,47 +3,31 @@ using System.Web.Mvc;
 using MakeEvent.Business.Enums;
 using MakeEvent.Web.Models.Organization;
 using System.Collections.Generic;
+using AutoMapper;
+using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models.Admin;
 using MakeEvent.Web.Models.Common;
 
 namespace MakeEvent.Web.Controllers
 {
-    [RequireHttps]
+    [RequireHttps, Localized]
     public class HomeController : Controller
     {
+        private readonly IEventService _eventService;
+        private readonly INewsService  _newsService;
+
+        public HomeController(IEventService eventService, INewsService newsService)
+        {
+            _eventService = eventService;
+            _newsService  = newsService;
+        }
+
         public ActionResult Index()
         {
-            var models = new List<EventMvcViewModel>();
-            models.Add(new EventMvcViewModel
-            {
-                Id = 0,
-                CategoryId = 1,
-                City = "Sevastopol",
-                Description = "test",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te",
-                Name = "Event",
-                Office = "12",
-                Street = "Lenina",
-                ImageData = null,
-                ImageMimeType = ""
-            });
-            models.Add(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
+            var events = _eventService.All().Data;
+            var models = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
+
             return View(models);
         }
 
@@ -59,6 +43,24 @@ namespace MakeEvent.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult News()
+        {
+            var news = _newsService.All().Data;
+            var models = Mapper.Map<IEnumerable<NewsMvcViewModel>>(news);
+
+            return View(models);
+        }
+
+        [HttpGet]
+        public ActionResult News(int id)
+        {
+            var news = _newsService.Get(id);
+            var model = Mapper.Map<NewsMvcViewModel>(news);
+
+            return View("SingleNews", model);
         }
 
         [HttpPost]

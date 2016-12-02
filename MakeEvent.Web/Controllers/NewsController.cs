@@ -27,13 +27,13 @@ namespace MakeEvent.Web.Controllers
         public ActionResult Index()
         {
             var news = _newsService.All();
-            var model = news.Result
+            var model = news.Data
                 .Select(Mapper.Map<NewsMvcViewModel>)
                 .ToList();
 
             foreach (var n in model.Where(m => m.ImageId.HasValue))
             {
-                var image = _imageService.Get(n.ImageId.Value).Result;
+                var image = _imageService.Get(n.ImageId.Value).Data;
                 n.ImageData = image.Content;
                 n.ImageMimeType = image.MimeType;
             }
@@ -44,12 +44,12 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var news = _newsService.Get(id).Result;
+            var news = _newsService.Get(id).Data;
             var model = Mapper.Map<NewsMvcViewModel>(news);
 
             if (news.ImageId.HasValue)
             {
-                var image = _imageService.Get(news.ImageId.Value).Result;
+                var image = _imageService.Get(news.ImageId.Value).Data;
                 model.ImageData = image.Content;
                 model.ImageMimeType = image.MimeType;
             }
@@ -86,7 +86,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var news = Mapper.Map<NewsDto>(model);
-            news.ImageId = imageResult?.Result.Id;
+            news.ImageId = imageResult?.Data.Id;
 
             var newsResult = _newsService.Save(news);
 
@@ -103,12 +103,12 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var news = _newsService.Get(id).Result;
+            var news = _newsService.Get(id).Data;
             var model = Mapper.Map<NewsMvcViewModel>(news);
 
             if (news.ImageId.HasValue)
             {
-                var image = _imageService.Get(news.ImageId.Value).Result;
+                var image = _imageService.Get(news.ImageId.Value).Data;
                 model.ImageData = image.Content;
                 model.ImageMimeType = image.MimeType;
             }
@@ -144,7 +144,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var news = Mapper.Map<NewsDto>(model);
-            news.ImageId = imageResult?.Result.Id;
+            news.ImageId = imageResult?.Data.Id;
 
             var newsResult = _newsService.Save(news);
 
@@ -161,10 +161,10 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var category = _newsService.Get(id).Result;
+            var category = _newsService.Get(id).Data;
             var model = Mapper.Map<NewsMvcViewModel>(category);
 
-            var image = _imageService.Get(id).Result;
+            var image = _imageService.Get(id).Data;
             model.ImageData = image.Content;
             model.ImageMimeType = image.MimeType;
 
@@ -188,13 +188,13 @@ namespace MakeEvent.Web.Controllers
         public ActionResult	GetImage(int id)
         {
             var newsResult  = _newsService.Get(id);
-            var news = newsResult.Result;
+            var news = newsResult.Data;
             var imageResult = (newsResult != null && newsResult.Succeeded && news.ImageId.HasValue)
                 ? _imageService.Get(news.ImageId.Value)
                 : null;
 
             return (imageResult != null && imageResult.Succeeded)
-                ? File(imageResult.Result.Content, imageResult.Result.MimeType)
+                ? File(imageResult.Data.Content, imageResult.Data.MimeType)
                 : null;
         }
     }

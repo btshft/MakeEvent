@@ -1,131 +1,122 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MakeEvent.Business.Models;
+using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models.Admin;
 
 namespace MakeEvent.Web.Controllers
 {
+    [Localized]
     public class CommentsController : Controller
     {
-        // GET: Comments
+        private readonly ICommentService _commentService;
+
+        public CommentsController(ICommentService commentService)
+        {
+            _commentService = commentService;
+        }
+
+        [HttpGet]
         public ActionResult Index(int? orgId)
         {
-            var models = new List<CommentMvcViewModel>();
-            models.Add(new CommentMvcViewModel{
-            Id=0,
-            OrgId = "1",
-            AuthorName="Foo",
-            AuthorEmail="foo@bar.com",
-            CreatedDate=DateTime.Now,
-            Text="example"});
-            models.Add(new CommentMvcViewModel
-            {
-                Id = 2,
-                OrgId = "1",
-                AuthorName = "Bar",
-                AuthorEmail = "foo@bar.com",
-                CreatedDate = DateTime.Now,
-                Text = "example12"
-            });
+            var comments = _commentService.All().Data;
+            var models = Mapper.Map<IEnumerable<CommentMvcViewModel>>(comments);
+
             return View(models);
         }
 
-        // GET: Comments/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(new CommentMvcViewModel
-            {
-                Id = 2,
-                OrgId = "1",
-                AuthorName = "Bar",
-                AuthorEmail = "foo@bar.com",
-                CreatedDate = DateTime.Now,
-                Text = "example12"
-            });
+            var comment = _commentService.Get(id).Data;
+            var model = Mapper.Map<CommentMvcViewModel>(comment);
+
+            return View(model);
         }
 
-        // GET: Comments/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Comments/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CommentMvcViewModel model)
         {
-            try
+            if (ModelState.IsValid == false)
+                return View(model);
+
+            var result = _commentService.Save(Mapper.Map<CommentDto>(model));
+
+            if (!result.Succeeded)
             {
-                // TODO: Add insert logic here
+                ModelState.AddModelError("", $"Ошибки при добавлении комментария:</br>" 
+                                            + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
                 return RedirectToAction("OrganizationsList", "Home");
             }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: Comments/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(new CommentMvcViewModel
-            {
-                Id = 2,
-                OrgId = "1",
-                AuthorName = "Bar",
-                AuthorEmail = "foo@bar.com",
-                CreatedDate = DateTime.Now,
-                Text = "example12"
-            });
+            var comment = _commentService.Get(id).Data;
+            var model = Mapper.Map<CommentMvcViewModel>(comment);
+
+            return View(model);
         }
 
-        // POST: Comments/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, CommentMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (model.Id == 0)
             {
-                return View();
+                throw new HttpException((int)HttpStatusCode.InternalServerError, 
+                    "Не указан идентификатор комментария");
             }
+
+            var result = _commentService.Save(Mapper.Map<CommentDto>(model));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении комментария:</br>" 
+                                            + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Comments/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View(new CommentMvcViewModel
-            {
-                Id = 2,
-                OrgId = "1",
-                AuthorName = "Bar",
-                AuthorEmail = "foo@bar.com",
-                CreatedDate = DateTime.Now,
-                Text = "example12"
-            });
+            var comment = _commentService.Get(id).Data;
+            var model = Mapper.Map<CommentMvcViewModel>(comment);
+
+            return View(model);
         }
 
-        // POST: Comments/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, CommentMvcViewModel model)
         {
-            try
+            var result = _commentService.Delete(id);
+            if (!result.Succeeded)
             {
-                // TODO: Add delete logic here
+                ModelState.AddModelError("", $"Ошибки при удалении комментария:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
+

@@ -37,7 +37,7 @@ namespace MakeEvent.Business.Services.Implementations
 
             foreach (var localization in eventCategory.EventCategoryLocalizations)
             {
-                localization.EventCategoryId = categoriesResult.Result.Id;
+                localization.EventCategoryId = categoriesResult.Data.Id;
 
                 var existed = _repository.GetById<EventCategoryLocalization>(localization.EventCategoryId,
                     localization.LanguageId);
@@ -57,11 +57,11 @@ namespace MakeEvent.Business.Services.Implementations
             if (errors.Length > 0)
                 return OperationResult.Fail<EventCategoryDto>(errors);
 
-            var result = categoriesResult.Result;
+            var result = categoriesResult.Data;
 
             result.EventCategoryLocalizations = localizationResults
-                .Where(c => c.Result != null)
-                .Select(c => c.Result)
+                .Where(c => c.Data != null)
+                .Select(c => c.Data)
                 .ToList();
 
             return OperationResult.Success(result);

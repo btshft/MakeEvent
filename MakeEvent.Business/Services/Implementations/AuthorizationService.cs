@@ -69,7 +69,7 @@ namespace MakeEvent.Business.Services.Implementations
             return new OperationResult<ApplicationUser>
             {
                 Succeeded = true,
-                Result = user
+                Data = user
             };
         }
 

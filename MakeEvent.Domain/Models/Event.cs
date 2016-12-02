@@ -11,6 +11,7 @@ namespace MakeEvent.Domain.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int CategoryId { get; set; }
+        public int?   ImageId { get; set; }
         public string OrganizationId { get; set; }
 
         public string Name { get; set; }
@@ -29,6 +30,9 @@ namespace MakeEvent.Domain.Models
 
         [ForeignKey("OrganizationId")]
         public virtual Organization Organization { get; set; }
+
+        [ForeignKey("ImageId")]
+        public virtual Image Image { get; set; }
 
         public virtual ICollection<TicketCategory> TicketCategories { get; set; }
     }

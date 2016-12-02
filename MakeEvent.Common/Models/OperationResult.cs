@@ -4,7 +4,7 @@ namespace MakeEvent.Common.Models
 {
     public class OperationResult<T>
     {
-        public T Result { get; set; }
+        public T Data { get; set; }
         public bool Succeeded { get; set; }
         public IEnumerable<string> Errors { get; set; }
     }
@@ -18,7 +18,7 @@ namespace MakeEvent.Common.Models
             => new OperationResult { Succeeded = true };
 
         public static OperationResult<T> Success<T>(T result)
-            => new OperationResult<T> { Result = result, Succeeded = true };
+            => new OperationResult<T> { Data = result, Succeeded = true };
 
         public static OperationResult Fail(params string[] errors)
             => new OperationResult { Errors = errors };

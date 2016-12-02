@@ -7,6 +7,7 @@ using MakeEvent.Business.Enums;
 using MakeEvent.Business.Models;
 using MakeEvent.Domain.Models;
 using MakeEvent.Web.Extensions;
+using MakeEvent.Web.Helpers;
 using MakeEvent.Web.Models;
 using MakeEvent.Web.Models.Admin;
 using MakeEvent.Web.Models.Organization;
@@ -37,6 +38,9 @@ namespace MakeEvent.Web
                 cfg.CreateMap<EventDto, EventViewModel>();
                 cfg.CreateMap<EventViewModel, EventDto>();
 
+                cfg.CreateMap<EventDto, EventMvcViewModel>();
+                cfg.CreateMap<EventMvcViewModel, EventDto>();
+
                 cfg.CreateMap<EventCategory, EventCategoryDto>();
                 cfg.CreateMap<EventCategoryDto, EventCategory>()
                     .ForMember(d => d.EventCategoryLocalizations, opt => opt.Ignore());
@@ -45,7 +49,8 @@ namespace MakeEvent.Web
                 cfg.CreateMap<EventCategoryViewModel, EventCategoryDto>();
 
                 cfg.CreateMap<EventCategoryDto, EventCategoryMvcViewModel>()
-                    .AfterMap(TransformToModel);
+                    .AfterMap(TransformToModel)
+                    .AfterMap(Localize);
 
                 cfg.CreateMap<EventCategoryMvcViewModel, EventCategoryDto>()
                     .AfterMap(TransformToDto);
@@ -63,7 +68,8 @@ namespace MakeEvent.Web
                 cfg.CreateMap<NewsViewModel, NewsDto>();
 
                 cfg.CreateMap<NewsDto, NewsMvcViewModel>()
-                    .AfterMap(TransformToModel);
+                    .AfterMap(TransformToModel)
+                    .AfterMap(Localize);
 
                 cfg.CreateMap<NewsMvcViewModel, NewsDto>()
                     .AfterMap(TransformToDto);
@@ -85,16 +91,24 @@ namespace MakeEvent.Web
                 cfg.CreateMap<PageDto, Page>();
 
                 cfg.CreateMap<PageDto, PageMvcViewModel>()
-                    .AfterMap(TransformToModel);
+                    .AfterMap(TransformToModel)
+                    .AfterMap(Localize);
 
                 cfg.CreateMap<Image, ImageDto>();
                 cfg.CreateMap<ImageDto, Image>()
-                    .ForMember(d => d.News, opt => opt.Ignore());
+                    .ForMember(d => d.News, opt => opt.Ignore())
+                    .ForMember(d => d.Organizations, opt => opt.Ignore())
+                    .ForMember(d => d.Events, opt => opt.Ignore());
 
                 cfg.CreateMap<HttpPostedFileBase, ImageDto>()
                     .ForMember(d => d.Name, opt => opt.MapFrom(s => s.FileName))
                     .ForMember(d => d.MimeType, opt => opt.MapFrom(s => s.ContentType))
                     .ForMember(d => d.Content, opt => opt.MapFrom(s => s.InputStream.AsBytes()));
+
+                cfg.CreateMap<Comment, CommentDto>();
+                cfg.CreateMap<CommentDto, Comment>();
+                cfg.CreateMap<CommentDto, CommentMvcViewModel>();
+                cfg.CreateMap<CommentMvcViewModel, CommentDto>();
             });
         }
 
@@ -109,6 +123,74 @@ namespace MakeEvent.Web
 
             destination.NameRu = ruLocalization?.Name;
             destination.NameEn = enLocalization?.Name;
+        }
+
+        private static void Localize(EventCategoryDto source, EventCategoryMvcViewModel destination)
+        {
+            var language = LanguageHelper.GetThreadLanguage();
+            switch (language)
+            {
+                case CultureLanguage.EN:
+                    destination.LocalizedName = source.EventCategoryLocalizations.First(c => c.LanguageId == 1).Name;
+                    break;
+
+                case CultureLanguage.Undefined:
+                case CultureLanguage.RU:
+                case null:
+                default:
+                    destination.LocalizedName = source.EventCategoryLocalizations.First(c => c.LanguageId == 2).Name;
+                    break;
+            }
+        }
+
+        private static void Localize(NewsDto source, NewsMvcViewModel destination)
+        {
+            var language = LanguageHelper.GetThreadLanguage();
+
+            var ruLocalization = source.NewsLocalizations.First(n => n.LanguageId == 2);
+            var enLocalization = source.NewsLocalizations.First(n => n.LanguageId == 1);
+
+            switch (language)
+            {
+                case CultureLanguage.EN:
+                    destination.LocalizedTitle = enLocalization.Header;
+                    destination.LocalizedShortDescription = enLocalization.ShortDescription;
+                    destination.LocalizedContent = enLocalization.Content;
+                    break;
+
+                case CultureLanguage.Undefined:
+                case CultureLanguage.RU:
+                case null:
+                default:
+                    destination.LocalizedTitle = ruLocalization.Header;
+                    destination.LocalizedShortDescription = ruLocalization.ShortDescription;
+                    destination.LocalizedContent = ruLocalization.Content;
+                    break;
+            }
+        }
+
+        private static void Localize(PageDto source, PageMvcViewModel destination)
+        {
+            var language = LanguageHelper.GetThreadLanguage();
+
+            var ruLocalization = source.PageLocalizations.First(n => n.LanguageId == 2);
+            var enLocalization = source.PageLocalizations.First(n => n.LanguageId == 1);
+
+            switch (language)
+            {
+                case CultureLanguage.EN:
+                    destination.LocalizedTitle = enLocalization.Title;
+                    destination.LocalizedContent = enLocalization.Html;
+                    break;
+
+                case CultureLanguage.Undefined:
+                case CultureLanguage.RU:
+                case null:
+                default:
+                    destination.LocalizedTitle = ruLocalization.Title;
+                    destination.LocalizedContent = ruLocalization.Html;
+                    break;
+            }
         }
 
         private static void TransformToModel(NewsDto source, NewsMvcViewModel destination)

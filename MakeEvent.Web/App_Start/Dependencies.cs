@@ -17,10 +17,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Owin;
 using SimpleInjector;
 using SimpleInjector.Advanced;
-using SimpleInjector.Extensions.ExecutionContextScoping;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
@@ -50,9 +48,12 @@ namespace MakeEvent.Web
             container.Register<IEventCategoryService, EventCategoryService>(Lifestyle.Scoped);
             container.Register<INewsService,          NewsService>(Lifestyle.Scoped);
             container.Register<IImageService,         ImageService>(Lifestyle.Scoped);
+            container.Register<ICommentService,       CommentService>(Lifestyle.Scoped);
 
             // Register filter-builders
             container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(
+                Lifestyle.Scoped);
+            container.Register<Common.Filtering.Builder.IFilterBuilder<Event, EventFilter>, EventFilterBuilder>(
                 Lifestyle.Scoped);
 
             // Register OWIN

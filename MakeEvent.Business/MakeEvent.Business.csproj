@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\CultureLanguage.cs" />
+    <Compile Include="Filtering\Builders\EventFilterBuilder.cs" />
     <Compile Include="Filtering\Builders\PageFilterBuilder.cs" />
     <Compile Include="Models\CommentDto.cs" />
     <Compile Include="Models\EventCategoryDto.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\PageLocalizationDto.cs" />
     <Compile Include="Services\Implementations\AuthorizationService.cs" />
+    <Compile Include="Services\Implementations\CommentService.cs" />
     <Compile Include="Services\Implementations\EventCategoryService.cs" />
     <Compile Include="Services\Implementations\EventService.cs" />
     <Compile Include="Services\Implementations\ImageService.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Services\Implementations\OrganizationService.cs" />
     <Compile Include="Services\Implementations\PageService.cs" />
     <Compile Include="Services\Interfaces\IAuthorizationService.cs" />
+    <Compile Include="Services\Interfaces\ICommentService.cs" />
     <Compile Include="Services\Interfaces\IEventCategoryService.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
     <Compile Include="Services\Interfaces\IImageService.cs" />
@@ -129,6 +132,7 @@
     <Compile Include="Services\Implementations\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implementations\SmsService.cs" />
+    <Compile Include="Services\Interfaces\ITicketService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
