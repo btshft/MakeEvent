@@ -104,6 +104,7 @@
     <Compile Include="Models\EventCategoryDto.cs" />
     <Compile Include="Models\EventCategoryLocalizationDto.cs" />
     <Compile Include="Models\EventDto.cs" />
+    <Compile Include="Models\ImageDto.cs" />
     <Compile Include="Models\NewsDto.cs" />
     <Compile Include="Models\NewsLocalizationDto.cs" />
     <Compile Include="Models\OrganizationDto.cs" />
@@ -112,12 +113,14 @@
     <Compile Include="Services\Implementations\AuthorizationService.cs" />
     <Compile Include="Services\Implementations\EventCategoryService.cs" />
     <Compile Include="Services\Implementations\EventService.cs" />
+    <Compile Include="Services\Implementations\ImageService.cs" />
     <Compile Include="Services\Implementations\NewsService.cs" />
     <Compile Include="Services\Implementations\OrganizationService.cs" />
     <Compile Include="Services\Implementations\PageService.cs" />
     <Compile Include="Services\Interfaces\IAuthorizationService.cs" />
     <Compile Include="Services\Interfaces\IEventCategoryService.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
+    <Compile Include="Services\Interfaces\IImageService.cs" />
     <Compile Include="Services\Interfaces\INewsService.cs" />
     <Compile Include="Services\Interfaces\IOrganizationService.cs" />
     <Compile Include="Services\Interfaces\IPageService.cs" />

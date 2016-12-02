@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using AutoMapper;
 using MakeEvent.Business.Enums;
 using MakeEvent.Business.Models;
 using MakeEvent.Domain.Models;
+using MakeEvent.Web.Extensions;
 using MakeEvent.Web.Models;
 using MakeEvent.Web.Models.Admin;
 
@@ -80,6 +83,15 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<PageDto, PageMvcViewModel>()
                     .AfterMap(TransformToModel);
+
+                cfg.CreateMap<Image, ImageDto>();
+                cfg.CreateMap<ImageDto, Image>()
+                    .ForMember(d => d.News, opt => opt.Ignore());
+
+                cfg.CreateMap<HttpPostedFileBase, ImageDto>()
+                    .ForMember(d => d.Name, opt => opt.MapFrom(s => s.FileName))
+                    .ForMember(d => d.MimeType, opt => opt.MapFrom(s => s.ContentType))
+                    .ForMember(d => d.Content, opt => opt.MapFrom(s => s.InputStream.AsBytes()));
             });
         }
 
