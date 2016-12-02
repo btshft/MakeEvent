@@ -196,10 +196,5 @@ namespace MakeEvent.Web.Controllers
                 ? File(imageResult.Data.Content, imageResult.Data.MimeType)
                 : null;
         }
-        [HttpGet]
-        public ActionResult GetImage(int id)
-        {
-            return null;
-        }
     }
 }

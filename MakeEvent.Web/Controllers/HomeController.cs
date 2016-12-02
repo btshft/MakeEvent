@@ -150,7 +150,7 @@ namespace MakeEvent.Web.Controllers
             comments.Add(new CommentMvcViewModel
             {
                 Id = 0,
-                OrgId = "0",
+                OrganizationId = "0",
                 AuthorEmail = "foo@bar.com",
                 CreatedDate = DateTime.Now,
                 AuthorName = "Perov I.Y",
@@ -158,7 +158,7 @@ namespace MakeEvent.Web.Controllers
             });
             var comment = new CommentMvcViewModel
             {
-                OrgId = "2",
+                OrganizationId = "2",
             };
             var model = new Models.Common.OrgWithCommentsMvcViewModel
             {
