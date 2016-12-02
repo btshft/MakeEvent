@@ -43,12 +43,13 @@ namespace MakeEvent.Web
             container.Register<IRepository, Repository<DbContext>>(Lifestyle.Scoped);
 
             // Register services
-            container.Register<IPageService, PageService>(Lifestyle.Scoped);
+            container.Register<IPageService,          PageService>(Lifestyle.Scoped);
             container.Register<IAuthorizationService, AuthorizationService>(Lifestyle.Scoped);
-            container.Register<IOrganizationService, OrganizationService>(Lifestyle.Scoped);
-            container.Register<IEventService, EventService>();
-            container.Register<IEventCategoryService, EventCategoryService>();
-            container.Register<INewsService, NewsService>(Lifestyle.Scoped);
+            container.Register<IOrganizationService,  OrganizationService>(Lifestyle.Scoped);
+            container.Register<IEventService,         EventService>(Lifestyle.Scoped);
+            container.Register<IEventCategoryService, EventCategoryService>(Lifestyle.Scoped);
+            container.Register<INewsService,          NewsService>(Lifestyle.Scoped);
+            container.Register<IImageService,         ImageService>(Lifestyle.Scoped);
 
             // Register filter-builders
             container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(

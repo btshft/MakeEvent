@@ -4,19 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MakeEvent.Domain.Models
 {
-    public class News : Entity
+    public class Image : Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int? ImageId { get; set; }
+        public string Name     { get; set; }
+        public string MimeType { get; set; }
+        public byte[] Content  { get; set; }
 
-        [ForeignKey("ImageId")]
-        public virtual Image Image { get; set; }
-
-        public virtual ICollection<NewsLocalization> NewsLocalizations { get; set; }
-            = new List<NewsLocalization>();
+        public virtual ICollection<News> News { get; set; }
+            = new List<News>();
     }
 }
-

@@ -259,6 +259,7 @@
     <Compile Include="Controllers\WebApi\OrganizationController.cs" />
     <Compile Include="Controllers\WebApi\PageController.cs" />
     <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

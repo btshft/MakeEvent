@@ -7,6 +7,8 @@ namespace MakeEvent.Web.Models.Admin
     {
         public int Id { get; set; }
 
+        public int? ImageId { get; set; }
+
         [Required]
         public string TitleRu { get; set; }
 
