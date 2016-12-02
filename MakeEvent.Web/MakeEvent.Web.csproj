@@ -277,6 +277,7 @@
     <Compile Include="Models\Admin\CommentViewModel.cs" />
     <Compile Include="Models\Organization\EventMvcViewModel.cs" />
     <Compile Include="Models\Organization\OrganizationMvcViewModel.cs" />
+    <Compile Include="Models\Organization\SoldTicketMvcViewModel.cs" />
     <Compile Include="Models\Organization\TicketMvcViewModel.cs" />
     <Compile Include="Models\PageLocalizationViewModel.cs" />
     <Compile Include="Models\Admin\EventCategoryMvcViewModel.cs" />
@@ -786,9 +787,15 @@
     <Content Include="Views\Shared\_OrgLoginPartial.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Organization\Register.cshtml" />
+    <Content Include="Views\Ticket\SoldList.cshtml" />
+    <Content Include="Views\Ticket\SoldTicket.cshtml" />
+    <Content Include="Views\Page\Page.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\SingleNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

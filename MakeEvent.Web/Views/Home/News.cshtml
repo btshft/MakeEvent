@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MakeEvent.Web.Models.Admin.NewsMvcViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table">
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.ImageData == null)
+                {
+                <div class="form-control-static">Нет картинки</div>
+            }
+            else
+            {
+                <img class="img-thumbnail" width="150" height="150"
+                     src="@Url.Action("GetImage", "News",
+                        new { item.Id })" />
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocalizedTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocalizedShortDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "SingleNews", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

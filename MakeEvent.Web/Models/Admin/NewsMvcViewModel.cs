@@ -30,5 +30,8 @@ namespace MakeEvent.Web.Models.Admin
         public byte[] ImageData { get; set; }
 
         public string ImageMimeType { get; set; }
+        public string LocalizedTitle { get; set; }
+        public string LocalizedShortDescription { get; set; }
+        public string LocalizedContent { get; set; }
     }
 }

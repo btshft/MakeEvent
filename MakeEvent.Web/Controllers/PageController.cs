@@ -87,5 +87,13 @@ namespace MakeEvent.Web.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public ActionResult Page(string name)
+        {
+            return View(new PageMvcViewModel
+            {
+                LocalizedContent = "<strong>Hello</strong>"
+            });
+        }
     }
 }

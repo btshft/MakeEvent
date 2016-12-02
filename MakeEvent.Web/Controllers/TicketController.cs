@@ -1,4 +1,5 @@
 ﻿using MakeEvent.Web.Models.Organization;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -120,6 +121,43 @@ namespace MakeEvent.Web.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult SoldList(int? orgId)
+        {
+            var models = new List<SoldTicketMvcViewModel>();
+            models.Add(new SoldTicketMvcViewModel
+            {
+                Id = 0,
+                Cost = 300,
+                Date=DateTime.Now,
+                EventTitle="Test",
+                Owner="Ivanov Ivan",
+                Status="Бронь"
+            });
+            models.Add(new SoldTicketMvcViewModel
+            {
+                Id = 1,
+                Cost = 200,
+                Date = DateTime.Now,
+                EventTitle = "Te3t",
+                Owner = "Ivanov 3van",
+                Status = "Брон3ь"
+            });
+            return View(models);
+        }
+
+        // GET: Ticket/Details/5
+        public ActionResult SoldTicket(int id)
+        {
+            return View(new SoldTicketMvcViewModel
+            {
+                Id = 1,
+                Cost = 200,
+                Date = DateTime.Now,
+                EventTitle = "Te3t",
+                Owner = "Ivanov 3van",
+                Status = "Брон3ь"
+            });
         }
     }
 }

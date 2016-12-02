@@ -21,5 +21,8 @@ namespace MakeEvent.Web.Models.Admin
 
         [Required, UIHint("tinymce_jquery_full"), AllowHtml]
         public string ContentEn { get; set; }
+
+        public string LocalizedTitle { get; set; }
+        public string LocalizedContent { get; set; }
     }
 }
