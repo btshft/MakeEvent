@@ -1,0 +1,93 @@
+﻿@model MakeEvent.Web.Models.Common.EventWithTicketsMvcViewModel
+
+<div>
+    <h4>EventWithTicketsMvcViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Office)
+        </dd>
+
+    </dl>
+    @foreach (var item in Model.Tickets)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => item.TypeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.TypeName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => item.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Price)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => item.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Description)
+            </dd>
+            </dl>
+            }
+    @using (Html.BeginForm("Buy", "Ticket", FormMethod.Post, new { id="createform"}))
+    {
+    <div class="form-horizontal">
+        <h4>TicketViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ticket.Owner, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ticket.Owner, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ticket.Owner, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ticket.TicketTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Ticket.TicketTypeId, ViewBag.TicketTypes as SelectList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Ticket.TicketTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ticket.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ticket.Cost, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ticket.Cost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href = "javascript:document.getElementById('createform').submit()" class="btn btn-default" >Create</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+

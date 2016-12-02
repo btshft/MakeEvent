@@ -24,7 +24,10 @@
                     
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "Page", "Page",new {name="About" },null)</li>
-                    <li>@Html.ActionLink("Help", "Page", "Page", new {name="Help" }, null)</li>
+                    <li>@Html.ActionLink("Help", "Page", "Page", new {name="Help" }, null)</li>             
+                    <li>@Html.ActionLink("Events", "EventsList", "Home")</li>
+                    <li>@Html.ActionLink("Organization", "OrganizationsList", "Home")</li>
+                    <li>@Html.ActionLink("News", "NewsList", "Home")</li>
                 </ul>
                     @Html.Partial("_LoginPartial")
             </div>

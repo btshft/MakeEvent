@@ -1,0 +1,31 @@
+﻿@model MakeEvent.Web.Models.Common.EventAndCatMvcViewModel
+
+<div>
+    <h4>EventAndCatMvcViewModel</h4>
+    <hr />
+        @foreach (var item in Model.Events)
+        {
+            @Html.DisplayFor(model => item.Name)
+
+            @Html.DisplayFor(model => item.ShortDescripton)
+            @Html.DisplayFor(model => item.StartDate)
+            @Html.DisplayFor(model => item.EndDate)
+            @Html.DisplayFor(model => item.City)
+          @Html.ActionLink("Details", "SingleEvent","Home", new { id = item.Id}, null)
+            if (item.ImageData == null)
+                {
+                <div class="form-control-static">Нет картинки</div>
+            }
+            else
+            {
+                <img class="img-thumbnail" width="150" height="150"
+                     src="@Url.Action("GetImage", "Events",
+                        new { item.Id })" />
+            }
+        }
+    @foreach (var item in Model.Categories)
+    {
+        @Html.ActionLink(item.LocalizedName, "EventsList", "Home", new { id = item.Id }, null)
+    }
+</div>
+

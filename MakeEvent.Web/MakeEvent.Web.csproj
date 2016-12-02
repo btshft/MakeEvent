@@ -265,6 +265,9 @@
     </Compile>
     <Compile Include="App_Start\Dependencies.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Common\EventAndCatMvcViewModel.cs" />
+    <Compile Include="Models\Common\EventWithTicketsMvcViewModel.cs" />
+    <Compile Include="Models\Common\OrgWithCommentsMvcViewModel.cs" />
     <Compile Include="Models\EventCategoryLocalizationViewModel.cs" />
     <Compile Include="Models\EventCategoryViewModel.cs" />
     <Compile Include="Models\EventViewModel.cs" />
@@ -792,10 +795,13 @@
     <Content Include="Views\Page\Page.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Home\SingleNews.cshtml" />
+    <Content Include="Views\Home\SingleEvent.cshtml" />
+    <Content Include="Views\Home\SingleOrg.cshtml" />
+    <Content Include="Views\Home\Events.cshtml" />
+    <Content Include="Views\Home\Organizations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

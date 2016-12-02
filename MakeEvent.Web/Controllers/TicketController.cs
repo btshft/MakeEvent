@@ -159,5 +159,11 @@ namespace MakeEvent.Web.Controllers
                 Status = "Брон3ь"
             });
         }
+        [HttpPost]
+        public ActionResult Buy(FormCollection collection)
+        {
+            return RedirectToAction("EventsList", "Home");
+
+        }
     }
 }

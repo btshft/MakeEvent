@@ -15,7 +15,7 @@ namespace MakeEvent.Web.Controllers
             var models = new List<CommentMvcViewModel>();
             models.Add(new CommentMvcViewModel{
             Id=0,
-            OrgId = 1,
+            OrgId = "1",
             AuthorName="Foo",
             AuthorEmail="foo@bar.com",
             CreatedDate=DateTime.Now,
@@ -23,7 +23,7 @@ namespace MakeEvent.Web.Controllers
             models.Add(new CommentMvcViewModel
             {
                 Id = 2,
-                OrgId = 1,
+                OrgId = "1",
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
                 CreatedDate = DateTime.Now,
@@ -38,7 +38,7 @@ namespace MakeEvent.Web.Controllers
             return View(new CommentMvcViewModel
             {
                 Id = 2,
-                OrgId = 1,
+                OrgId = "1",
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
                 CreatedDate = DateTime.Now,
@@ -60,7 +60,7 @@ namespace MakeEvent.Web.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("OrganizationsList", "Home");
             }
             catch
             {
@@ -74,7 +74,7 @@ namespace MakeEvent.Web.Controllers
             return View(new CommentMvcViewModel
             {
                 Id = 2,
-                OrgId = 1,
+                OrgId = "1",
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
                 CreatedDate = DateTime.Now,
@@ -104,7 +104,7 @@ namespace MakeEvent.Web.Controllers
             return View(new CommentMvcViewModel
             {
                 Id = 2,
-                OrgId = 1,
+                OrgId = "1",
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
                 CreatedDate = DateTime.Now,

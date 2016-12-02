@@ -191,5 +191,10 @@ namespace MakeEvent.Web.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public ActionResult GetImage(int id)
+        {
+            return null;
+        }
     }
 }
