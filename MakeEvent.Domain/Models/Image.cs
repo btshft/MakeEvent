@@ -16,5 +16,8 @@ namespace MakeEvent.Domain.Models
 
         public virtual ICollection<News> News { get; set; }
             = new List<News>();
+
+        public virtual ICollection<Organization> Organizations { get; set; }
+            = new List<Organization>();
     }
 }

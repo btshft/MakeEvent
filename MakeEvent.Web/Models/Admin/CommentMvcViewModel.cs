@@ -2,7 +2,7 @@
 
 namespace MakeEvent.Web.Models.Admin
 {
-    public class CommentViewModel
+    public class CommentMvcViewModel
     {
         public int Id { get; set; }
         public int OrgId { get; set; }

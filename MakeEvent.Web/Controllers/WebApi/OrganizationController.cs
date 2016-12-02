@@ -26,7 +26,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return ModelState.ToDataSourceResult();
 
             var organizationDto = Mapper.Map<OrganizationDto>(organization);
-            var result = _organizationService.Create(organizationDto);
+            var result = _organizationService.Save(organizationDto);
 
             return new DataSourceResult { Errors = result.Errors };
         }
@@ -39,7 +39,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return ModelState.ToDataSourceResult();
 
             var organizationDto = Mapper.Map<OrganizationDto>(organization);
-            var result = _organizationService.Update(organizationDto);
+            var result = _organizationService.Save(organizationDto);
 
             return new DataSourceResult { Errors = result.Errors };
         }
