@@ -19,10 +19,22 @@ namespace MakeEvent.Domain
         public virtual IDbSet<EventCategory> EventCategories { get; set; }
         public virtual IDbSet<Ticket> Tickets { get; set; }
         public virtual IDbSet<TicketCategory> TicketCategories { get; set; }
+        public virtual IDbSet<Image> Images { get; set; }
 
         public virtual IDbSet<PageLocalization> PageLocalizations { get; set; }
         public virtual IDbSet<NewsLocalization> NewsLocalizations { get; set; }
         public virtual IDbSet<EventCategoryLocalization> EventCategoryLocalizations { get; set; }
+        
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Ticket>()
+                .HasOptional(e => e.Purchaser)
+                .WithMany(u => u.Tickets)
+                .HasForeignKey(e => e.PurchaserId);
+        }
 
         public static ApplicationDbContext Create()
         {

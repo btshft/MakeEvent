@@ -51,7 +51,6 @@ namespace MakeEvent.Business.Services.Implementations
 
         private OperationResult<ImageDto> UpdateImage(Image domain, ImageDto image)
         {
-
             domain = Mapper.Map(image, domain);
             var result = _repository.Update(domain);
 

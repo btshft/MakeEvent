@@ -112,6 +112,7 @@
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\PageLocalizationDto.cs" />
     <Compile Include="Services\Implementations\AuthorizationService.cs" />
+    <Compile Include="Services\Implementations\CommentService.cs" />
     <Compile Include="Services\Implementations\EventCategoryService.cs" />
     <Compile Include="Services\Implementations\EventService.cs" />
     <Compile Include="Services\Implementations\ImageService.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Services\Implementations\OrganizationService.cs" />
     <Compile Include="Services\Implementations\PageService.cs" />
     <Compile Include="Services\Interfaces\IAuthorizationService.cs" />
+    <Compile Include="Services\Interfaces\ICommentService.cs" />
     <Compile Include="Services\Interfaces\IEventCategoryService.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
     <Compile Include="Services\Interfaces\IImageService.cs" />

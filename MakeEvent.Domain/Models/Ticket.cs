@@ -14,7 +14,7 @@ namespace MakeEvent.Domain.Models
         public int TicketStatus { get; set; }
 
         [ForeignKey("PurchaserId")]
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser Purchaser { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual TicketCategory Category { get; set; }

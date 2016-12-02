@@ -104,6 +104,11 @@ namespace MakeEvent.Web
                     .ForMember(d => d.Name, opt => opt.MapFrom(s => s.FileName))
                     .ForMember(d => d.MimeType, opt => opt.MapFrom(s => s.ContentType))
                     .ForMember(d => d.Content, opt => opt.MapFrom(s => s.InputStream.AsBytes()));
+
+                cfg.CreateMap<Comment, CommentDto>();
+                cfg.CreateMap<CommentDto, Comment>();
+                cfg.CreateMap<CommentDto, CommentMvcViewModel>();
+                cfg.CreateMap<CommentMvcViewModel, CommentDto>();
             });
         }
 
