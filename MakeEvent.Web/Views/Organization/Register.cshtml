@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Register", "Organization", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-horizontal">
         <h4>OrganizationMvcViewModel</h4>
@@ -92,7 +92,7 @@
                 </a>
                 <span class='label label-info' id="upload-file-info"></span>
             </div>
-        </div>
+        </div>        
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

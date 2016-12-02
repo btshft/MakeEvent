@@ -64,8 +64,6 @@ namespace MakeEvent.Business.Services.Implementations
                 results.Add(result);
             }
 
-            _repository.Save();
-
             return new OperationResult<PageLocalizationDto>
             {
                 Succeeded = results.All(r => r.Succeeded),
@@ -93,6 +91,9 @@ namespace MakeEvent.Business.Services.Implementations
         {
             var domainLocalization = Mapper.Map<PageLocalization>(localization);
             var result = _repository.Create(domainLocalization);
+
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<PageLocalizationDto>(result));
         }
 
@@ -100,6 +101,8 @@ namespace MakeEvent.Business.Services.Implementations
         {
             domainLocalization = Mapper.Map(localization, domainLocalization);
             var result = _repository.Update(domainLocalization);
+
+            _repository.Save();
 
             return OperationResult.Success(Mapper.Map<PageLocalizationDto>(result));
         }

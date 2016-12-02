@@ -86,7 +86,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var news = Mapper.Map<NewsDto>(model);
-            news.ImageId = imageResult.Result.Id;
+            news.ImageId = imageResult?.Result.Id;
 
             var newsResult = _newsService.Save(news);
 
@@ -144,7 +144,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var news = Mapper.Map<NewsDto>(model);
-            news.ImageId = imageResult.Result.Id;
+            news.ImageId = imageResult?.Result.Id;
 
             var newsResult = _newsService.Save(news);
 

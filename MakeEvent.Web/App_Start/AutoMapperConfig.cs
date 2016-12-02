@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,6 +9,7 @@ using MakeEvent.Domain.Models;
 using MakeEvent.Web.Extensions;
 using MakeEvent.Web.Models;
 using MakeEvent.Web.Models.Admin;
+using MakeEvent.Web.Models.Organization;
 
 namespace MakeEvent.Web
 {
@@ -28,6 +28,9 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<OrganizationViewModel, OrganizationDto>();
                 cfg.CreateMap<OrganizationDto, OrganizationViewModel>();
+
+                cfg.CreateMap<OrganizationDto, OrganizationMvcViewModel>();
+                cfg.CreateMap<OrganizationMvcViewModel, OrganizationDto>();
 
                 cfg.CreateMap<Event, EventDto>();
                 cfg.CreateMap<EventDto, Event>();

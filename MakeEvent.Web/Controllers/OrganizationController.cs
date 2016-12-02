@@ -27,12 +27,12 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string ownerId)
+        public ActionResult Index(string id)
         {
-            if (string.IsNullOrEmpty(ownerId))
+            if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index", "Home");
 
-            var organization = _organizationService.Get(ownerId).Result;
+            var organization = _organizationService.Get(id).Result;
             var image = (organization != null && organization.ImageId.HasValue)
                 ? _imageService.Get(organization.ImageId.Value).Result
                 : null;
@@ -48,12 +48,12 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string ownerId)
+        public ActionResult Edit(string id)
         {
-            if (string.IsNullOrEmpty(ownerId))
+            if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index", "Home");
 
-            var organization = _organizationService.Get(ownerId).Result;
+            var organization = _organizationService.Get(id).Result;
             var image = (organization != null && organization.ImageId.HasValue)
                 ? _imageService.Get(organization.ImageId.Value).Result
                 : null;
@@ -69,7 +69,7 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(string ownerId, OrganizationMvcViewModel model)
+        public ActionResult Edit(string id, OrganizationMvcViewModel model)
         {
             if (ModelState.IsValid == false)
                 return View(model);
@@ -97,7 +97,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var organization = Mapper.Map<OrganizationDto>(model);
-            organization.ImageId = imageResult.Result.Id;
+            organization.ImageId = imageResult?.Result.Id;
 
             var organizationResult = _organizationService.Save(organization);
 
@@ -112,11 +112,11 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetImage(string ownerId)
+        public ActionResult GetImage(string id)
         {
-            var organizationResult = _organizationService.Get(ownerId);
+            var organizationResult = _organizationService.Get(id);
             var organization = organizationResult.Result;
-            var imageResult = (organizationResult != null && organizationResult.Succeeded && organization.ImageId.HasValue)
+            var imageResult = (organization != null && organizationResult.Succeeded && organization.ImageId.HasValue)
                 ? _imageService.Get(organization.ImageId.Value)
                 : null;
 
@@ -183,7 +183,7 @@ namespace MakeEvent.Web.Controllers
             }
 
             var organization = Mapper.Map<OrganizationDto>(model);
-            organization.ImageId = imageResult.Result.Id;
+            organization.ImageId = imageResult?.Result.Id;
 
             var oranizationResult = _organizationService.Save(organization);
             if (!oranizationResult.Succeeded)

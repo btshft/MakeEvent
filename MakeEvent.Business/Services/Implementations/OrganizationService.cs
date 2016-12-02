@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Implementations.Identity;
@@ -55,7 +56,6 @@ namespace MakeEvent.Business.Services.Implementations
             };
 
             var result = _userService.Create(user, organization.Password);
-            var resultOrg = (OrganizationDto) null;
 
             if (result.Succeeded)
             {
@@ -64,19 +64,29 @@ namespace MakeEvent.Business.Services.Implementations
                 var domainOrg = Mapper.Map<Organization>(organization);
                 domainOrg.Owner = user;
 
-                resultOrg = Mapper.Map<OrganizationDto>(_repository.Create(domainOrg));
-                _repository.Save();
-            }
+                domainOrg = _repository.Create(domainOrg);
 
-            return OperationResult.Success(resultOrg);
+                _repository.Save();
+
+                var resultOrg = Mapper.Map<OrganizationDto>(domainOrg);
+
+                return OperationResult.Success(resultOrg);
+            }
+            else
+            {
+                return OperationResult.Fail<OrganizationDto>(result.Errors.ToArray());
+            }
         }
 
         private OperationResult<OrganizationDto> UpdateOrganization(OrganizationDto organization)
         {
             var owner = _repository.GetById<ApplicationUser>(organization.OwnerId);
 
-            owner.Email = organization.Email;
-            owner.PhoneNumber = organization.PhoneNumber;
+            owner.Email = string.IsNullOrEmpty(organization.Email) 
+                ? owner.Email : organization.Email;
+
+            owner.PhoneNumber = string.IsNullOrEmpty(organization.PhoneNumber) 
+                ? owner.PhoneNumber : organization.PhoneNumber;
 
             _repository.Update(owner);
 
@@ -85,6 +95,7 @@ namespace MakeEvent.Business.Services.Implementations
             domainOrg = Mapper.Map(organization, domainOrg);
 
             domainOrg = _repository.Update(domainOrg);
+
             _repository.Save();
 
             return OperationResult.Success(Mapper.Map<OrganizationDto>(domainOrg));
