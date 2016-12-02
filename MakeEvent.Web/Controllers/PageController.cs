@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -22,34 +21,31 @@ namespace MakeEvent.Web.Controllers
             _pageService = pageService;
         }
 
-        // GET: Page
         public ActionResult Index()
         {
             var pages = _pageService.All();
-            var model = pages.Result.Select(Mapper.Map<PageMvcViewModel>);
+            var model = pages.Data.Select(Mapper.Map<PageMvcViewModel>);
 
             return View(model);
         }
 
-        // GET: Page/Details/5
         public ActionResult Details(int id)
         {
-            var page = _pageService.Get(id).Result;
+            var page = _pageService.Get(id).Data;
             var model = Mapper.Map<PageMvcViewModel>(page);
 
             return View(model);
         }
 
-        // GET: Page/Edit/5
+
         public ActionResult Edit(int id)
         {
-            var page = _pageService.Get(id).Result;
+            var page = _pageService.Get(id).Data;
             var model = Mapper.Map<PageMvcViewModel>(page);
 
             return View(model);
         }
 
-        // POST: Page/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, PageMvcViewModel model)
         {
@@ -87,13 +83,21 @@ namespace MakeEvent.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Page(string name)
         {
-            return View(new PageMvcViewModel
+            if (string.IsNullOrEmpty(name))
+                return RedirectToAction("Index", "Home");
+
+            var result = _pageService.GetByName(name);
+            if (result.Succeeded)
             {
-                LocalizedContent = "<strong>Hello</strong>"
-            });
+                var model = Mapper.Map<PageMvcViewModel>(result.Data);
+                return View(model);
+            }
+
+            return View();
         }
     }
 }

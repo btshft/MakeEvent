@@ -28,7 +28,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return ModelState.ToDataSourceResult();
 
             var eventDto = Mapper.Map<EventDto>(@event);
-            var result = _eventService.Create(eventDto);
+            var result = _eventService.Save(eventDto);
 
             return new DataSourceResult { Errors = result.Errors };
         }
@@ -39,7 +39,7 @@ namespace MakeEvent.Web.Controllers.WebApi
         {
             return new DataSourceResult
             {
-                Data = Mapper.Map<IEnumerable<EventViewModel>>(_eventService.All().Result)
+                Data = Mapper.Map<IEnumerable<EventViewModel>>(_eventService.All().Data)
             };
         }
     }

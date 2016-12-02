@@ -264,6 +264,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Start\Dependencies.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EventCategoryLocalizationViewModel.cs" />
     <Compile Include="Models\EventCategoryViewModel.cs" />

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Filters\EventFilter.cs" />
     <Compile Include="Filters\PageFilter.cs" />
     <Compile Include="Migrations\201611142023454_PageAdded.cs" />
     <Compile Include="Migrations\201611142023454_PageAdded.Designer.cs">

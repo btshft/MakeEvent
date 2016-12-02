@@ -38,6 +38,18 @@ namespace MakeEvent.Business.Services.Implementations
                 : OperationResult.Success(Mapper.Map<PageDto>(page));
         }
 
+        public OperationResult<PageDto> GetByName(string name)
+        {
+            var page = _repository.First<Page>(p => p.Name
+                .Equals(name, StringComparison.InvariantCultureIgnoreCase));
+
+            if (page == null)
+                return OperationResult.Fail<PageDto>($"Не удалось найти страницу с именем {name}");
+
+            var result = Mapper.Map<PageDto>(page);
+            return OperationResult.Success(result);
+        }
+
         public OperationResult<PageLocalizationDto> SaveLocalizations(string pageName, params PageLocalizationDto[] localizations)
         {
             var domaingPage =

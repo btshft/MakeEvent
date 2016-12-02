@@ -42,7 +42,7 @@ namespace MakeEvent.Web.Controllers.WebApi
         [Route("api/eventcategory/all")]
         public DataSourceResult All(CultureLanguage? defaultLanguage = null)
         {
-            var models = _eventCategoryService.All().Result
+            var models = _eventCategoryService.All().Data
                 .Select(Mapper.Map<EventCategoryViewModel>).ToList();
 
             foreach (var category in models)
@@ -54,7 +54,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                         ? (int)CultureLanguage.EN
                         : (int)CultureLanguage.RU;
 
-                var localization = _eventCategoryService.GetLocalization(category.Id, languageId).Result;
+                var localization = _eventCategoryService.GetLocalization(category.Id, languageId).Data;
 
                 if (localization != null)
                 {
@@ -79,7 +79,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return Request.CreateResponse(result.Errors);
 
             return Request.CreateResponse(HttpStatusCode.OK,
-                Mapper.Map<EventCategoryLocalizationViewModel>(result.Result));
+                Mapper.Map<EventCategoryLocalizationViewModel>(result.Data));
         }
 
         [HttpDelete]

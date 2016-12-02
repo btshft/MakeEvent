@@ -1,195 +1,200 @@
-﻿using MakeEvent.Business.Services.Interfaces;
-using MakeEvent.Web.Models.Admin;
+﻿using MakeEvent.Web.Models.Admin;
 using MakeEvent.Web.Models.Organization;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MakeEvent.Business.Models;
+using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Common.Models;
+using MakeEvent.Domain.Filters;
+using MakeEvent.Web.Attributes;
+using Microsoft.AspNet.Identity;
 
 namespace MakeEvent.Web.Controllers
 {
+    [RequireHttps, Localized]
     public class EventController : Controller
     {
-        // GET: Event
-        public ActionResult Index(int? orgId)
+        private readonly IEventService _eventService;
+        private readonly IEventCategoryService _categoryService;
+        private readonly IImageService _imageService;
+
+        public EventController(
+            IEventService eventService, 
+            IEventCategoryService categoryService,
+            IImageService imageService)
         {
-            var models = new List<EventMvcViewModel>();
-            models.Add(new EventMvcViewModel
-            {
-                Id = 0,
-                CategoryId = 1,
-                City = "Sevastopol",
-                Description = "test",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te",
-                Name = "Event",
-                Office = "12",
-                Street = "Lenina",
-                ImageData = null,
-                ImageMimeType = ""
-            });
-            models.Add(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
+            _eventService = eventService;
+            _categoryService = categoryService;
+            _imageService = imageService;
+        }
+
+        [HttpGet]
+        public ActionResult Index(string orgId)
+        {
+            var events = (string.IsNullOrEmpty(orgId))
+                ? _eventService.All().Data
+                : _eventService.Filter(new EventFilter { OrganizationId = orgId }).Data.Items;
+
+            var models = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
+
             return View(models);
         }
 
-        // GET: Event/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
+            var @event = _eventService.Get(id).Data;
+            var model = Mapper.Map<EventMvcViewModel>(@event);
+            
+            return View(model);
         }
 
-        // GET: Event/Create
+        [HttpGet, Authorize(Roles = "Organization")]
         public ActionResult Create()
         {
-            var categories = new List<EventCategoryMvcViewModel>();
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 0,
-                LocalizedName = "Category 1"
-            });
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 0,
-                LocalizedName = "Category 1"
-            });
-            SelectList categ = new SelectList(categories, "Id", "LocalizedName");
-            ViewBag.Categories = categ;
-            return View(new EventMvcViewModel
-            {
-                ImageData = null,
-                ImageMimeType = ""
-            });
+            var categories = _categoryService.All().Data;
+            var categoriesModel = Mapper.Map<IEnumerable<EventCategoryMvcViewModel>>(categories);
+            var categoriesSelectList = new SelectList(categoriesModel, "Id", "LocalizedName");
+
+            ViewBag.Categories = categoriesSelectList;
+
+            var organizationId = User.Identity.GetUserId();
+
+            return View(new EventMvcViewModel { OrganizationId = organizationId });
         }
 
-        // POST: Event/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [HttpPost, Authorize(Roles = "Organization")]
+        public ActionResult Create(EventMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            OperationResult<ImageDto> imageResult = null;
+            if (Request.Files.Count > 0)
             {
-                return View();
+                var file = Request.Files[0];
+                var image = Mapper.Map<ImageDto>(file);
+                imageResult = _imageService.SaveImage(image);
             }
+
+            if (imageResult != null && !imageResult.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при добавлении новости:</br>"
+                                            + $"{string.Join("</br>", imageResult.Errors)}");
+
+                return View(model);
+            }
+
+            var @event = Mapper.Map<EventDto>(model);
+            @event.ImageId = imageResult?.Data.Id;
+
+            var eventResult = _eventService.Save(@event);
+
+            if (!eventResult.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при добавлении события:</br>"
+                                            + $"{string.Join("</br>", eventResult.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Event/Edit/5
+        [HttpGet, Authorize(Roles = "Organization")]
         public ActionResult Edit(int id)
         {
-            var categories = new List<EventCategoryMvcViewModel>();
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 0,
-                LocalizedName = "Category 1"
-            });
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 0,
-                LocalizedName = "Category 1"
-            });
-            SelectList categ = new SelectList(categories, "Id", "LocalizedName");
-            ViewBag.Categories = categ;
-            return View(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
+            var categories = _categoryService.All().Data;
+            var categoriesModel = Mapper.Map<IEnumerable<EventCategoryMvcViewModel>>(categories);
+            var categoriesSelectList = new SelectList(categoriesModel, "Id", "LocalizedName");
+
+            ViewBag.Categories = categoriesSelectList;
+
+            var @event = _eventService.Get(id).Data;
+            var model = Mapper.Map<EventMvcViewModel>(@event);
+
+            return View(model);
         }
 
-        // POST: Event/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [HttpPost, Authorize(Roles = "Organization")]
+        public ActionResult Edit(int id, EventMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (model.Id == 0)
             {
-                return View();
+                throw new HttpException((int)HttpStatusCode.InternalServerError,
+                    "Не указан идентификатор события");
             }
+
+            OperationResult<ImageDto> imageResult = null;
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+                var image = Mapper.Map<ImageDto>(file);
+                imageResult = _imageService.SaveImage(image);
+            }
+
+            if (imageResult != null && !imageResult.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении события:</br>"
+                                           + $"{string.Join("</br>", imageResult.Errors)}");
+
+                return View(model);
+            }
+
+            var @event = Mapper.Map<EventDto>(model);
+            @event.ImageId = imageResult?.Data.Id;
+
+            var eventResult = _eventService.Save(@event);
+
+            if (!eventResult.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении события:</br>"
+                                            + $"{string.Join("</br>", eventResult.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Event/Delete/5
+        [HttpGet, Authorize(Roles = "Organization")]
         public ActionResult Delete(int id)
         {
-            return View(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
+            var @event = _eventService.Get(id).Data;
+            var model = Mapper.Map<EventMvcViewModel>(@event);
+
+            return View(model);
         }
 
-        // POST: Event/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, Authorize(Roles = "Organization")]
+        public ActionResult Delete(int id, EventMvcViewModel model)
         {
-            try
+            var result = _eventService.Delete(id);
+            if (!result.Succeeded)
             {
-                // TODO: Add delete logic here
+                ModelState.AddModelError("", $"Ошибки при удалении события:</br>" + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult GetImage(int id)
+        {
+            var eventResult = _eventService.Get(id);
+            var @event = eventResult.Data;
+            var imageResult = (@event != null && eventResult.Succeeded && @event.ImageId.HasValue)
+                ? _imageService.Get(@event.ImageId.Value)
+                : null;
+
+            return (imageResult != null && imageResult.Succeeded)
+                ? File(imageResult.Data.Content, imageResult.Data.MimeType)
+                : null;
         }
     }
 }

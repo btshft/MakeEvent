@@ -43,7 +43,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return Request.CreateResponse(result.Errors);
 
             return Request.CreateResponse(HttpStatusCode.OK, 
-                Mapper.Map<PageLocalizationViewModel>(result.Result));
+                Mapper.Map<PageLocalizationViewModel>(result.Data));
         }
     }
 }

@@ -31,8 +31,9 @@ namespace MakeEvent.Business.Services.Implementations
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            var result = (image.Id > 0)
-                ? UpdateImage(image)
+            var existed = _repository.GetById<Image>(image.Id);
+            var result = (existed != null)
+                ? UpdateImage(existed, image)
                 : CreateImage(image);
 
             return result;
@@ -48,14 +49,8 @@ namespace MakeEvent.Business.Services.Implementations
             return OperationResult.Success(Mapper.Map<ImageDto>(result));
         }
 
-        private OperationResult<ImageDto> UpdateImage(ImageDto image)
+        private OperationResult<ImageDto> UpdateImage(Image domain, ImageDto image)
         {
-            var domain = _repository.GetById<Image>(image.Id);
-            if (domain == null)
-            {
-                return OperationResult.Fail<ImageDto>
-                    ($"Не удалось найти картинку (id = {image.Id})");
-            }
 
             domain = Mapper.Map(image, domain);
             var result = _repository.Update(domain);

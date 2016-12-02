@@ -42,7 +42,7 @@ namespace MakeEvent.Web.Controllers.WebApi
         [Route("api/news/all")]
         public DataSourceResult All(CultureLanguage? defaultLanguage = null)
         {
-            var models = _newsService.All().Result.Select(Mapper.Map<NewsViewModel>).ToList();
+            var models = _newsService.All().Data.Select(Mapper.Map<NewsViewModel>).ToList();
             foreach (var news in models)
             {
                 var culture = Thread.CurrentThread.CurrentCulture;
@@ -52,7 +52,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                         ? (int) CultureLanguage.EN
                         : (int) CultureLanguage.RU;
 
-                var localization = _newsService.GetLocalization(news.Id, languageId).Result;
+                var localization = _newsService.GetLocalization(news.Id, languageId).Data;
 
                 if (localization != null)
                 {
@@ -80,7 +80,7 @@ namespace MakeEvent.Web.Controllers.WebApi
                 return Request.CreateResponse(result.Errors);
 
             return Request.CreateResponse(HttpStatusCode.OK, 
-                Mapper.Map<NewsLocalizationViewModel>(result.Result));
+                Mapper.Map<NewsLocalizationViewModel>(result.Data));
         }
 
         [HttpDelete]
