@@ -1,9 +1,9 @@
 ﻿@model MakeEvent.Web.Models.Organization.TicketMvcViewModel
-
+@{
+    Layout = "~/Views/Shared/_OrgLayout.cshtml";
+}
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
         <h4>TicketViewModel</h4>
         <hr />

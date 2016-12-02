@@ -10,24 +10,22 @@ namespace MakeEvent.Web.Controllers
     public class CommentsController : Controller
     {
         // GET: Comments
-        public ActionResult Index()
+        public ActionResult Index(int? orgId)
         {
             var models = new List<CommentViewModel>();
             models.Add(new CommentViewModel{
             Id=0,
-            NewsId=1,
+            OrgId = 1,
             AuthorName="Foo",
             AuthorEmail="foo@bar.com",
-            IsVisible=true,
             CreatedDate=DateTime.Now,
             Text="example"});
             models.Add(new CommentViewModel
             {
                 Id = 2,
-                NewsId = 1,
+                OrgId = 1,
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
-                IsVisible = true,
                 CreatedDate = DateTime.Now,
                 Text = "example12"
             });
@@ -40,10 +38,9 @@ namespace MakeEvent.Web.Controllers
             return View(new CommentViewModel
             {
                 Id = 2,
-                NewsId = 1,
+                OrgId = 1,
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
-                IsVisible = true,
                 CreatedDate = DateTime.Now,
                 Text = "example12"
             });
@@ -77,10 +74,9 @@ namespace MakeEvent.Web.Controllers
             return View(new CommentViewModel
             {
                 Id = 2,
-                NewsId = 1,
+                OrgId = 1,
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
-                IsVisible = true,
                 CreatedDate = DateTime.Now,
                 Text = "example12"
             });
@@ -108,10 +104,9 @@ namespace MakeEvent.Web.Controllers
             return View(new CommentViewModel
             {
                 Id = 2,
-                NewsId = 1,
+                OrgId = 1,
                 AuthorName = "Bar",
                 AuthorEmail = "foo@bar.com",
-                IsVisible = true,
                 CreatedDate = DateTime.Now,
                 Text = "example12"
             });

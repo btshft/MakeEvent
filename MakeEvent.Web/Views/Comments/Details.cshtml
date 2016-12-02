@@ -1,17 +1,17 @@
 ﻿@model MakeEvent.Web.Models.Admin.CommentViewModel
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
 <div>
     <h4>Comment</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NewsId)
+            @Html.DisplayNameFor(model => model.OrgId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NewsId)
+            @Html.DisplayFor(model => model.OrgId)
         </dd>
 
         <dt>
@@ -37,15 +37,6 @@
         <dd>
             @Html.DisplayFor(model => model.Text)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsVisible)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsVisible)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.CreatedDate)
         </dt>

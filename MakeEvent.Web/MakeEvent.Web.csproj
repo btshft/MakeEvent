@@ -771,7 +771,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Organization\Edit.cshtml" />
-    <Content Include="Views\Organization\Register.cshtml" />
     <Content Include="Views\Organization\Login.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
@@ -782,6 +781,10 @@
     <Content Include="Views\Ticket\Delete.cshtml" />
     <Content Include="Views\Ticket\Details.cshtml" />
     <Content Include="Views\Ticket\Edit.cshtml" />
+    <Content Include="Views\Shared\_OrgLayout.cshtml" />
+    <Content Include="Views\Shared\_OrgLoginPartial.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Organization\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

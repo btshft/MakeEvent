@@ -1,8 +1,8 @@
 ﻿
-@Scripts.Render("~/bundles/modernizr")
+@*@Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/kendo")
+@Scripts.Render("~/bundles/bootstrap")*@
+@*@Scripts.Render("~/bundles/kendo")
 
 @Html.Partial("Partials/Layout")
 @Html.Partial("Partials/Index")
@@ -18,9 +18,12 @@
 @Html.Partial("Partials/NewsItem")
 @Html.Partial("Partials/AdminPage")
 
-@Scripts.RenderFormat("<script src='{0}' defer></script>", "~/Scripts/MainApp")
+@Scripts.RenderFormat("<script src='{0}' defer></script>", "~/Scripts/MainApp")*@
 
-<script type="text/javascript">
+@*<script type="text/javascript">
  </script>
 
-<div id="app"></div>
+<div id="app"></div>*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
