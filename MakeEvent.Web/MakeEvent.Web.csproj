@@ -274,7 +274,7 @@
     <Compile Include="Models\NewsLocalizationViewModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\OrganizationViewModel.cs" />
-    <Compile Include="Models\Admin\CommentViewModel.cs" />
+    <Compile Include="Models\Admin\CommentMvcViewModel.cs" />
     <Compile Include="Models\Organization\EventMvcViewModel.cs" />
     <Compile Include="Models\Organization\OrganizationMvcViewModel.cs" />
     <Compile Include="Models\Organization\SoldTicketMvcViewModel.cs" />

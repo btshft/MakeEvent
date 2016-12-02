@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Implementations.Identity;
@@ -21,11 +22,29 @@ namespace MakeEvent.Business.Services.Implementations
             _userService = userService;
         }
 
-        public OperationResult Create(OrganizationDto organization)
+        public OperationResult<OrganizationDto> Save(OrganizationDto organization)
         {
             if (organization == null)
                 throw new ArgumentNullException(nameof(organization));
 
+            var result = (string.IsNullOrEmpty(organization.OwnerId))
+                ? CreateOrganization(organization)
+                : UpdateOrganization(organization);
+
+            return result;
+        }
+
+        public OperationResult<OrganizationDto> Get(string ownerId)
+        {
+            if (string.IsNullOrEmpty(ownerId))
+                return OperationResult.Fail<OrganizationDto>("Необходимо указать идентификатор организации");
+
+            var domainOrg = _repository.GetById<Organization>(ownerId);
+            return OperationResult.Success(Mapper.Map<OrganizationDto>(domainOrg));
+        }
+
+        private OperationResult<OrganizationDto> CreateOrganization(OrganizationDto organization)
+        {
             if (!string.IsNullOrEmpty(organization.OwnerId))
                 throw new ApplicationException("Произошла ошибка при регистрации организации");
 
@@ -45,25 +64,29 @@ namespace MakeEvent.Business.Services.Implementations
                 var domainOrg = Mapper.Map<Organization>(organization);
                 domainOrg.Owner = user;
 
-                _repository.Create(domainOrg);
-                _repository.Save();
-            }
+                domainOrg = _repository.Create(domainOrg);
 
-            return new OperationResult { Errors = result.Errors, Succeeded = result.Succeeded };
+                _repository.Save();
+
+                var resultOrg = Mapper.Map<OrganizationDto>(domainOrg);
+
+                return OperationResult.Success(resultOrg);
+            }
+            else
+            {
+                return OperationResult.Fail<OrganizationDto>(result.Errors.ToArray());
+            }
         }
 
-        public OperationResult Update(OrganizationDto organization)
+        private OperationResult<OrganizationDto> UpdateOrganization(OrganizationDto organization)
         {
-            if (organization == null)
-                throw new ArgumentNullException(nameof(organization));
-
-            if (string.IsNullOrEmpty(organization.OwnerId))
-                throw new ApplicationException("Произошла ошибка при обновлении организации");
-
             var owner = _repository.GetById<ApplicationUser>(organization.OwnerId);
 
-            owner.Email = organization.Email;
-            owner.PhoneNumber = organization.PhoneNumber;
+            owner.Email = string.IsNullOrEmpty(organization.Email) 
+                ? owner.Email : organization.Email;
+
+            owner.PhoneNumber = string.IsNullOrEmpty(organization.PhoneNumber) 
+                ? owner.PhoneNumber : organization.PhoneNumber;
 
             _repository.Update(owner);
 
@@ -71,10 +94,11 @@ namespace MakeEvent.Business.Services.Implementations
 
             domainOrg = Mapper.Map(organization, domainOrg);
 
-            _repository.Update(domainOrg);
+            domainOrg = _repository.Update(domainOrg);
+
             _repository.Save();
 
-            return OperationResult.Success();
+            return OperationResult.Success(Mapper.Map<OrganizationDto>(domainOrg));
         }
     }
 }

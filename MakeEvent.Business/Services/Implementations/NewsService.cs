@@ -39,8 +39,11 @@ namespace MakeEvent.Business.Services.Implementations
             {
                 localization.NewsId = newsResult.Result.Id;
 
-                var localizationResult = (localization.NewsId > 0 && localization.LanguageId > 0)
-                    ? UpdateLocalization(localization)
+                var existed = _repository.GetById<NewsLocalization>(localization.NewsId, 
+                    localization.LanguageId);
+
+                var localizationResult = (existed != null)
+                    ? UpdateLocalization(existed, localization)
                     : CreateLocalization(localization);
 
                 localizationResults.Add(localizationResult);
@@ -53,8 +56,6 @@ namespace MakeEvent.Business.Services.Implementations
 
             if (errors.Length > 0)
                 return OperationResult.Fail<NewsDto>(errors);
-
-            _repository.Save();
 
             var result = newsResult.Result;
 
@@ -121,6 +122,8 @@ namespace MakeEvent.Business.Services.Implementations
             var domain = Mapper.Map<News>(news);
             var result = _repository.Create<News>(domain);
 
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<NewsDto>(result));
         }
 
@@ -136,6 +139,8 @@ namespace MakeEvent.Business.Services.Implementations
             domain = Mapper.Map(news, domain);
             var result = _repository.Update(domain);
 
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<NewsDto>(result));
         }
 
@@ -144,21 +149,17 @@ namespace MakeEvent.Business.Services.Implementations
             var domain = Mapper.Map<NewsLocalization>(localization);
             var result = _repository.Create<NewsLocalization>(domain);
 
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<NewsLocalizationDto>(result));
         }
 
-        private OperationResult<NewsLocalizationDto> UpdateLocalization(NewsLocalizationDto localization)
+        private OperationResult<NewsLocalizationDto> UpdateLocalization(NewsLocalization domain, NewsLocalizationDto localization)
         {
-            var domain = _repository.GetById<NewsLocalization>(localization.NewsId, localization.LanguageId);
-            if (domain == null)
-            {
-                return OperationResult.Fail<NewsLocalizationDto>
-                    ($"Не удалось найти локализацию (lang_id = {localization.LanguageId}, " +
-                     $"news_id = { localization.NewsId })");
-            }
-
             domain = Mapper.Map(localization, domain);
             var result = _repository.Update(domain);
+
+            _repository.Save();
 
             return OperationResult.Success(Mapper.Map<NewsLocalizationDto>(result));
         }

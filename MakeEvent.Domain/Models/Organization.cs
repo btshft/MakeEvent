@@ -9,16 +9,20 @@ namespace MakeEvent.Domain.Models
         [Key, ForeignKey("Owner")]
         public string OwnerId { get; set; }
 
+        public int? ImageId { get; set; }
+
         public string Name  { get; set; }
         public string BillNumber { get; set; }
         public string City    { get; set; }
         public string Street  { get; set; }
         public string Office  { get; set; }
         public string Website { get; set; }
-        public string EncodedLogo { get; set; }
         public string Description { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }
+
+        [ForeignKey("ImageId")]
+        public virtual Image Image { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
             = new List<Comment>();

@@ -39,8 +39,11 @@ namespace MakeEvent.Business.Services.Implementations
             {
                 localization.EventCategoryId = categoriesResult.Result.Id;
 
-                var localizationResult = (localization.EventCategoryId > 0 && localization.LanguageId > 0)
-                    ? UpdateLocalization(localization)
+                var existed = _repository.GetById<EventCategoryLocalization>(localization.EventCategoryId,
+                    localization.LanguageId);
+
+                var localizationResult = (existed != null)
+                    ? UpdateLocalization(existed, localization)
                     : CreateLocalization(localization);
 
                 localizationResults.Add(localizationResult);
@@ -53,8 +56,6 @@ namespace MakeEvent.Business.Services.Implementations
 
             if (errors.Length > 0)
                 return OperationResult.Fail<EventCategoryDto>(errors);
-
-            _repository.Save();
 
             var result = categoriesResult.Result;
 
@@ -121,6 +122,8 @@ namespace MakeEvent.Business.Services.Implementations
             var domain = Mapper.Map<EventCategory>(category);
             var result = _repository.Create<EventCategory>(domain);
 
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<EventCategoryDto>(result));
         }
 
@@ -136,6 +139,8 @@ namespace MakeEvent.Business.Services.Implementations
             domain = Mapper.Map(category, domain);
             var result = _repository.Update(domain);
 
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<EventCategoryDto>(result));
         }
 
@@ -144,23 +149,19 @@ namespace MakeEvent.Business.Services.Implementations
             var domain = Mapper.Map<EventCategoryLocalization>(localization);
             var result = _repository.Create<EventCategoryLocalization>(domain);
 
+            _repository.Save();
+
             return OperationResult.Success(Mapper.Map<EventCategoryLocalizationDto>(result));
         }
 
-        private OperationResult<EventCategoryLocalizationDto> UpdateLocalization(EventCategoryLocalizationDto localization)
+        private OperationResult<EventCategoryLocalizationDto> UpdateLocalization(
+            EventCategoryLocalization domain,
+            EventCategoryLocalizationDto localization)
         {
-            var domain = _repository.GetById<EventCategoryLocalization>
-                (localization.EventCategoryId, localization.LanguageId);
-
-            if (domain == null)
-            {
-                return OperationResult.Fail<EventCategoryLocalizationDto>
-                    ($"Не удалось найти локализацию (lang_id = {localization.LanguageId}, " +
-                     $"event_category_id = { localization.EventCategoryId })");
-            }
-
             domain = Mapper.Map(localization, domain);
             var result = _repository.Update(domain);
+
+            _repository.Save();
 
             return OperationResult.Success(Mapper.Map<EventCategoryLocalizationDto>(result));
         }

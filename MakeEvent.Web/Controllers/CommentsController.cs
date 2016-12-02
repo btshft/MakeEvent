@@ -12,15 +12,15 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments
         public ActionResult Index(int? orgId)
         {
-            var models = new List<CommentViewModel>();
-            models.Add(new CommentViewModel{
+            var models = new List<CommentMvcViewModel>();
+            models.Add(new CommentMvcViewModel{
             Id=0,
             OrgId = 1,
             AuthorName="Foo",
             AuthorEmail="foo@bar.com",
             CreatedDate=DateTime.Now,
             Text="example"});
-            models.Add(new CommentViewModel
+            models.Add(new CommentMvcViewModel
             {
                 Id = 2,
                 OrgId = 1,
@@ -35,7 +35,7 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments/Details/5
         public ActionResult Details(int id)
         {
-            return View(new CommentViewModel
+            return View(new CommentMvcViewModel
             {
                 Id = 2,
                 OrgId = 1,
@@ -71,7 +71,7 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(new CommentViewModel
+            return View(new CommentMvcViewModel
             {
                 Id = 2,
                 OrgId = 1,
@@ -101,7 +101,7 @@ namespace MakeEvent.Web.Controllers
         // GET: Comments/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(new CommentViewModel
+            return View(new CommentMvcViewModel
             {
                 Id = 2,
                 OrgId = 1,

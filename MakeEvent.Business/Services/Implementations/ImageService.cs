@@ -31,15 +31,19 @@ namespace MakeEvent.Business.Services.Implementations
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            return (image.Id > 0)
+            var result = (image.Id > 0)
                 ? UpdateImage(image)
                 : CreateImage(image);
+
+            return result;
         }
 
         private OperationResult<ImageDto> CreateImage(ImageDto image)
         {
             var domain = Mapper.Map<Image>(image);
             var result = _repository.Create(domain);
+
+            _repository.Save();
 
             return OperationResult.Success(Mapper.Map<ImageDto>(result));
         }
@@ -55,6 +59,8 @@ namespace MakeEvent.Business.Services.Implementations
 
             domain = Mapper.Map(image, domain);
             var result = _repository.Update(domain);
+
+            _repository.Save();
 
             return OperationResult.Success(Mapper.Map<ImageDto>(result));
         }

@@ -5,7 +5,7 @@ namespace MakeEvent.Business.Services.Interfaces
 {
     public interface IOrganizationService
     {
-        OperationResult Create(OrganizationDto organization);
-        OperationResult Update(OrganizationDto organization);
+        OperationResult<OrganizationDto> Save(OrganizationDto organization);
+        OperationResult<OrganizationDto> Get(string ownerId);
     }
 }
