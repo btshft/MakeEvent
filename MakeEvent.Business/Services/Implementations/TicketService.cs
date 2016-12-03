@@ -49,7 +49,17 @@ namespace MakeEvent.Business.Services.Implementations
                 .ProjectTo<TicketCategoryDto>()
                 .ToList();
 
-            return OperationResult.Success<IList<TicketCategoryDto>>(categories); 
+            return OperationResult.Success<IList<TicketCategoryDto>>(categories);
+        }
+
+        public OperationResult<IList<TicketCategoryDto>> GetCategoriesByEvent(int eventId)
+        {
+            var categories = _repository
+                .Get<TicketCategory>(c => c.EventId == eventId)
+                .ProjectTo<TicketCategoryDto>()
+                .ToList();
+
+            return OperationResult.Success<IList<TicketCategoryDto>>(categories);
         }
 
         public OperationResult<TicketCategoryDto> GetCategory(int categoryId)
@@ -71,6 +81,62 @@ namespace MakeEvent.Business.Services.Implementations
             _repository.Save();
 
             return OperationResult.Success();
+        }
+
+        public OperationResult<TicketDto> CreateTicket(TicketDto ticket)
+        {
+            if (ticket == null)
+                throw new ArgumentNullException(nameof(ticket));
+
+            if (ticket.CategoryId < 1)
+                return OperationResult.Fail<TicketDto>("Необходимо указать категорию билета");
+
+            var ticketCategory = _repository.GetById<TicketCategory>(ticket.CategoryId);
+
+            if (ticketCategory == null)
+                return OperationResult.Fail<TicketDto>($"Не удалось найти категорию билетов с Id = {ticket.Id}");
+
+            if (ticketCategory.MaxCount == ticketCategory.BookedCount)
+                return OperationResult.Fail<TicketDto>("Все билеты данного типа уже забронированы.");
+
+            ticket.BookDate = DateTime.Now;
+            ticketCategory.BookedCount = ticketCategory.BookedCount + 1;
+
+            var domainTicket = Mapper.Map<Ticket>(ticket);
+
+            domainTicket   = _repository.Create(domainTicket);
+            ticketCategory = _repository.Update(ticketCategory);
+
+            _repository.Save();
+
+            return OperationResult.Success(Mapper.Map<TicketDto>(domainTicket));
+        }
+
+        public OperationResult<IList<TicketDto>> AllTickets()
+        {
+            var tickets = _repository.Get<Ticket>()
+                .ProjectTo<TicketDto>()
+                .ToList();
+
+            return OperationResult.Success<IList<TicketDto>>(tickets);
+        }
+
+        public OperationResult<IList<TicketDto>> GetTicketsByOrganization(string organizationId)
+        {
+            var tickets = _repository.Get<Ticket>(t => t.Category.Event.OrganizationId.Equals(organizationId))
+                .ProjectTo<TicketDto>()
+                .ToList();
+
+            return OperationResult.Success<IList<TicketDto>>(tickets);
+        }
+
+        public OperationResult<TicketDto> GetTicket(int tickedId)
+        {
+            var ticket = _repository.GetById<Ticket>(tickedId);
+
+            return (ticket == null)
+                ? OperationResult.Fail<TicketDto>("Не удалось найти билет")
+                : OperationResult.Success(Mapper.Map<TicketDto>(ticket));
         }
 
         private OperationResult<TicketCategoryDto> CreateTicketCategory(TicketCategoryDto ticketCategory)

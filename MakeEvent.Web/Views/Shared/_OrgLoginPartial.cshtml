@@ -11,7 +11,7 @@
                 @Html.ActionLink("Tickets", "Index", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
             </li>
             <li>
-                @Html.ActionLink("SoldTickets", "SoldList", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
+                @Html.ActionLink("SoldTickets", "Sold", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
             </li>
             <li>
                 @Html.ActionLink("Comments", "Index", "Comments", new { orgId = User.Identity.GetUserId() }, null)

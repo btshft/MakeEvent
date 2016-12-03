@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Models.Common;
 
 namespace MakeEvent.Web.Controllers
 {
@@ -121,49 +122,36 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult SoldList(int? orgId)
+        public ActionResult Sold(string orgId)
         {
-            var models = new List<SoldTicketMvcViewModel>();
-            models.Add(new SoldTicketMvcViewModel
-            {
-                Id = 0,
-                Cost = 300,
-                Date=DateTime.Now,
-                EventTitle="Test",
-                Owner="Ivanov Ivan",
-                Status="Бронь"
-            });
-            models.Add(new SoldTicketMvcViewModel
-            {
-                Id = 1,
-                Cost = 200,
-                Date = DateTime.Now,
-                EventTitle = "Te3t",
-                Owner = "Ivanov 3van",
-                Status = "Брон3ь"
-            });
-            return View(models);
+            if (string.IsNullOrEmpty(orgId))
+                return RedirectToAction("Index");
+
+            var tickets = _ticketService.GetTicketsByOrganization(orgId).Data;
+            var models  = Mapper.Map<IEnumerable<SoldTicketMvcViewModel>>(tickets);
+
+            return View("SoldList", models);
         }
 
-        // GET: Ticket/Details/5
+        [HttpGet]
         public ActionResult SoldTicket(int id)
         {
-            return View(new SoldTicketMvcViewModel
-            {
-                Id = 1,
-                Cost = 200,
-                Date = DateTime.Now,
-                EventTitle = "Te3t",
-                Owner = "Ivanov 3van",
-                Status = "Брон3ь"
-            });
+            var ticket = _ticketService.GetTicket(id);
+            var model  = Mapper.Map<SoldTicketMvcViewModel>(ticket);
+
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Buy(FormCollection collection)
+        public ActionResult Buy(int eventId, EventWithTicketsMvcViewModel model)
         {
-            return RedirectToAction("Events", "Home");
+            var ticket = Mapper.Map<TicketDto>(model.Ticket);
+            var result = _ticketService.CreateTicket(ticket);
 
+            if (result.Succeeded)
+                return RedirectToAction("Events", "Home");
+
+            return RedirectToAction("Event", "Home", new { id = eventId })};
         }
     }
 }

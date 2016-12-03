@@ -21,19 +21,22 @@ namespace MakeEvent.Web.Controllers
         private readonly IOrganizationService _organizationService;
         private readonly ICommentService _commentService;
         private readonly IEventCategoryService _categoryService;
+        private readonly ITicketService _ticketService;
 
         public HomeController(
             IEventService eventService, 
             INewsService newsService,
             IOrganizationService organizationService,
             ICommentService commentService,
-            IEventCategoryService categoryService)
+            IEventCategoryService categoryService,
+            ITicketService ticketService)
         {
             _eventService = eventService;
             _newsService  = newsService;
             _organizationService = organizationService;
             _commentService = commentService;
             _categoryService = categoryService;
+            _ticketService = ticketService;
         }
 
         [HttpPost]
@@ -70,7 +73,7 @@ namespace MakeEvent.Web.Controllers
         {
             if (id.HasValue)
             {
-                var singleNews = _newsService.Get(id.Value);
+                var singleNews = _newsService.Get(id.Value).Data;
                 var singleNewsModel = Mapper.Map<NewsMvcViewModel>(singleNews);
 
                 return View("SingleNews", singleNewsModel);
@@ -135,43 +138,21 @@ namespace MakeEvent.Web.Controllers
         [HttpGet]
         public ActionResult Event(int id)
         {
-            var tickets = new List<TicketCategoryMvcViewModel>();
-            tickets.Add(new TicketCategoryMvcViewModel
-            {
-                Id=0,
-                MaxCount=12,
-                Description="Vip",
-                Price=200,
-                Type="Vip"
-            }); tickets.Add(new TicketCategoryMvcViewModel
-            {
-                Id = 0,
-                MaxCount = 12,
-                Description = "Vip",
-                Price = 200,
-                Type = "Vip"
-            });
-            var ticket = new SoldTicketMvcViewModel
-            {
-                TicketTypeId = 12
-            };
-            var model = new EventWithTicketsMvcViewModel
-            {
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                Tickets = tickets,
-                Ticket=ticket
-            };
-            
-            SelectList tick = new SelectList(tickets, "Id", "TypeName");
-            ViewBag.TicketTypes = tick;
-            return View("SingleEvent", model);
+            var categories = _ticketService.GetCategoriesByEvent(id).Data;
+            var categoriesModel = Mapper.Map<IEnumerable<TicketCategoryMvcViewModel>>(categories).ToList();
+            var categoriesList  = new SelectList(categoriesModel, "Id", "Type");
+
+            ViewBag.EventId = id;
+            ViewBag.TicketTypes = categoriesList;
+
+            var @event = _eventService.Get(id).Data;
+            var ticketModel = new SoldTicketMvcViewModel();
+            var composedModel = Mapper.Map<EventWithTicketsMvcViewModel>(@event);
+
+            composedModel.Ticket  = ticketModel;
+            composedModel.Tickets = categoriesModel;
+
+            return View("SingleEvent", composedModel);
         }
     }
 

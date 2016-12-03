@@ -48,6 +48,8 @@ namespace MakeEvent.Web
                 cfg.CreateMap<EventDto, EventMvcViewModel>();
                 cfg.CreateMap<EventMvcViewModel, EventDto>();
 
+                cfg.CreateMap<EventDto, EventWithTicketsMvcViewModel>();
+
                 cfg.CreateMap<EventCategory, EventCategoryDto>();
                 cfg.CreateMap<EventCategoryDto, EventCategory>()
                     .ForMember(d => d.EventCategoryLocalizations, opt => opt.Ignore());
@@ -102,10 +104,7 @@ namespace MakeEvent.Web
                     .AfterMap(Localize);
 
                 cfg.CreateMap<Image, ImageDto>();
-                cfg.CreateMap<ImageDto, Image>()
-                    .ForMember(d => d.News, opt => opt.Ignore())
-                    .ForMember(d => d.Organizations, opt => opt.Ignore())
-                    .ForMember(d => d.Events, opt => opt.Ignore());
+                cfg.CreateMap<ImageDto, Image>();
 
                 cfg.CreateMap<HttpPostedFileBase, ImageDto>()
                     .ForMember(d => d.Name, opt => opt.MapFrom(s => s.FileName))
@@ -121,20 +120,14 @@ namespace MakeEvent.Web
                 cfg.CreateMap<TicketCategoryDto, TicketCategory>();
                 cfg.CreateMap<TicketCategoryDto, TicketCategoryMvcViewModel>();
                 cfg.CreateMap<TicketCategoryMvcViewModel, TicketCategoryDto>();
+
+                cfg.CreateMap<Ticket, TicketDto>()
+                    .AfterMap(TransformToDto);
+
+                cfg.CreateMap<TicketDto, Ticket>();
+                cfg.CreateMap<TicketDto, SoldTicketMvcViewModel>();
+                cfg.CreateMap<SoldTicketMvcViewModel, TicketDto>();
             });
-        }
-
-        private static void TransformToModel(EventCategoryDto source, EventCategoryMvcViewModel destination)
-        {
-            var localizations = source.EventCategoryLocalizations;
-            if (localizations == null || localizations.Count == 0)
-                return;
-
-            var ruLocalization = localizations.FirstOrDefault(c => c.LanguageId == (int)CultureLanguage.RU);
-            var enLocalization = localizations.FirstOrDefault(c => c.LanguageId == (int)CultureLanguage.EN);
-
-            destination.NameRu = ruLocalization?.Name;
-            destination.NameEn = enLocalization?.Name;
         }
 
         private static void Localize(EventCategoryDto source, EventCategoryMvcViewModel destination)
@@ -205,6 +198,19 @@ namespace MakeEvent.Web
                     destination.LocalizedContent = ruLocalization?.Html ?? NotLocalized;
                     break;
             }
+        }
+
+        private static void TransformToModel(EventCategoryDto source, EventCategoryMvcViewModel destination)
+        {
+            var localizations = source.EventCategoryLocalizations;
+            if (localizations == null || localizations.Count == 0)
+                return;
+
+            var ruLocalization = localizations.FirstOrDefault(c => c.LanguageId == (int)CultureLanguage.RU);
+            var enLocalization = localizations.FirstOrDefault(c => c.LanguageId == (int)CultureLanguage.EN);
+
+            destination.NameRu = ruLocalization?.Name;
+            destination.NameEn = enLocalization?.Name;
         }
 
         private static void TransformToModel(NewsDto source, NewsMvcViewModel destination)
@@ -312,6 +318,18 @@ namespace MakeEvent.Web
             destination.NewsLocalizations = (localizations.Count > 0)
                 ? localizations
                 : null;
+        }
+
+        private static void TransformToDto(Ticket source, TicketDto destination)
+        {
+            var bookedStatus =
+                (LanguageHelper.GetThreadLanguage() == CultureLanguage.EN)
+                    ? "Booked"
+                    : "Забронирован";
+
+            destination.EventTitle = source.Category.Event.Name;
+            destination.Cost       = source.Category.Price;
+            destination.Status     = (source.BookDate.HasValue) ? bookedStatus : string.Empty;
         }
     }
 }

@@ -36,8 +36,5 @@ namespace MakeEvent.Domain.Models
         #endregion
 
         public virtual Organization Organization { get; set; }
-
-        public virtual ICollection<Ticket> Tickets { get; set; }
-            = new List<Ticket>();
     }
 }
