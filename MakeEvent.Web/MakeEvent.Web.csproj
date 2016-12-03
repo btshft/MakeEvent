@@ -228,6 +228,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_LocalResources\Localization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Localization.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localization.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EfMigrator.cs" />
@@ -282,7 +292,7 @@
     <Compile Include="Models\Organization\EventMvcViewModel.cs" />
     <Compile Include="Models\Organization\OrganizationMvcViewModel.cs" />
     <Compile Include="Models\Organization\SoldTicketMvcViewModel.cs" />
-    <Compile Include="Models\Organization\TicketMvcViewModel.cs" />
+    <Compile Include="Models\Organization\TicketCategoryMvcViewModel.cs" />
     <Compile Include="Models\PageLocalizationViewModel.cs" />
     <Compile Include="Models\Admin\EventCategoryMvcViewModel.cs" />
     <Compile Include="Models\Admin\NewsMvcViewModel.cs" />
@@ -403,6 +413,11 @@
     <Content Include="Content\materialize\fonts\roboto\Roboto-Thin.woff" />
     <Content Include="Content\materialize\fonts\roboto\Roboto-Thin.woff2" />
     <Content Include="Content\Styles\admin.less" />
+    <EmbeddedResource Include="App_LocalResources\Localization.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -832,6 +847,12 @@
       <Project>{ECC35D90-68E4-42DA-994A-BBBA6102BE17}</Project>
       <Name>MakeEvent.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\Localization.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

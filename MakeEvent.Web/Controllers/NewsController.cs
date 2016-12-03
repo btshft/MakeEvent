@@ -27,6 +27,7 @@ namespace MakeEvent.Web.Controllers
         public ActionResult Index()
         {
             var news = _newsService.All();
+
             var model = news.Data
                 .Select(Mapper.Map<NewsMvcViewModel>)
                 .ToList();

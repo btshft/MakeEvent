@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Implementations.Identity;
 using MakeEvent.Business.Services.Interfaces;
@@ -41,6 +43,15 @@ namespace MakeEvent.Business.Services.Implementations
 
             var domainOrg = _repository.GetById<Organization>(ownerId);
             return OperationResult.Success(Mapper.Map<OrganizationDto>(domainOrg));
+        }
+
+        public OperationResult<IList<OrganizationDto>> All()
+        {
+            var organizations = _repository.Get<Organization>()
+                .ProjectTo<OrganizationDto>()
+                .ToList();
+
+            return OperationResult.Success<IList<OrganizationDto>>(organizations);
         }
 
         private OperationResult<OrganizationDto> CreateOrganization(OrganizationDto organization)

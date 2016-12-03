@@ -128,13 +128,15 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Login()
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -150,7 +152,7 @@ namespace MakeEvent.Web.Controllers
                 return View();
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToLocal(returnUrl);
         }
 
         [HttpGet]
@@ -206,6 +208,18 @@ namespace MakeEvent.Web.Controllers
             _authorizationService.Logout();
 
             return RedirectToAction("Index","Home");
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

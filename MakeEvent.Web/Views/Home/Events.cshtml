@@ -11,7 +11,7 @@
             @Html.DisplayFor(model => item.StartDate)
             @Html.DisplayFor(model => item.EndDate)
             @Html.DisplayFor(model => item.City)
-          @Html.ActionLink("Details", "SingleEvent","Home", new { id = item.Id}, null)
+          @Html.ActionLink("Details", "Event","Home", new { id = item.Id}, null)
             if (item.ImageData == null)
                 {
                 <div class="form-control-static">Нет картинки</div>
@@ -25,7 +25,7 @@
         }
     @foreach (var item in Model.Categories)
     {
-        @Html.ActionLink(item.LocalizedName, "EventsList", "Home", new { id = item.Id }, null)
+        @Html.ActionLink(item.LocalizedName, "Events", "Home", new { id = item.Id }, null)
     }
 </div>
 

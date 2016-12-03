@@ -16,7 +16,7 @@ namespace MakeEvent.Web.Models.Common
         public string Street { get; set; }
         public string Office { get; set; }
         public byte[] ImageData { get; set; }
-        public List<TicketMvcViewModel> Tickets { get; set; }
+        public List<TicketCategoryMvcViewModel> Tickets { get; set; }
         public SoldTicketMvcViewModel Ticket  { get; set; }
     }
 }

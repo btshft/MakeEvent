@@ -35,11 +35,20 @@ namespace MakeEvent.Business.Services.Implementations
 
         public OperationResult<CommentDto> Get(int commentId)
         {
-            var category = _repository.GetById<Comment>(commentId);
+            var comment = _repository.GetById<Comment>(commentId);
 
-            return category == null
+            return comment == null
                 ? OperationResult.Fail<CommentDto>("Не удалось найти комментарий")
-                : OperationResult.Success(Mapper.Map<CommentDto>(category));
+                : OperationResult.Success(Mapper.Map<CommentDto>(comment));
+        }
+
+        public OperationResult<IList<CommentDto>> GetByOrganization(string organizationId)
+        {
+            var comments = _repository.Get<Comment>(c => c.OrganizationId.Equals(organizationId))
+                .ProjectTo<CommentDto>()
+                .ToList();
+
+            return OperationResult.Success<IList<CommentDto>>(comments);
         }
 
         public OperationResult<IList<CommentDto>> All()
