@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
     <div class="row">
         <div class="col m4 offset-m4 s12 card-panel hoverable  login-form">

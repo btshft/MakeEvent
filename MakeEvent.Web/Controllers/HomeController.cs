@@ -3,8 +3,10 @@ using System.Web.Mvc;
 using MakeEvent.Business.Enums;
 using MakeEvent.Web.Models.Organization;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Domain.Filters;
 using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models.Admin;
 using MakeEvent.Web.Models.Common;
@@ -16,51 +18,22 @@ namespace MakeEvent.Web.Controllers
     {
         private readonly IEventService _eventService;
         private readonly INewsService  _newsService;
+        private readonly IOrganizationService _organizationService;
+        private readonly ICommentService _commentService;
+        private readonly IEventCategoryService _categoryService;
 
-        public HomeController(IEventService eventService, INewsService newsService)
+        public HomeController(
+            IEventService eventService, 
+            INewsService newsService,
+            IOrganizationService organizationService,
+            ICommentService commentService,
+            IEventCategoryService categoryService)
         {
             _eventService = eventService;
             _newsService  = newsService;
-        }
-
-        public ActionResult Index()
-        {
-            var events = _eventService.All().Data;
-            var models = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
-
-            return View(models);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult News()
-        {
-            var news = _newsService.All().Data;
-            var models = Mapper.Map<IEnumerable<NewsMvcViewModel>>(news);
-
-            return View(models);
-        }
-
-        [HttpGet]
-        public ActionResult News(int id)
-        {
-            var news = _newsService.Get(id);
-            var model = Mapper.Map<NewsMvcViewModel>(news);
-
-            return View("SingleNews", model);
+            _organizationService = organizationService;
+            _commentService = commentService;
+            _categoryService = categoryService;
         }
 
         [HttpPost]
@@ -82,219 +55,101 @@ namespace MakeEvent.Web.Controllers
 
             return View("Index");
         }
-        public ActionResult NewsList()
-        {
-            var models = new List<NewsMvcViewModel>();
-            models.Add(new NewsMvcViewModel
-            {
-                Id = 0,
-                LocalizedShortDescription = "Test",
-                ImageData = null,
-                LocalizedTitle = "Title"
-            });
-            models.Add(new NewsMvcViewModel
-            {
-                Id = 2,
-                LocalizedShortDescription = "Test33",
-                ImageData = null,
-                LocalizedTitle = "Title333"
-            });
-            return View("News",models);
-        }
-        public ActionResult SingleNews(int id)
-        {
-            return View("SingleNews", new NewsMvcViewModel
-            {
-                Id = 2,
-                LocalizedShortDescription="blabla bla",
-                ImageData = null,
-                LocalizedTitle = "Title333"
-            });
-        }
-        public ActionResult OrganizationsList()
-        {
-            var models = new List<OrganizationMvcViewModel>();
-            models.Add(new OrganizationMvcViewModel
-            {
-                Id = 2,
-                Description = "test test",
-                ImageData = null,
-                City = "Sevastopol",
-                Email = "foo@bar.com",
-                Website = "http://test.com",
-                Name = "test",
-                Office = "23",
-                Street = "Simonok",
-                PhoneNumber = "+786738494"
-            });
-            models.Add(new
-               OrganizationMvcViewModel
-            {
 
-                Id = 2,
-                Description = "test test",
-                ImageData = null,
-                City = "Sevastopol",
-                Email = "foo@bar.com",
-                Website = "http://test.com",
-                Name = "test",
-                Office = "23",
-                Street = "Simonok",
-                PhoneNumber = "+786738494"
-            });
-            return View("Organizations",models);
-        }
-        public ActionResult Organization(int id)
-        {
-            var comments = new List<CommentMvcViewModel>();
-            comments.Add(new CommentMvcViewModel
-            {
-                Id = 0,
-                OrganizationId = "0",
-                AuthorEmail = "foo@bar.com",
-                CreatedDate = DateTime.Now,
-                AuthorName = "Perov I.Y",
-                Text = "Hello"
-            });
-            var comment = new CommentMvcViewModel
-            {
-                OrganizationId = "2",
-            };
-            var model = new Models.Common.OrgWithCommentsMvcViewModel
-            {
-                Id = "2",
-                Description = "test test",
-                ImageData = null,
-                City = "Sevastopol",
-                Email = "foo@bar.com",
-                Website = "http://test.com",
-                Name = "test",
-                Office = "23",
-                Street = "Simonok",
-                PhoneNumber = "+786738494",
-                Comments = comments,
-                Comment=comment
-            };
-            return View("SingleOrg", model);
-        }
         [HttpGet]
-        public ActionResult EventsList()
+        public ActionResult Index()
         {
-            var model = new EventAndCatMvcViewModel();
-            var categories = new List<EventCategoryMvcViewModel>();
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 0,
-                LocalizedName = "test"
-            });
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 2,
-                LocalizedName = "test2"
-            });
-            var events = new List<EventMvcViewModel>();
-            events.Add(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
-            events.Add(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
-            model.Events = events;
-            model.Categories = categories;
-            return View("Events",model);
+            var events = _eventService.All().Data;
+            var models = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
+
+            return View(models);
         }
-        //Get by category
-        [HttpPost]
-        public ActionResult EventsList(int id)
+
+        [HttpGet]
+        public ActionResult News(int? id)
         {
-            var model = new EventAndCatMvcViewModel();
-            var categories = new List<EventCategoryMvcViewModel>();
-            categories.Add(new EventCategoryMvcViewModel
+            if (id.HasValue)
             {
-                Id = 0,
-                LocalizedName = "test"
-            });
-            categories.Add(new EventCategoryMvcViewModel
-            {
-                Id = 2,
-                LocalizedName = "test2"
-            });
-            var events = new List<EventMvcViewModel>();
-            events.Add(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
-            events.Add(new EventMvcViewModel
-            {
-                Id = 2,
-                CategoryId = 2,
-                City = "Sevastopol2",
-                Description = "test2",
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                ShortDescripton = "te2",
-                Name = "Event2",
-                Office = "122",
-                Street = "Lenina2",
-                ImageData = null,
-                ImageMimeType = ""
-            });
-            model.Events = events;
-            model.Categories = categories;
-            return View("Events", model);
+                var singleNews = _newsService.Get(id.Value);
+                var singleNewsModel = Mapper.Map<NewsMvcViewModel>(singleNews);
+
+                return View("SingleNews", singleNewsModel);
+            }
+
+            var news = _newsService.All().Data;
+            var models = Mapper.Map<IEnumerable<NewsMvcViewModel>>(news);
+
+            return View(models);
         }
-        public ActionResult SingleEvent(int id)
+
+        [HttpGet]
+        public ActionResult Organizations()
         {
-            var tickets = new List<TicketMvcViewModel>();
-            tickets.Add(new TicketMvcViewModel
+            var organizations = _organizationService.All().Data;
+            var models = Mapper.Map<IEnumerable<OrganizationMvcViewModel>>(organizations);
+            
+            return View(models);
+        }
+
+        [HttpGet]
+        public ActionResult Organization(string id)
+        {
+            var organization = _organizationService.Get(id).Data;
+            var organizationModel = Mapper.Map<OrganizationMvcViewModel>(organization);
+            var comments = Mapper.Map<IEnumerable<CommentMvcViewModel>>(
+                _commentService.GetByOrganization(id).Data);
+
+
+            var orgWithCommendModel = Mapper.Map<OrgWithCommentsMvcViewModel>(organizationModel);
+            orgWithCommendModel.Comment = new CommentMvcViewModel
+            {
+                OrganizationId = id,
+            };
+            orgWithCommendModel.Comments = comments.ToList();
+
+            return View("SingleOrg", orgWithCommendModel);
+        }
+
+        [HttpGet]
+        public ActionResult Events(int? id)
+        {
+            var categories = _categoryService.All().Data;
+            var categoriesModel = Mapper.Map<IEnumerable<EventCategoryMvcViewModel>>(categories);
+
+            var filter = (id.HasValue) ? new EventFilter { CategoryId = id } : null;
+            var events = (filter == null) 
+                 ? _eventService.All().Data
+                 : _eventService.Filter(filter).Data.Items;
+
+            var eventsModel = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
+
+            var composedModel = new EventAndCatMvcViewModel
+            {
+                Events = eventsModel.ToList(),
+                Categories = categoriesModel.ToList()
+            };
+
+            return View(composedModel);
+        }
+
+        [HttpGet]
+        public ActionResult Event(int id)
+        {
+            var tickets = new List<TicketCategoryMvcViewModel>();
+            tickets.Add(new TicketCategoryMvcViewModel
             {
                 Id=0,
                 MaxCount=12,
                 Description="Vip",
                 Price=200,
-                TypeName="Vip"
-            }); tickets.Add(new TicketMvcViewModel
+                Type="Vip"
+            }); tickets.Add(new TicketCategoryMvcViewModel
             {
                 Id = 0,
                 MaxCount = 12,
                 Description = "Vip",
                 Price = 200,
-                TypeName = "Vip"
+                Type = "Vip"
             });
             var ticket = new SoldTicketMvcViewModel
             {

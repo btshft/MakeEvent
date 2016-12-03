@@ -55,13 +55,13 @@ namespace MakeEvent.Web.Controllers
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", $"Ошибки при добавлении комментария:</br>" 
+                ModelState.AddModelError("", $"Ошибки при добавлении комментария:</br>"
                                             + $"{string.Join("</br>", result.Errors)}");
                 return View(model);
             }
 
-                return RedirectToAction("OrganizationsList", "Home");
-            }
+            return RedirectToAction("Organizations", "Home");
+        }
 
         [HttpGet]
         public ActionResult Edit(int id)
@@ -80,7 +80,7 @@ namespace MakeEvent.Web.Controllers
 
             if (model.Id == 0)
             {
-                throw new HttpException((int)HttpStatusCode.InternalServerError, 
+                throw new HttpException((int)HttpStatusCode.InternalServerError,
                     "Не указан идентификатор комментария");
             }
 
@@ -88,7 +88,7 @@ namespace MakeEvent.Web.Controllers
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", $"Ошибки при обновлении комментария:</br>" 
+                ModelState.AddModelError("", $"Ошибки при обновлении комментария:</br>"
                                             + $"{string.Join("</br>", result.Errors)}");
                 return View(model);
             }
@@ -111,12 +111,13 @@ namespace MakeEvent.Web.Controllers
             var result = _commentService.Delete(id);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", $"Ошибки при удалении комментария:</br>" + $"{string.Join("</br>", result.Errors)}");
+                ModelState.AddModelError("", $"Ошибки при удалении комментария:</br>" 
+                                           + $"{string.Join("</br>", result.Errors)}");
                 return View(model);
             }
 
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
+        }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using MakeEvent.Business.Models;
+﻿using System.Collections.Generic;
+using MakeEvent.Business.Models;
 using MakeEvent.Common.Models;
 
 namespace MakeEvent.Business.Services.Interfaces
@@ -7,5 +8,6 @@ namespace MakeEvent.Business.Services.Interfaces
     {
         OperationResult<OrganizationDto> Save(OrganizationDto organization);
         OperationResult<OrganizationDto> Get(string ownerId);
+        OperationResult<IList<OrganizationDto>> All();
     }
 }

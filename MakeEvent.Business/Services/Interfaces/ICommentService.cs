@@ -8,6 +8,7 @@ namespace MakeEvent.Business.Services.Interfaces
     {
         OperationResult<CommentDto> Save(CommentDto comment);
         OperationResult<CommentDto> Get(int commentId);
+        OperationResult<IList<CommentDto>> GetByOrganization(string organizationId);
         OperationResult<IList<CommentDto>> All();
         OperationResult Delete(int commentId);
     }

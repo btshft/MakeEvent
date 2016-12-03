@@ -101,7 +101,7 @@
             @Html.ValidationMessageFor(model => model.Comment.Text, "", new { @class = "text-danger" })
         </div>
     </div>
-    @Html.HiddenFor(model => model.Comment.OrgId)
+    @Html.HiddenFor(model => model.Comment.OrganizationId)
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

@@ -1,127 +1,126 @@
 ﻿using MakeEvent.Web.Models.Organization;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MakeEvent.Business.Models;
+using MakeEvent.Business.Services.Interfaces;
 
 namespace MakeEvent.Web.Controllers
 {
     public class TicketController : Controller
     {
-        // GET: Ticket
-        public ActionResult Index(int? orgId)
+        private readonly ITicketService _ticketService;
+
+        public TicketController(ITicketService ticketService)
         {
-            var models = new List<TicketMvcViewModel>();
-            models.Add(new TicketMvcViewModel
-            {
-                Id = 0,
-                Description = "test",
-                MaxCount=12,
-                Price=400,
-                TypeName="VIP"
-            });
-            models.Add(new TicketMvcViewModel
-            {
-                Id = 2,
-                Description = "test test",
-                MaxCount = 1222,
-                Price = 200,
-                TypeName = "ne VIP"
-            });
+            _ticketService = ticketService;
+        }
+
+        [HttpGet]
+        public ActionResult Index(string orgId)
+        {
+            var ticketCategories = (string.IsNullOrEmpty(orgId))
+                ? _ticketService.AllCategories().Data
+                : _ticketService.GetCategoriesByOrganization(orgId).Data;
+
+            var models = Mapper.Map<IEnumerable<TicketCategoryMvcViewModel>>(ticketCategories);
+
             return View(models);
         }
 
-        // GET: Ticket/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(new TicketMvcViewModel
-            {
-                Id = 2,
-                Description = "test test",
-                MaxCount = 1222,
-                Price = 200,
-                TypeName = "ne VIP"
-            });
+            var ticketCategory = _ticketService.GetCategory(id).Data;
+            var model = Mapper.Map<TicketCategoryMvcViewModel>(ticketCategory);
+
+            return View(model);
         }
 
-        // GET: Ticket/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult Create(int id)
         {
-            return View();
+            return View(new TicketCategoryMvcViewModel { EventId = id });
         }
 
-        // POST: Ticket/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TicketCategoryMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var result = _ticketService.SaveCategory(Mapper.Map<TicketCategoryDto>(model));
+
+            if (!result.Succeeded)
             {
-                return View();
+                ModelState.AddModelError("", $"Ошибки при добавлении категории билетов:</br>"
+                                            + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
             }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Ticket/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(new TicketMvcViewModel
-            {
-                Id = 2,
-                Description = "test test",
-                MaxCount = 1222,
-                Price = 200,
-                TypeName = "ne VIP"
-            });
+            var ticketCategory = _ticketService.GetCategory(id).Data;
+            var model = Mapper.Map<TicketCategoryMvcViewModel>(ticketCategory);
+
+            return View(model);
         }
 
-        // POST: Ticket/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, TicketCategoryMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (model.Id == 0)
             {
-                return View();
+                throw new HttpException((int)HttpStatusCode.InternalServerError,
+                    "Не указан идентификатор категории билетов");
             }
+
+            var result = _ticketService.SaveCategory(Mapper.Map<TicketCategoryDto>(model));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении категории билетов:</br>"
+                                            + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Ticket/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View(new TicketMvcViewModel
-            {
-                Id = 2,
-                Description = "test test",
-                MaxCount = 1222,
-                Price = 200,
-                TypeName = "ne VIP"
-            });
+            var ticketCategory = _ticketService.GetCategory(id).Data;
+            var model = Mapper.Map<TicketCategoryMvcViewModel>(ticketCategory);
+
+            return View(model);
         }
 
-        // POST: Ticket/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, TicketCategoryMvcViewModel model)
         {
-            try
+            var result = _ticketService.DeleteCategory(id);
+            if (!result.Succeeded)
             {
-                // TODO: Add delete logic here
+                ModelState.AddModelError("", $"Ошибки при удалении категории билетов:</br>"
+                                           + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
+
+        [HttpGet]
         public ActionResult SoldList(int? orgId)
         {
             var models = new List<SoldTicketMvcViewModel>();
@@ -159,10 +158,11 @@ namespace MakeEvent.Web.Controllers
                 Status = "Брон3ь"
             });
         }
+
         [HttpPost]
         public ActionResult Buy(FormCollection collection)
         {
-            return RedirectToAction("EventsList", "Home");
+            return RedirectToAction("Events", "Home");
 
         }
     }

@@ -6,16 +6,21 @@ using AutoMapper;
 using MakeEvent.Business.Enums;
 using MakeEvent.Business.Models;
 using MakeEvent.Domain.Models;
+using MakeEvent.Web.App_LocalResources;
 using MakeEvent.Web.Extensions;
 using MakeEvent.Web.Helpers;
 using MakeEvent.Web.Models;
 using MakeEvent.Web.Models.Admin;
+using MakeEvent.Web.Models.Common;
 using MakeEvent.Web.Models.Organization;
 
 namespace MakeEvent.Web
 {
     public class AutoMapperConfig
     {
+        private static readonly string NotLocalized 
+            = Localization.NotLocalized;
+
         public static void RegisterMappings()
         { 
             Mapper.Initialize(cfg =>
@@ -32,7 +37,9 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<OrganizationDto, OrganizationMvcViewModel>();
                 cfg.CreateMap<OrganizationMvcViewModel, OrganizationDto>();
-
+                cfg.CreateMap<OrganizationMvcViewModel, OrgWithCommentsMvcViewModel>();
+                cfg.CreateMap<OrgWithCommentsMvcViewModel, OrganizationMvcViewModel>();
+                
                 cfg.CreateMap<Event, EventDto>();
                 cfg.CreateMap<EventDto, Event>();
                 cfg.CreateMap<EventDto, EventViewModel>();
@@ -109,6 +116,11 @@ namespace MakeEvent.Web
                 cfg.CreateMap<CommentDto, Comment>();
                 cfg.CreateMap<CommentDto, CommentMvcViewModel>();
                 cfg.CreateMap<CommentMvcViewModel, CommentDto>();
+
+                cfg.CreateMap<TicketCategory, TicketCategoryDto>();
+                cfg.CreateMap<TicketCategoryDto, TicketCategory>();
+                cfg.CreateMap<TicketCategoryDto, TicketCategoryMvcViewModel>();
+                cfg.CreateMap<TicketCategoryMvcViewModel, TicketCategoryDto>();
             });
         }
 
@@ -131,14 +143,16 @@ namespace MakeEvent.Web
             switch (language)
             {
                 case CultureLanguage.EN:
-                    destination.LocalizedName = source.EventCategoryLocalizations.First(c => c.LanguageId == 1).Name;
+                    destination.LocalizedName = source.EventCategoryLocalizations
+                        .FirstOrDefault(c => c.LanguageId == 1)?.Name ?? NotLocalized;
                     break;
 
                 case CultureLanguage.Undefined:
                 case CultureLanguage.RU:
                 case null:
                 default:
-                    destination.LocalizedName = source.EventCategoryLocalizations.First(c => c.LanguageId == 2).Name;
+                    destination.LocalizedName = source.EventCategoryLocalizations
+                        .FirstOrDefault(c => c.LanguageId == 2)?.Name ?? NotLocalized;
                     break;
             }
         }
@@ -147,24 +161,24 @@ namespace MakeEvent.Web
         {
             var language = LanguageHelper.GetThreadLanguage();
 
-            var ruLocalization = source.NewsLocalizations.First(n => n.LanguageId == 2);
-            var enLocalization = source.NewsLocalizations.First(n => n.LanguageId == 1);
+            var ruLocalization = source.NewsLocalizations.FirstOrDefault(n => n.LanguageId == 2);
+            var enLocalization = source.NewsLocalizations.FirstOrDefault(n => n.LanguageId == 1);
 
             switch (language)
             {
                 case CultureLanguage.EN:
-                    destination.LocalizedTitle = enLocalization.Header;
-                    destination.LocalizedShortDescription = enLocalization.ShortDescription;
-                    destination.LocalizedContent = enLocalization.Content;
+                    destination.LocalizedTitle = enLocalization?.Header ?? NotLocalized;
+                    destination.LocalizedShortDescription = enLocalization?.ShortDescription ?? NotLocalized;
+                    destination.LocalizedContent = enLocalization?.Content ?? NotLocalized;
                     break;
 
                 case CultureLanguage.Undefined:
                 case CultureLanguage.RU:
                 case null:
                 default:
-                    destination.LocalizedTitle = ruLocalization.Header;
-                    destination.LocalizedShortDescription = ruLocalization.ShortDescription;
-                    destination.LocalizedContent = ruLocalization.Content;
+                    destination.LocalizedTitle = ruLocalization?.Header ?? NotLocalized;
+                    destination.LocalizedShortDescription = ruLocalization?.ShortDescription ?? NotLocalized;
+                    destination.LocalizedContent = ruLocalization?.Content ?? NotLocalized;
                     break;
             }
         }
@@ -173,22 +187,22 @@ namespace MakeEvent.Web
         {
             var language = LanguageHelper.GetThreadLanguage();
 
-            var ruLocalization = source.PageLocalizations.First(n => n.LanguageId == 2);
-            var enLocalization = source.PageLocalizations.First(n => n.LanguageId == 1);
+            var ruLocalization = source.PageLocalizations.FirstOrDefault(n => n.LanguageId == 2);
+            var enLocalization = source.PageLocalizations.FirstOrDefault(n => n.LanguageId == 1);
 
             switch (language)
             {
                 case CultureLanguage.EN:
-                    destination.LocalizedTitle = enLocalization.Title;
-                    destination.LocalizedContent = enLocalization.Html;
+                    destination.LocalizedTitle = enLocalization?.Title ?? NotLocalized;
+                    destination.LocalizedContent = enLocalization?.Html ?? NotLocalized;
                     break;
 
                 case CultureLanguage.Undefined:
                 case CultureLanguage.RU:
                 case null:
                 default:
-                    destination.LocalizedTitle = ruLocalization.Title;
-                    destination.LocalizedContent = ruLocalization.Html;
+                    destination.LocalizedTitle = ruLocalization?.Title ?? NotLocalized;
+                    destination.LocalizedContent = ruLocalization?.Html ?? NotLocalized;
                     break;
             }
         }
