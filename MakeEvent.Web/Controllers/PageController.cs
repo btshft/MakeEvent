@@ -37,7 +37,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-
+        [HttpGet, AdminAuthorize]
         public ActionResult Edit(int id)
         {
             var page = _pageService.Get(id).Data;
@@ -46,7 +46,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Edit(int id, PageMvcViewModel model)
         {
             if (ModelState.IsValid == false)

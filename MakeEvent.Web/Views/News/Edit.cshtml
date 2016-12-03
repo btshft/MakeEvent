@@ -9,7 +9,7 @@
         <div class="form-horizontal col-md-offset-1">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <h3>Русский</h3>
+            <h3>@Localization.LangRu</h3>
             <hr />
             <div class="form-group">
                 <div>
@@ -30,7 +30,7 @@
                     @Html.ValidationMessageFor(model => model.ContentRu, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <h3>Английский</h3>
+            <h3>@Localization.LangEn</h3>
             <hr />
             <div class="form-group">
                 <div>
@@ -55,7 +55,7 @@
             <div class="form-group">
                 <div style="position:relative;">
                     <a class='btn  deep-purple lighten-' href='javascript:;'>
-                        Выбрать картинку
+                        @Localization.BtnChoosePicture
                         <input type="file" name="Image" size="40"
                                style="position:absolute;z-index:2;top:0;
                                 left:0;filter: alpha(opacity=0); opacity:0;
@@ -67,7 +67,7 @@
                 </div>
                 @if (Model.ImageData == null)
                 {
-                    <div class="form-control-static">Нет картинки</div>
+                    <div class="form-control-static">@Localization.LabelNoPicture</div>
                 }
                 else
                 {
@@ -79,15 +79,15 @@
 
             <div class="form-group">
                 <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
-                    Save
+                    @Localization.BtnSaveText
                     <span class="glyphicon glyphicon-send"></span>
                 </button>
                 <button class="btn deep-purple lighten-1  btn-sm btn-default">
                     <span class="glyphicon glyphicon-chevron-left"></span>
-                    @Html.ActionLink("Back", "Index")
+                    @Html.ActionLink(Localization.BtnBackText, "Index")
                 </button>
             </div>
         </div>
     }
 
-    </div>
+</div>

@@ -246,9 +246,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\AdminAuthorizeAttribute.cs" />
     <Compile Include="Attributes\HandleMvcExceptionAttribute.cs" />
     <Compile Include="Attributes\HandleWebApiExceptionAttribute.cs" />
     <Compile Include="Attributes\LocalizedAttribute.cs" />
+    <Compile Include="Attributes\LocalizedDisplayAttribute.cs" />
     <Compile Include="Controllers\AccountMvcController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />

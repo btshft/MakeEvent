@@ -1,17 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MakeEvent.Web.Attributes;
 
 namespace MakeEvent.Web.Models
 {
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [LocalizedDisplay("LoginVmEmail", typeof(App_LocalResources.Localization))]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [LocalizedDisplay("LoginVmPassword", typeof(App_LocalResources.Localization))]
         public string Password { get; set; }
 
         [Display(Name = "Запомнить меня?")]

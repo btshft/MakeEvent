@@ -5,7 +5,7 @@
 <div class="page-block">
     <p class="col-md-offset-1">
         <button class="btn indigo darken-1 btn-sm btn-default">
-            @Html.ActionLink("Create New", "Create")<span class="glyphicon glyphicon-plus"></span>
+            @Html.ActionLink(Localization.BtnCreateText, "Create")<span class="glyphicon glyphicon-plus"></span>
         </button>
     </p>
     <div class="col-md-offset-1 col-md- col-md-10">
@@ -31,18 +31,18 @@
                     </td>
                     <td>
                         <button class="btn  blue darken-3 btn-sm btn-default">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <span class="glyphicon glyphicon-pencil"></span>
+                            @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = item.Id }) <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                         <button class="btn deep-purple lighten-1  btn-sm btn-default">
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) <span class="glyphicon glyphicon-list"></span>
+                            @Html.ActionLink(Localization.BtnDetailsText, "Details", new { id = item.Id }) <span class="glyphicon glyphicon-list"></span>
                         </button>
                         <button class="btn pink lighten-1 btn-sm btn-default">
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <span class="glyphicon glyphicon-remove"></span>
+                            @Html.ActionLink(Localization.BtnDeleteText, "Delete", new { id = item.Id }) <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>
                 </tr>
             }
 
         </table>
-        </div>
     </div>
+</div>

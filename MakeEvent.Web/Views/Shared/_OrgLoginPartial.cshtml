@@ -1,28 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-  using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Events", "Index", "Event", new { orgId = User.Identity.GetUserId() }, null)
+                @Html.ActionLink(Localization.HeaderLinkEvents, "Index", "Event", new { orgId = User.Identity.GetUserId() }, null)
             </li>
             <li>
-                @Html.ActionLink("Tickets", "Index", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
+                @Html.ActionLink(Localization.HeaderLinkEvents, "Index", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
             </li>
             <li>
-                @Html.ActionLink("SoldTickets", "Sold", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
+                @Html.ActionLink(Localization.HeaderLinkSoldTickets, "Sold", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
             </li>
             <li>
-                @Html.ActionLink("Comments", "Index", "Comments", new { orgId = User.Identity.GetUserId() }, null)
+                @Html.ActionLink(Localization.HeaderLinkComments, "Index", "Comments", new { orgId = User.Identity.GetUserId() }, null)
             </li>
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
+                @Html.ActionLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogout</a></li>
         </ul>
- }
+    }
 }
-
 
 

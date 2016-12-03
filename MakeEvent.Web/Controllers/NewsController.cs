@@ -58,13 +58,13 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet, AdminAuthorize]
         public ActionResult Create()
         {
             return View(new NewsMvcViewModel());
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Create(NewsMvcViewModel model)
         {
             if (ModelState.IsValid == false)
@@ -101,7 +101,7 @@ namespace MakeEvent.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet, AdminAuthorize]
         public ActionResult Edit(int id)
         {
             var news = _newsService.Get(id).Data;
@@ -117,7 +117,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Edit(int id, NewsMvcViewModel model)
         {
             if (ModelState.IsValid == false)
@@ -159,7 +159,7 @@ namespace MakeEvent.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet, AdminAuthorize]
         public ActionResult Delete(int id)
         {
             var category = _newsService.Get(id).Data;
@@ -172,7 +172,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Delete(int id, NewsMvcViewModel model)
         {
             var result = _newsService.Delete(id);
@@ -190,7 +190,7 @@ namespace MakeEvent.Web.Controllers
         {
             var newsResult  = _newsService.Get(id);
             var news = newsResult.Data;
-            var imageResult = (newsResult != null && newsResult.Succeeded && news.ImageId.HasValue)
+            var imageResult = (newsResult.Data != null && newsResult.Succeeded && news.ImageId.HasValue)
                 ? _imageService.Get(news.ImageId.Value)
                 : null;
 

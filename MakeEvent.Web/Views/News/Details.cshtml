@@ -2,65 +2,68 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-    <div class="page-block">
-        <div class="col-md-offset-1">
-            @if (Model.ImageData == null)
+<div class="page-block">
+    <div class="col-md-offset-1">
+        @if (Model.ImageData == null)
             {
-                <div class="form-control-static">Нет картинки</div>
-            }
-            else
-            {
-                <img class="img-thumbnail" width="150" height="150"
-                     src="@Url.Action("GetImage", "News",
+            <div class="form-control-static">@Localization.LabelNoPicture</div>
+        }
+        else
+        {
+            <img class="img-thumbnail" width="150" height="150"
+                 src="@Url.Action("GetImage", "News",
                         new { Model.Id })" />
-            }
-            <table class="table highlight">
-                <tr>
-                    <td>
-                        <label> @Html.DisplayNameFor(model => model.TitleRu)</label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.TitleRu)
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>@Html.DisplayNameFor(model => model.ShortDescriptionRu)</label></td>
-                    <td>@Html.DisplayFor(model => model.ShortDescriptionRu)</td>
-                </tr>
-                <tr>
-                    <td><label>@Html.DisplayNameFor(model => model.ContentRu)</label></td>
-                    <td>@Html.Raw(Model.ContentRu)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <label> @Html.DisplayNameFor(model => model.TitleEn)</label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.TitleEn)
-                    </td>
-                </tr>
-                <tr>
-                    <td><label>@Html.DisplayNameFor(model => model.ShortDescriptionEn)</label></td>
-                    <td>@Html.DisplayFor(model => model.ShortDescriptionEn)</td>
-                </tr>
-                <tr>
-                    <td><label>@Html.DisplayNameFor(model => model.ContentEn)</label></td>
-                    <td>@Html.Raw(Model.ContentEn)</td>
-                </tr>
-            </table>
-            <div class="form-group">
-                <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </button>
-                <button class="btn deep-purple lighten-1  btn-sm btn-default">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    @Html.ActionLink("Back", "Index")
-                </button>
-            </div>
+        }
+        <table class="table highlight">
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.TitleRu)</label>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TitleRu)
+                </td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.ShortDescriptionRu)</label></td>
+                <td>@Html.DisplayFor(model => model.ShortDescriptionRu)</td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.ContentRu)</label></td>
+                <td>@Html.Raw(Model.ContentRu)</td>
+            </tr>
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.TitleEn)</label>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TitleEn)
+                </td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.ShortDescriptionEn)</label></td>
+                <td>@Html.DisplayFor(model => model.ShortDescriptionEn)</td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.ContentEn)</label></td>
+                <td>@Html.Raw(Model.ContentEn)</td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id })
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink(Localization.BtnBackText, "Index")
+            </button>
         </div>
     </div>
+</div>
 
 
 
-    
+
+
+
+
