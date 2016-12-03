@@ -2,28 +2,12 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-    <h4>NewsMvcViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dd>
-           @if (Model.ImageData == null)
-           {
-            <div class="form-control-static">Нет картинки</div>
-           }
-           else
-           {
+    <div class="col-md-offset-1">
+        @Html.Raw(Model.LocalizedTitle)
             <img class="img-thumbnail" width="150" height="150"
                  src="@Url.Action("GetImage", "News",
                         new { Model.Id })" />
-           }
-        </dd>
-        <dd>
-            @Html.DisplayFor(model => model.LocalizedTitle)
-        </dd>
-        <dd>
-            @Html.DisplayFor(model => model.LocalizedContent)
-        </dd>
+         @Html.Raw(Model.LocalizedContent)
+    </div>
 
-    </dl>
-</div>
+ 
