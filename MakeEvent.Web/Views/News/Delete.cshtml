@@ -2,66 +2,67 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>NewsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TitleRu)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TitleRu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescriptionRu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescriptionRu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentRu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContentRu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TitleEn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TitleEn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescriptionEn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescriptionEn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentEn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContentEn)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="page-block">
+    <div class="col-md-offset-1">
+        <h5>Are you sure you want to delete this?</h5>
+        <div class="col-md-offset-1">
+            @if (Model.ImageData == null)
+            {
+                <div class="form-control-static">Нет картинки</div>
+            }
+            else
+            {
+                <img class="img-thumbnail" width="150" height="150"
+                     src="@Url.Action("GetImage", "News",
+                        new { Model.Id })" />
+            }
+            <table class="table highlight">
+                <tr>
+                    <td>
+                        <label> @Html.DisplayNameFor(model => model.TitleRu)</label>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TitleRu)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.ShortDescriptionRu)</label></td>
+                    <td>@Html.DisplayFor(model => model.ShortDescriptionRu)</td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.ContentRu)</label></td>
+                    <td>@Html.Raw(Model.ContentRu)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> @Html.DisplayNameFor(model => model.TitleEn)</label>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TitleEn)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.ShortDescriptionEn)</label></td>
+                    <td>@Html.DisplayFor(model => model.ShortDescriptionEn)</td>
+                </tr>
+                <tr>
+                    <td><label>@Html.DisplayNameFor(model => model.ContentEn)</label></td>
+                    <td>@Html.Raw(Model.ContentEn)</td>
+                </tr>
+            </table>
+            <div class="form-group">
+                @using (Html.BeginForm())
+            {
+                    <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        @Html.ActionLink("Back", "Index")
+                    </button>
+                    <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                        Delete
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                }
+            </div>
         </div>
-    }
 </div>

@@ -17,26 +17,28 @@
     using (Html.BeginForm("Logoff", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     { }
 }
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-brand">Админ панель</div>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Категории", "Index", "Category")</li>
-                    <li>@Html.ActionLink("Новости", "Index", "News")</li>
-                    <li>@Html.ActionLink("Страницы", "Index", "Page")</li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Выход</a></li>
-                </ul>
+    <nav>
+        <div class="nav-wrapper navbar-fixed-top  indigo darken-3">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">Админ панель</div>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul id="nav-mobile" class="right">
+                        <li>@Html.ActionLink("Категории", "Index", "Category")</li>
+                        <li>@Html.ActionLink("Новости", "Index", "News")</li>
+                        <li>@Html.ActionLink("Страницы", "Index", "Page")</li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выход</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </nav>
     @RenderBody()
     @Scripts.Render("~/bundles/materialize")
 </body>
