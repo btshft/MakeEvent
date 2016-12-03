@@ -39,13 +39,13 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet, AdminAuthorize]
         public ActionResult Create()
         {
             return View(new EventCategoryMvcViewModel());
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Create(EventCategoryMvcViewModel model)
         {
             if (ModelState.IsValid == false)
@@ -62,7 +62,7 @@ namespace MakeEvent.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet, AdminAuthorize]
         public ActionResult Edit(int id)
         {
             var category = _eventCategoryService.Get(id).Data;
@@ -71,7 +71,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Edit(EventCategoryMvcViewModel model)
         {
             if (ModelState.IsValid == false)
@@ -93,7 +93,7 @@ namespace MakeEvent.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet, AdminAuthorize]
         public ActionResult Delete(int id)
         {
             var category = _eventCategoryService.Get(id).Data;
@@ -102,7 +102,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, AdminAuthorize]
         public ActionResult Delete(int id, EventCategoryMvcViewModel model)
         {
             var result = _eventCategoryService.Delete(id);

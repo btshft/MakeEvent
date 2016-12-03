@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
-<h3>Are you sure you want to delete this?</h3>
+<h3>@Localization.MessageConfirmDelete</h3>
 <div>
     <h4>Comment</h4>
     <hr />
@@ -50,8 +50,8 @@
 
     @using (Html.BeginForm()) {
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="@Localization.BtnDeleteText" class="btn btn-default" /> |
+            @Html.ActionLink(Localization.BtnBackText, "Index")
         </div>
     }
 </div>

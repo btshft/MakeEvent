@@ -20,12 +20,12 @@
         </table>
         <div class="form-group">
             <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+                @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id })
                 <span class="glyphicon glyphicon-pencil"></span>
             </button>
             <button class="btn deep-purple lighten-1  btn-sm btn-default">
                 <span class="glyphicon glyphicon-chevron-left"></span>
-                @Html.ActionLink("Back", "Index")
+                @Html.ActionLink(Localization.BtnBackText, "Index")
             </button>
         </div>
     </div>

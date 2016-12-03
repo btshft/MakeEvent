@@ -8,6 +8,7 @@ using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models.Admin;
+using MakeEvent.Web.Models.Common;
 
 namespace MakeEvent.Web.Controllers
 {
@@ -46,12 +47,13 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CommentMvcViewModel model)
+        public ActionResult Create(OrgWithCommentsMvcViewModel model)
         {
             if (ModelState.IsValid == false)
                 return View(model);
 
-            var result = _commentService.Save(Mapper.Map<CommentDto>(model));
+            var comment = model.Comment;
+            var result = _commentService.Save(Mapper.Map<CommentDto>(comment));
 
             if (!result.Succeeded)
             {
@@ -73,18 +75,20 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, CommentMvcViewModel model)
+        public ActionResult Edit(int id, OrgWithCommentsMvcViewModel model)
         {
             if (ModelState.IsValid == false)
-                return View(model);
+                return View(model.Comment);
 
-            if (model.Id == 0)
+
+            if (model.Comment.Id == 0)
             {
                 throw new HttpException((int)HttpStatusCode.InternalServerError,
                     "Не указан идентификатор комментария");
             }
 
-            var result = _commentService.Save(Mapper.Map<CommentDto>(model));
+            var comment = model.Comment;
+            var result = _commentService.Save(Mapper.Map<CommentDto>(comment));
 
             if (!result.Succeeded)
             {

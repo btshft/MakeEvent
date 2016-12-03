@@ -12,11 +12,11 @@
 </head>
 
 <body>
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("Logoff", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    { }
-}
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("Logoff", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        { }
+    }
     <nav>
         <div class="nav-wrapper navbar-fixed-top  indigo darken-3">
             <div class="container">
@@ -26,14 +26,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <div class="navbar-brand">Админ панель</div>
+                    <div class="navbar-brand">@Localization.AdminHeaderTitle</div>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul id="nav-mobile" class="right">
-                        <li>@Html.ActionLink("Категории", "Index", "Category")</li>
-                        <li>@Html.ActionLink("Новости", "Index", "News")</li>
-                        <li>@Html.ActionLink("Страницы", "Index", "Page")</li>
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выход</a></li>
+                        <li>@Html.ActionLink(Localization.AdminHeaderLinkCategories, "Index", "Category")</li>
+                        <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "Index", "News")</li>
+                        <li>@Html.ActionLink(Localization.AdminHeaderLinkPages, "Index", "Page")</li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">@Localization.AdminHeaderLogoff</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,4 +43,3 @@
     @Scripts.Render("~/bundles/materialize")
 </body>
 </html>
-
