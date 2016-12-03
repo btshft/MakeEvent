@@ -1,42 +1,46 @@
 ﻿@red: #ef5350;
 @light-teal:#e0f2f1;
 @light-blue: #64b5f6;
-body {
-.card-panel.hoverable.login-form{
-    margin-top: 10%;
-    padding-top: 30px;
+body{
+    padding:0;
+    margin:0;
 }
-#page{
-    .container{
-    margin-left: 300px;
+nav, button
+{ a:hover{
+    text-decoration: none;
+    color: white;
 }
+
 }
-#categoryBlock{
-   margin-left: 30px;
-    margin-top: 35px;
+button a{
+    text-decoration: none;
+    color: white;
 }
-.logo{
-    background-color: @light-blue;
-    img{    
-        width: 140px;
-    margin-left: 15px;
-    margin-top: 14px;
-    border-radius: 72px;
-    background-color: white;
+nav .navbar-brand{
+        margin-left: -150px;
+        margin-top:5px;
+}
+#login-form{
+    margin-top: 30%;
+     input.form-control{
+         text-align: center;
+     }
+      input.form-control, label.control-label{
+             margin-left: 8%;
+}
+
+}
+.btn{
+    &:hover{
+        color: white;
+    }
+    &:focus{
+        outline: none;
     }
 }
-.btn:focus{
-    outline: none;
-}
-.waves-button-input{
-    outline: none;
-}
-input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid @red;
-    box-shadow: 0 1px 0 0 @red;
-}
-.text-danger {
-    font-size: 12px;
-    color: @red;
-}
+.page-block{
+        margin-top: 35px;
+        .buttons{
+            margin-left: 17%;
+        }
 }
