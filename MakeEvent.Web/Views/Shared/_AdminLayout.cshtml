@@ -17,29 +17,81 @@
         using (Html.BeginForm("Logoff", "Admin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
         { }
     }
-    <nav>
-        <div class="nav-wrapper navbar-fixed-top  indigo darken-3">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">@Localization.AdminHeaderTitle</div>
+    <nav class="navbar navbar-default  indigo darken-3 navbar-custom">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">@Localization.AdminHeaderTitle</div>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink(Localization.AdminHeaderLinkCategories, "Index", "Category")</li>
+                    <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "Index", "News")</li>
+                    <li>@Html.ActionLink(Localization.AdminHeaderLinkPages, "Index", "Page")</li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">@Localization.AdminHeaderLogoff</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="white-text">Make Event</h5>
+                    <p class="grey-text text-lighten-4"></p>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul id="nav-mobile" class="right">
-                        <li>@Html.ActionLink(Localization.AdminHeaderLinkCategories, "Index", "Category")</li>
-                        <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "Index", "News")</li>
-                        <li>@Html.ActionLink(Localization.AdminHeaderLinkPages, "Index", "Page")</li>
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()">@Localization.AdminHeaderLogoff</a></li>
+                <div class="col-md-3">
+                    <h5 class="white-text">Ссылки</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">О нас</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Помощь</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">События</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Организации</a></li>
                     </ul>
+                </div>
+                <div class=""> 
+                    <h5 class="white-text">Мы в соцсетях</h5>
+                    <a class="btn btn-social-icon btn-google">
+                        <span class="fa fa-google"></span>
+                    </a>
+                    <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
+                    <a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a>
+                    <a class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a>
+                    <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
+                    <a class="btn btn-social-icon btn-vk"><span class="fa fa-vk"></span></a>
                 </div>
             </div>
         </div>
-    </nav>
-    @RenderBody()
+        <div class="footer-copyright">
+            <div class="container">
+                @DateTime.Now.Year - Все права защищены
+                <a class="grey-text text-lighten-4 right" href="#!">На главную</a>
+            </div>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/materialize")
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = window.location;
+        $('.navbar .nav').find('.active').removeClass('active');
+        $('.navbar .nav li a').each(function () {
+            if (this.href == url) {
+                $(this).parent().addClass('active');
+            }
+        });
+    });
+</script>
 </body>
 </html>

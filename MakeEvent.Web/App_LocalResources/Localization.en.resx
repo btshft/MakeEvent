@@ -195,6 +195,9 @@
   <data name="HeaderLinkHome" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="HeaderLinkMain" xml:space="preserve">
+    <value>Main</value>
+  </data>
   <data name="HeaderLinkNews" xml:space="preserve">
     <value>News</value>
   </data>

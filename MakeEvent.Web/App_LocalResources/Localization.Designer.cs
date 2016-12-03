@@ -295,6 +295,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Главная.
+        /// </summary>
+        public static string HeaderLinkMain {
+            get {
+                return ResourceManager.GetString("HeaderLinkMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Новости.
         /// </summary>
         public static string HeaderLinkNews {

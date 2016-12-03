@@ -195,6 +195,9 @@
   <data name="HeaderLinkHome" xml:space="preserve">
     <value>Домой</value>
   </data>
+  <data name="HeaderLinkMain" xml:space="preserve">
+    <value>Главная</value>
+  </data>
   <data name="HeaderLinkNews" xml:space="preserve">
     <value>Новости</value>
   </data>

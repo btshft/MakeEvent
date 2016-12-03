@@ -27,79 +27,44 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<MakeEvent.Web.Models.Organization.EventMvcViewModel>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShortDescripton)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Office)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageMimeType)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShortDescripton)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Office)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageMimeType)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details","Event", new { id = item.Id },null) 
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="banner">
+</div>
+<div class="bannertext">
+    <p>
+        Опубликуйте свое событие.
+        Получите эффективное привлечение участников и работу с самым удобным инструментом для организаторов.
+    </p>
+    <div class="form-group">
+        <button class="btn">Начать</button>
+    </div>
+    <div class="form-group">
+        <button class="btn">Как это работает</button>
+    </div>
+</div>
+<div class="events-wrapper">
+    @model IEnumerable<MakeEvent.Web.Models.Organization.EventMvcViewModel>
+        @foreach (var item in Model)
+        {
+            <div class="row col-md-4">
+                <div>
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="@Url.Action("GetImage", "Event",
+                        new { item.Id })" />
+                        </div>
+                        <div class="card-content">
+                                <label class="event-title">@Html.DisplayFor(m=>item.Name)</label>
+                                <p class="event-date">@Html.DisplayFor(m => item.StartDate)</p>
+                                <p class="event-town">@Html.DisplayFor(m => item.City)</p>
+                                <p class="event-description">@Html.DisplayFor(m=>item.ShortDescripton)</p>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                                @Html.ActionLink(Localization.BtnDetailsText, "Event", new { id = item.Id }, null) <span class="glyphicon glyphicon-list"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+</div>

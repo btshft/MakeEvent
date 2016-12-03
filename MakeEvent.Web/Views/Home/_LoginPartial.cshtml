@@ -3,7 +3,7 @@
 {
     using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Organization", new { id = User.Identity.GetUserId() },null)
         </li>
