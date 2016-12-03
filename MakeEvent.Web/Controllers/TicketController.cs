@@ -151,7 +151,7 @@ namespace MakeEvent.Web.Controllers
             if (result.Succeeded)
                 return RedirectToAction("Events", "Home");
 
-            return RedirectToAction("Event", "Home", new { id = eventId })};
+            return RedirectToAction("Event", "Home", new { id = eventId });
         }
     }
 }
