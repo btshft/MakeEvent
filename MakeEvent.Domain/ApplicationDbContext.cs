@@ -26,16 +26,6 @@ namespace MakeEvent.Domain
         public virtual IDbSet<EventCategoryLocalization> EventCategoryLocalizations { get; set; }
         
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Ticket>()
-                .HasOptional(e => e.Purchaser)
-                .WithMany(u => u.Tickets)
-                .HasForeignKey(e => e.PurchaserId);
-        }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

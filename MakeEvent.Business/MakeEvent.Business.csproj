@@ -111,6 +111,7 @@
     <Compile Include="Models\OrganizationDto.cs" />
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\PageLocalizationDto.cs" />
+    <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\TicketCategoryDto.cs" />
     <Compile Include="Services\Implementations\AuthorizationService.cs" />
     <Compile Include="Services\Implementations\CommentService.cs" />

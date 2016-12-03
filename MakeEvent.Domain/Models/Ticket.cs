@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MakeEvent.Domain.Models
@@ -8,13 +9,14 @@ namespace MakeEvent.Domain.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int CategoryId     { get; set; }
 
-        public string PurchaserId { get; set; }
-        public int CategoryId   { get; set; }
-        public int TicketStatus { get; set; }
+        public string OwnerFirstName { get; set; }
+        public string OwnerLastName  { get; set; }
+        public string OwnerPhone     { get; set; }
+        public string OwnerEmail     { get; set; }
 
-        [ForeignKey("PurchaserId")]
-        public virtual ApplicationUser Purchaser { get; set; }
+        public DateTime? BookDate    { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual TicketCategory Category { get; set; }
