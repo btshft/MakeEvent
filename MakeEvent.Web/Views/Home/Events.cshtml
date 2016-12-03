@@ -1,31 +1,41 @@
 ﻿@model MakeEvent.Web.Models.Common.EventAndCatMvcViewModel
 
 <div>
-    <h4>EventAndCatMvcViewModel</h4>
-    <hr />
-        @foreach (var item in Model.Events)
-        {
-            @Html.DisplayFor(model => item.Name)
-
-            @Html.DisplayFor(model => item.ShortDescripton)
-            @Html.DisplayFor(model => item.StartDate)
-            @Html.DisplayFor(model => item.EndDate)
-            @Html.DisplayFor(model => item.City)
-          @Html.ActionLink("Details", "Event","Home", new { id = item.Id}, null)
-            if (item.ImageData == null)
-                {
-                <div class="form-control-static">Нет картинки</div>
-            }
-            else
+    <div class="row">
+        <div class="col-md-offset-1 col-md-2">
+            @foreach (var item in Model.Categories)
             {
-                <img class="img-thumbnail" width="150" height="150"
-                     src="@Url.Action("GetImage", "Events",
-                        new { item.Id })" />
+                <div>
+                    @Html.ActionLink(item.LocalizedName, "Events", "Home", new { id = item.Id }, null)
+                </div>
             }
-        }
-    @foreach (var item in Model.Categories)
-    {
-        @Html.ActionLink(item.LocalizedName, "Events", "Home", new { id = item.Id }, null)
-    }
-</div>
-
+        </div>
+        <div class="col-md-8">
+            @foreach (var item in Model.Events)
+            {
+                    <div class="col s12 m5">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img class="crdImg" src="@Url.Action("GetImage", "Events",
+                        new { id = item.Id })" />
+                            </div>
+                            <div class="card-content">
+                                <p>@Html.DisplayFor(model => item.Name)</p>
+                                <p>
+                                    @Html.DisplayFor(model => item.ShortDescripton)
+                                </p>
+                                <p>
+                                    <span>@Html.DisplayFor(model => item.StartDate)</span> - <span>@Html.DisplayFor(model => item.EndDate)</span>
+                                </p>
+                                <p>   
+                                    @Html.DisplayFor(model => item.City)
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                @Html.ActionLink("Details", "Event", "Home", new { id = item.Id }, null)
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>

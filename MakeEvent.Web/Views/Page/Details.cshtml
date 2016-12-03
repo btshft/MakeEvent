@@ -2,53 +2,59 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<div>
-    <h4>PageViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TitleRu)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TitleRu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TitleEn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TitleEn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentRu)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.ContentRu)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ContentEn)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.ContentEn)
-        </dd>
-
-    </dl>
+<div class="page-block">
+    <div class="col-md-offset-1">
+        <table class="table highlight">
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.Name)</label>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.TitleRu)</label>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TitleRu)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.ContentRu)</label>
+                </td>
+                <td>
+                    @Html.Raw(Model.ContentRu)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.TitleEn)</label>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TitleEn)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.ContentEn)</label>
+                </td>
+                <td>
+                    @Html.Raw(Model.ContentEn)
+                </td>
+            </tr>        </table>
+        <div class="form-group">
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink("Back", "Index")
+            </button>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

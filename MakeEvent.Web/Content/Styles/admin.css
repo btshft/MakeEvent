@@ -15,6 +15,24 @@ nav .navbar-brand {
   margin-left: -150px;
   margin-top: 5px;
 }
+.navbar-custom {
+  background-color: #283593;
+  border-color: #283593;
+  color: white;
+  border-radius: 0px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+.navbar-custom .navbar-header {
+  margin-left: -155px;
+}
+.navbar-custom a {
+  height: 64px;
+  color: white;
+  padding-top: 20px !important;
+}
+.navbar-custom a:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
 #login-form {
   margin-top: 30%;
 }
@@ -23,6 +41,13 @@ nav .navbar-brand {
 }
 #login-form input.form-control,
 #login-form label.control-label {
+  margin-left: 8%;
+}
+#org-login input.form-control {
+  text-align: center;
+}
+#org-login input.form-control,
+#org-login label.control-label {
   margin-left: 8%;
 }
 .btn:hover {
@@ -36,4 +61,12 @@ nav .navbar-brand {
 }
 .page-block .buttons {
   margin-left: 17%;
+}
+.main-page {
+  margin-top: 10%;
+}
+.crdImg {
+  margin-left: 20%;
+  padding-top: 8%;
+  width: 200px !important;
 }

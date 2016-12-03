@@ -2,9 +2,7 @@
 @{
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
-<div>
-    <h4>Organization</h4>
-    <hr />
+<div  class="main-page">
     <div class="form-group">
         @if (Model.ImageData == null)
         {
@@ -14,75 +12,74 @@
         {
             <img class="img-thumbnail" width="150" height="150"
                  src="@Url.Action("GetImage", "Organization",
-                        new { Model.OwnerId })" />
+                        new { id = Model.OwnerId })" />
         }
     </div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <table class="table hoverable">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.BillNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.BillNumber)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.City)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.City)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Street)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Office)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <td>
+                @Html.DisplayFor(model => model.Office)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillNumber)
-        </dt>
+            </td></tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillNumber)
-        </dd>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Website)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Description)
+            </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Office)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Office)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
+            <td>
+                @Html.DisplayFor(model => model.Description)
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+        @Html.ActionLink("Edit", "Edit", new { Id = Model.OwnerId })
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { ownerId = Model.OwnerId }) |
-</p>

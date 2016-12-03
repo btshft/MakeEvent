@@ -1,112 +1,120 @@
 ﻿@model MakeEvent.Web.Models.Common.OrgWithCommentsMvcViewModel
-
-<div>
-    <h4>OrgWithCommentsMvcViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Office)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Office)
-        </dd>
-
-    </dl>
-</div>
-@foreach (var item in Model.Comments)
-{
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => item.AuthorName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => item.AuthorName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => item.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => item.Text)
-        </dd>
-    </dl>
-}
-@using (Html.BeginForm( "Create", "Comments", FormMethod.Post, new { id = "commentform" }))
-{
-<div class="form-horizontal">
-    <h4>TicketViewModel</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="main-page">
     <div class="form-group">
-        @Html.LabelFor(model => model.Comment.AuthorName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Comment.AuthorName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Comment.AuthorName, "", new { @class = "text-danger" })
-        </div>
+        @if (Model.ImageData == null)
+        {
+            <div class="form-control-static">Нет картинки</div>
+        }
+        else
+        {
+            <img class="img-thumbnail" width="150" height="150"
+                 src="@Url.Action("GetImage", "Organization",
+                        new { id = Model.OwnerId })" />
+        }
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Comment.AuthorEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10"> 
-            @Html.EditorFor(model => model.Comment.AuthorEmail, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Comment.AuthorEmail, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Comment.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Comment.Text, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Comment.Text, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    @Html.HiddenFor(model => model.Comment.OrganizationId)
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <a href="javascript:document.getElementById('commentform').submit()" class="btn btn-default">Create</a>
+    <table class="table hoverable">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.City)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.City)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Street)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Office)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.Office)
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Website)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Description)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.Description)
+            </td>
+        </tr>
+    </table>
+    <h3>Отзывы</h3>
+    @foreach (var item in Model.Comments)
+    {
+        <table class="table hoverable">
+            <tr>
+                <td>@Html.DisplayNameFor(model => item.AuthorName)</td>
+                <td>@Html.DisplayFor(model => item.AuthorName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => item.Text)</td>
+                <td>@Html.DisplayFor(model => item.Text)</td>
+            </tr>
+        </table>
+    }
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "commentform" }))
+    {
+        <h4>Оставить отзыв</h4>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comment.AuthorName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Comment.AuthorName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Comment.AuthorName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comment.AuthorEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Comment.AuthorEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Comment.AuthorEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comment.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Comment.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Comment.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.Comment.OrganizationId)
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <a href="javascript:document.getElementById('commentform').submit()" class="btn indigo darken-1 btn-sm btn-default">Create
+                        <span class="glyphicon glyphicon-send"></span></a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
     }
