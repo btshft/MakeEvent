@@ -55,7 +55,8 @@ namespace MakeEvent.Web.Controllers
 
             if (!result.Succeeded)
             {
-                ModelState.AddModelError("", $"Ошибки при добавлении категории:</br>" + $"{string.Join("</br>", result.Errors)}");
+                ModelState.AddModelError("", $"Ошибки при добавлении категории:</br>" 
+                                           + $"{string.Join("</br>", result.Errors)}");
                 return View(model);
             }
 

@@ -3,7 +3,7 @@
     <div class="form-group">
         @if (Model.ImageData == null)
         {
-            <div class="form-control-static">Нет картинки</div>
+            <div class="form-control-static">@Localization.LabelNoPicture</div>
         }
         else
         {
@@ -48,7 +48,6 @@
 
             </td>
         </tr>
-
         <tr>
             <td>
                 @Html.DisplayNameFor(model => model.Website)
@@ -61,14 +60,12 @@
             <td>
                 @Html.DisplayNameFor(model => model.Description)
             </td>
-
-
             <td>
                 @Html.DisplayFor(model => model.Description)
             </td>
         </tr>
     </table>
-    <h3>Отзывы</h3>
+    <h3>@Localization.HeaderComments</h3>
     @foreach (var item in Model.Comments)
     {
         <table class="table hoverable">
@@ -84,7 +81,7 @@
     }
     @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { id = "commentform" }))
     {
-        <h4>Оставить отзыв</h4>
+        <h4>@Localization.HeaderLeaveComment</h4>
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -112,9 +109,12 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a href="javascript:document.getElementById('commentform').submit()" class="btn indigo darken-1 btn-sm btn-default">Create
-                        <span class="glyphicon glyphicon-send"></span></a>
+                    <a href="javascript:document.getElementById('commentform').submit()" class="btn indigo darken-1 btn-sm btn-default">
+                        @Localization.BtnCreateText
+                        <span class="glyphicon glyphicon-send"></span>
+                    </a>
                 </div>
             </div>
         </div>
     }
+</div>

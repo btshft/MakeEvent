@@ -2,12 +2,11 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="col-md-offset-1">
-        @Html.Raw(Model.LocalizedTitle)
-            <img class="img-thumbnail" width="150" height="150"
-                 src="@Url.Action("GetImage", "News",
+<div class="col-md-offset-1">
+    @Html.Raw(Model.LocalizedTitle)
+    <img class="img-thumbnail" width="150" height="150"
+         src="@Url.Action("GetImage", "News",
                         new { Model.Id })" />
-         @Html.Raw(Model.LocalizedContent)
-    </div>
+    @Html.Raw(Model.LocalizedContent)
+</div>
 
- 

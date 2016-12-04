@@ -10,7 +10,7 @@
                     <label> @Html.DisplayNameFor(model => model.Name)</label>
                 </td>
                 <td>
-            @Html.DisplayFor(model => model.Name)
+                    @Html.DisplayFor(model => model.Name)
                 </td>
             </tr>
             <tr>
@@ -18,7 +18,7 @@
                     <label> @Html.DisplayNameFor(model => model.TitleRu)</label>
                 </td>
                 <td>
-            @Html.DisplayFor(model => model.TitleRu)
+                    @Html.DisplayFor(model => model.TitleRu)
                 </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@
                     <label> @Html.DisplayNameFor(model => model.TitleEn)</label>
                 </td>
                 <td>
-            @Html.DisplayFor(model => model.TitleEn)
+                    @Html.DisplayFor(model => model.TitleEn)
                 </td>
             </tr>
             <tr>
@@ -42,9 +42,10 @@
                     <label> @Html.DisplayNameFor(model => model.ContentEn)</label>
                 </td>
                 <td>
-            @Html.Raw(Model.ContentEn)
+                    @Html.Raw(Model.ContentEn)
                 </td>
-            </tr>        </table>
+            </tr>
+        </table>
         <div class="form-group">
             <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
                 @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id })

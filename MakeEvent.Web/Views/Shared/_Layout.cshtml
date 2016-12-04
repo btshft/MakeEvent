@@ -7,6 +7,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/materialize")
+
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/materialize")
     @Styles.Render("~/Content/admin")
@@ -29,7 +31,6 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(Localization.HeaderLinkMain, "Index", "Home")</li>
-                    
                     <li>@Html.ActionLink(Localization.HeaderLinkEvents, "Events", "Home")</li>
                     <li>@Html.ActionLink(Localization.HeaderLinkOrganizations, "Organizations", "Home")</li>
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "News", "Home")</li>
@@ -37,30 +38,30 @@
                     <li>@Html.ActionLink(Localization.HeaderLinkHelp, "Page", "Page", new { name = "Help" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
-        </div><!-- /.navbar-collapse -->
+            </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-   <div class="body-content">
+    <div class="body-content">
         @RenderBody()
-   </div>
+    </div>
     <footer class="page-footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h5 class="white-text">Make Event</h5>
+                    <h5 class="white-text">@Localization.HeaderLinkApplication</h5>
                     <p class="grey-text text-lighten-4"></p>
                 </div>
                 <div class="col-md-3">
-                    <h5 class="white-text">Ссылки</h5>
+                    <h5 class="white-text">@Localization.HeaderLinks</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">О нас</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Помощь</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">События</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Организации</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkAbout</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkHelp</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkEvents</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkOrganizations</a></li>
                     </ul>
                 </div>
                 <div class="">
-                    <h5 class="white-text">Мы в соцсетях</h5>
+                    <h5 class="white-text">@Localization.HeaderLinkSocial</h5>
                     <a class="btn btn-social-icon btn-google">
                         <span class="fa fa-google"></span>
                     </a>
@@ -74,25 +75,24 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                @DateTime.Now.Year - Все права защищены
-                <a class="grey-text text-lighten-4 right" href="#!">На главную</a>
+                @DateTime.Now.Year - @Localization.LabelRightsReserved
+                <a class="grey-text text-lighten-4 right" href="#!">@Localization.HeaderLinkHome</a>
             </div>
         </div>
     </footer>
 
-     @Scripts.Render("~/bundles/jquery")
-     @Scripts.Render("~/bundles/bootstrap")
-     @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
+
     <script type="text/javascript">
-    $(document).ready(function () {
-        var url = window.location;
-        $('.navbar .nav').find('.active').removeClass('active');
-        $('.navbar .nav li a').each(function () {
-            if (this.href == url) {
-                $(this).parent().addClass('active');
-            }
+        $(document).ready(function () {
+            var url = window.location;
+            $('.navbar .nav').find('.active').removeClass('active');
+            $('.navbar .nav li a').each(function () {
+                if (this.href == url) {
+                    $(this).parent().addClass('active');
+                }
+            });
         });
-    });
     </script>
 </body>
 </html>

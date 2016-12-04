@@ -88,15 +88,6 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Выйти.
-        /// </summary>
-        public static string AdminHeaderLogoff {
-            get {
-                return ResourceManager.GetString("AdminHeaderLogoff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Панель управления.
         /// </summary>
         public static string AdminHeaderTitle {
@@ -106,11 +97,30 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Войти.
+        ///   Looks up a localized string similar to Опубликуйте свое событие.
+        ///        Получите эффективное привлечение участников и работу с самым удобным инструментом для организаторов..
         /// </summary>
-        public static string AdminLoginBtn {
+        public static string BannerDescription {
             get {
-                return ResourceManager.GetString("AdminLoginBtn", resourceCulture);
+                return ResourceManager.GetString("BannerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Как это работает.
+        /// </summary>
+        public static string BannerHowItWorksText {
+            get {
+                return ResourceManager.GetString("BannerHowItWorksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начать.
+        /// </summary>
+        public static string BannerStartText {
+            get {
+                return ResourceManager.GetString("BannerStartText", resourceCulture);
             }
         }
         
@@ -120,6 +130,24 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string BtnBackText {
             get {
                 return ResourceManager.GetString("BtnBackText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Купить билет.
+        /// </summary>
+        public static string BtnBuyTicketText {
+            get {
+                return ResourceManager.GetString("BtnBuyTicketText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поменять картинку.
+        /// </summary>
+        public static string BtnChangePicutre {
+            get {
+                return ResourceManager.GetString("BtnChangePicutre", resourceCulture);
             }
         }
         
@@ -241,6 +269,24 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отзывы.
+        /// </summary>
+        public static string HeaderComments {
+            get {
+                return ResourceManager.GetString("HeaderComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оставить комментарий.
+        /// </summary>
+        public static string HeaderLeaveComment {
+            get {
+                return ResourceManager.GetString("HeaderLeaveComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to О нас.
         /// </summary>
         public static string HeaderLinkAbout {
@@ -322,6 +368,24 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ссылки.
+        /// </summary>
+        public static string HeaderLinks {
+            get {
+                return ResourceManager.GetString("HeaderLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мы в соцсетях.
+        /// </summary>
+        public static string HeaderLinkSocial {
+            get {
+                return ResourceManager.GetString("HeaderLinkSocial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проданные билеты.
         /// </summary>
         public static string HeaderLinkSoldTickets {
@@ -342,6 +406,15 @@ namespace MakeEvent.Web.App_LocalResources {
         /// <summary>
         ///   Looks up a localized string similar to Выйти.
         /// </summary>
+        public static string HeaderLogoff {
+            get {
+                return ResourceManager.GetString("HeaderLogoff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выйти.
+        /// </summary>
         public static string HeaderLogout {
             get {
                 return ResourceManager.GetString("HeaderLogout", resourceCulture);
@@ -349,7 +422,16 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Привет,.
+        ///   Looks up a localized string similar to Билеты.
+        /// </summary>
+        public static string HeaderTicketsText {
+            get {
+                return ResourceManager.GetString("HeaderTicketsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Привет, .
         /// </summary>
         public static string HeaderUserGreeting {
             get {
@@ -363,6 +445,15 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string LabelNoPicture {
             get {
                 return ResourceManager.GetString("LabelNoPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Все права защищены.
+        /// </summary>
+        public static string LabelRightsReserved {
+            get {
+                return ResourceManager.GetString("LabelRightsReserved", resourceCulture);
             }
         }
         
@@ -399,6 +490,15 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string LinkSingin {
             get {
                 return ResourceManager.GetString("LinkSingin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Войти.
+        /// </summary>
+        public static string LoginBtnText {
+            get {
+                return ResourceManager.GetString("LoginBtnText", resourceCulture);
             }
         }
         
@@ -579,6 +679,33 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string PageTitleRu {
             get {
                 return ResourceManager.GetString("PageTitleRu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Описание.
+        /// </summary>
+        public static string TicketCategoryVmDescription {
+            get {
+                return ResourceManager.GetString("TicketCategoryVmDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Стоимость.
+        /// </summary>
+        public static string TicketCategoryVmPrice {
+            get {
+                return ResourceManager.GetString("TicketCategoryVmPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип билета.
+        /// </summary>
+        public static string TicketCategoryVmType {
+            get {
+                return ResourceManager.GetString("TicketCategoryVmType", resourceCulture);
             }
         }
         

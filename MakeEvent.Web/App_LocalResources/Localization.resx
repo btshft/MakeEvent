@@ -126,17 +126,33 @@
   <data name="AdminHeaderLinkPages" xml:space="preserve">
     <value>Страницы</value>
   </data>
-  <data name="AdminHeaderLogoff" xml:space="preserve">
+  <data name="HeaderLogoff" xml:space="preserve">
     <value>Выйти</value>
   </data>
   <data name="AdminHeaderTitle" xml:space="preserve">
     <value>Панель управления</value>
   </data>
-  <data name="AdminLoginBtn" xml:space="preserve">
+  <data name="LoginBtnText" xml:space="preserve">
     <value>Войти</value>
+  </data>
+  <data name="BannerDescription" xml:space="preserve">
+    <value>Опубликуйте свое событие.
+        Получите эффективное привлечение участников и работу с самым удобным инструментом для организаторов.</value>
+  </data>
+  <data name="BannerHowItWorksText" xml:space="preserve">
+    <value>Как это работает</value>
+  </data>
+  <data name="BannerStartText" xml:space="preserve">
+    <value>Начать</value>
   </data>
   <data name="BtnBackText" xml:space="preserve">
     <value>Назад</value>
+  </data>
+  <data name="BtnBuyTicketText" xml:space="preserve">
+    <value>Купить билет</value>
+  </data>
+  <data name="BtnChangePicutre" xml:space="preserve">
+    <value>Поменять картинку</value>
   </data>
   <data name="BtnChoosePicture" xml:space="preserve">
     <value>Выбрать картинку</value>
@@ -177,6 +193,12 @@
   <data name="EventCategoryNameRu" xml:space="preserve">
     <value>Название категории (ru)</value>
   </data>
+  <data name="HeaderComments" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="HeaderLeaveComment" xml:space="preserve">
+    <value>Оставить комментарий</value>
+  </data>
   <data name="HeaderLinkAbout" xml:space="preserve">
     <value>О нас</value>
   </data>
@@ -213,8 +235,11 @@
   <data name="HeaderLogout" xml:space="preserve">
     <value>Выйти</value>
   </data>
+  <data name="HeaderTicketsText" xml:space="preserve">
+    <value>Билеты</value>
+  </data>
   <data name="HeaderUserGreeting" xml:space="preserve">
-    <value>Привет,</value>
+    <value>Привет, </value>
   </data>
   <data name="LabelNoPicture" xml:space="preserve">
     <value>Нет картинки</value>
@@ -291,6 +316,15 @@
   <data name="PageTitleRu" xml:space="preserve">
     <value>Заголовок страницы (русский)</value>
   </data>
+  <data name="TicketCategoryVmDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="TicketCategoryVmPrice" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="TicketCategoryVmType" xml:space="preserve">
+    <value>Тип билета</value>
+  </data>
   <data name="UserFirstName" xml:space="preserve">
     <value>Имя</value>
   </data>
@@ -302,5 +336,14 @@
   </data>
   <data name="UserUserName" xml:space="preserve">
     <value>Логин</value>
+  </data>
+  <data name="HeaderLinks" xml:space="preserve">
+    <value>Ссылки</value>
+  </data>
+  <data name="HeaderLinkSocial" xml:space="preserve">
+    <value>Мы в соцсетях</value>
+  </data>
+  <data name="LabelRightsReserved" xml:space="preserve">
+    <value>Все права защищены</value>
   </data>
 </root>

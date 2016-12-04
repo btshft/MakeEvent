@@ -126,17 +126,32 @@
   <data name="AdminHeaderLinkPages" xml:space="preserve">
     <value>Pages</value>
   </data>
-  <data name="AdminHeaderLogoff" xml:space="preserve">
+  <data name="HeaderLogoff" xml:space="preserve">
     <value>Log out</value>
   </data>
   <data name="AdminHeaderTitle" xml:space="preserve">
     <value>Control panel</value>
   </data>
-  <data name="AdminLoginBtn" xml:space="preserve">
+  <data name="LoginBtnText" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="BannerDescription" xml:space="preserve">
+    <value>Publish your event. Get the effective involvement of the participants and work with the most convenient tool for the organizers.</value>
+  </data>
+  <data name="BannerHowItWorksText" xml:space="preserve">
+    <value>How it works</value>
+  </data>
+  <data name="BannerStartText" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="BtnBackText" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="BtnBuyTicketText" xml:space="preserve">
+    <value>Buy ticket</value>
+  </data>
+  <data name="BtnChangePicutre" xml:space="preserve">
+    <value>Change picture</value>
   </data>
   <data name="BtnChoosePicture" xml:space="preserve">
     <value>Choose picture</value>
@@ -177,6 +192,12 @@
   <data name="EventCategoryNameRu" xml:space="preserve">
     <value>Category name (ru)</value>
   </data>
+  <data name="HeaderComments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="HeaderLeaveComment" xml:space="preserve">
+    <value>Leave a comment</value>
+  </data>
   <data name="HeaderLinkAbout" xml:space="preserve">
     <value>About</value>
   </data>
@@ -213,8 +234,11 @@
   <data name="HeaderLogout" xml:space="preserve">
     <value>Log out</value>
   </data>
+  <data name="HeaderTicketsText" xml:space="preserve">
+    <value>Tickets</value>
+  </data>
   <data name="HeaderUserGreeting" xml:space="preserve">
-    <value>Hi</value>
+    <value>Hi </value>
   </data>
   <data name="LabelNoPicture" xml:space="preserve">
     <value>No picture</value>
@@ -291,6 +315,15 @@
   <data name="PageTitleRu" xml:space="preserve">
     <value>Page title (ru)</value>
   </data>
+  <data name="TicketCategoryVmDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="TicketCategoryVmPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="TicketCategoryVmType" xml:space="preserve">
+    <value>Ticket type</value>
+  </data>
   <data name="UserFirstName" xml:space="preserve">
     <value>First name</value>
   </data>
@@ -302,5 +335,14 @@
   </data>
   <data name="UserUserName" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="HeaderLinks" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="HeaderLinkSocial" xml:space="preserve">
+    <value>Social networks</value>
+  </data>
+  <data name="LabelRightsReserved" xml:space="preserve">
+    <value>All rights reserved</value>
   </data>
 </root>

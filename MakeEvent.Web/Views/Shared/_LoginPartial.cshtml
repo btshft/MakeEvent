@@ -3,18 +3,20 @@
 {
     using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-          <ul class="nav navbar-nav navbar-right">
-         <li>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
                 @Html.RouteLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", new { action = "Index", controller = "Organization", orgId = User.Identity.GetUserId() })
-         </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()"> @Localization.HeaderLogout</a></li>
-     </ul>
-     }
- }
- else
- {
-     <ul class="nav navbar-nav navbar-right">
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()"> @Localization.HeaderLogout</a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink(Localization.LinkRegister, "Register", "Organization", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink(Localization.LinkSingin, "Login", "Organization", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-     </ul>
- }
+        <li>@Html.ActionLink(Localization.LinkSingin, "Login", "Organization", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
+    </ul>
+}

@@ -2,17 +2,16 @@
 @{
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
-<div  class="main-page">
+<div class="main-page">
     <div class="form-group">
         @if (Model.ImageData == null)
         {
-            <div class="form-control-static">Нет картинки</div>
+            <div class="form-control-static">@Localization.LabelNoPicture</div>
         }
         else
         {
             <img class="img-thumbnail" width="150" height="150"
-                 src="@Url.Action("GetImage", "Organization",
-                        new { id = Model.OwnerId })" />
+                 src="@Url.Action("GetImage", "Organization", new { id = Model.OwnerId })" />
         }
     </div>
 
@@ -57,7 +56,8 @@
             <td>
                 @Html.DisplayFor(model => model.Office)
 
-            </td></tr>
+            </td>
+        </tr>
 
         <tr>
             <td>
@@ -79,7 +79,7 @@
         </tr>
     </table>
     <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
-        @Html.ActionLink("Edit", "Edit", new { Id = Model.OwnerId })
+        @Html.ActionLink(Localization.BtnEditText, "Edit", new { Id = Model.OwnerId })
         <span class="glyphicon glyphicon-pencil"></span>
     </button>
 </div>

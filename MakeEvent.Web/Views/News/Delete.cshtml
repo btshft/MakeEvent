@@ -9,13 +9,12 @@
         <div class="col-md-offset-1">
             @if (Model.ImageData == null)
             {
-                <div class="form-control-static">Нет картинки</div>
+                <div class="form-control-static">@Localization.LabelNoPicture</div>
             }
             else
             {
                 <img class="img-thumbnail" width="150" height="150"
-                     src="@Url.Action("GetImage", "News",
-                          new {Model.Id})" />
+                     src="@Url.Action("GetImage", "News", new {Model.Id})" />
             }
             <table class="table highlight">
                 <tr>
@@ -53,10 +52,10 @@
             </table>
             <div class="form-group">
                 @using (Html.BeginForm())
-            {
+                {
                     <button class="btn deep-purple lighten-1  btn-sm btn-default">
                         <span class="glyphicon glyphicon-chevron-left"></span>
-                        @Html.ActionLink("Back", "Index")
+                        @Html.ActionLink(Localization.BtnBackText, "Index")
                     </button>
                     <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
                         @Localization.BtnDeleteText

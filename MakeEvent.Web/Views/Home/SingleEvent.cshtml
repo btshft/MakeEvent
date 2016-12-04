@@ -1,16 +1,16 @@
 ﻿@model MakeEvent.Web.Models.Common.EventWithTicketsMvcViewModel
 
 <div class="events-wrapper">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card hoverable">
-                    <img src="@Url.Action("GetImage", "Event",
-                        new { Model.Id })" style="max-height: 400px;max-width: 400px;" />
-                    <div class="card-content">
-                        <label class="event-title">@Html.DisplayFor(m => Model.Name)</label>
-                        <p class="event-date">@Html.DisplayFor(m => Model.StartDate) - @Html.DisplayFor(m => Model.EndDate)</p>
-                        <p class="event-adress">
-                            @Html.DisplayFor(m => Model.City)
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card hoverable">
+                <img src="@Url.Action("GetImage", "Event",
+                              new {Model.Id})" style="max-height: 400px; max-width: 400px;"/>
+                <div class="card-content">
+                    <label class="event-title">@Html.DisplayFor(m => Model.Name)</label>
+                    <p class="event-date">@Html.DisplayFor(m => Model.StartDate) - @Html.DisplayFor(m => Model.EndDate)</p>
+                    <p class="event-adress">
+                        @Html.DisplayFor(m => Model.City)
                         @Html.DisplayFor(m => Model.Street)
                         @Html.DisplayFor(m => Model.Office)
                     </p>
@@ -18,39 +18,40 @@
                 </div>
             </div>
         </div>
-            <div class="tickets col-md-5">
-                <div class="card hoverable">
-                    <h5>Билеты</h5>
-                    <div class="card-content">
-                        <table class="table table-striped">
+        <div class="tickets col-md-5">
+            <div class="card hoverable">
+                <h5>@Localization.HeaderTicketsText</h5>
+                <div class="card-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>@Localization.TicketCategoryVmType</th>
+                            <th>@Localization.TicketCategoryVmDescription</th>
+                            <th>@Localization.TicketCategoryVmPrice</th>
+                        </tr>
+                        @foreach (var item in Model.Tickets)
+                        {
                             <tr>
-                                <th>Тип</th>
-                                <th>Описание</th>
-                                <th>Стоимость</th>
+                                <td>
+                                    @Html.DisplayNameFor(model => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Price)
+                                </td>
                             </tr>
-                            @foreach (var item in Model.Tickets)
-                {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayNameFor(model => item.Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => item.Description)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => item.Price)
-                                    </td>
-                                </tr>
-                }
-                        </table>
-                    </div>
+                        }
+                    </table>
                 </div>
             </div>
         </div>
-        </div>
-<button class="btn buy blue darken-3">Купить билет</button>
-  @using (Html.BeginForm("Buy", "Ticket", new { eventId = ViewBag.EventId }, FormMethod.Post, new { id="createform"}))
-    {
+    </div>
+</div>
+
+<button class="btn buy blue darken-3">@Localization.BtnBuyTicketText</button>
+@using (Html.BeginForm("Buy", "Ticket", new { eventId = ViewBag.EventId }, FormMethod.Post, new { id = "createform" }))
+{
     <div class="form-horizontal ticketform">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -69,11 +70,11 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a href = "javascript:document.getElementById('createform').submit()" class="btn btn-default blue darken-3" >Create</a>
+                <a href="javascript:document.getElementById('createform').submit()" class="btn btn-default blue darken-3">Create</a>
             </div>
         </div>
     </div>
-    }
+}
 <script type="text/javascript">
     $(document).ready(function () {
         $('.ticketform').hide();
@@ -84,6 +85,6 @@
             else {
                 $('.ticketform').hide();
             }
-        })
+        });
     })
 </script>

@@ -1,29 +1,5 @@
-﻿
-@*@Scripts.Render("~/bundles/modernizr")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")*@
-@*@Scripts.Render("~/bundles/kendo")
+﻿@model IEnumerable<MakeEvent.Web.Models.Organization.EventMvcViewModel>
 
-@Html.Partial("Partials/Layout")
-@Html.Partial("Partials/Index")
-@Html.Partial("Partials/About")
-@Html.Partial("Partials/Contacts")
-@Html.Partial("Partials/News")
-@Html.Partial("Partials/Events")
-@Html.Partial("Partials/Event")
-@Html.Partial("Partials/Organizations")
-@Html.Partial("Partials/Personal")
-@Html.Partial("Partials/Register")
-@Html.Partial("Partials/Organization")
-@Html.Partial("Partials/NewsItem")
-@Html.Partial("Partials/AdminPage")
-
-@Scripts.RenderFormat("<script src='{0}' defer></script>", "~/Scripts/MainApp")*@
-
-@*<script type="text/javascript">
- </script>
-
-<div id="app"></div>*@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -31,40 +7,38 @@
 </div>
 <div class="bannertext">
     <p>
-        Опубликуйте свое событие.
-        Получите эффективное привлечение участников и работу с самым удобным инструментом для организаторов.
+        @Localization.BannerDescription
     </p>
     <div class="form-group">
-        <button class="btn">Начать</button>
+        <button class="btn">@Localization.BannerStartText</button>
     </div>
     <div class="form-group">
-        <button class="btn">Как это работает</button>
+        <button class="btn">@Localization.BannerHowItWorksText</button>
     </div>
 </div>
 <div class="events-wrapper">
-    @model IEnumerable<MakeEvent.Web.Models.Organization.EventMvcViewModel>
-        @foreach (var item in Model)
-        {
-            <div class="row col-md-4">
-                <div>
-                    <div class="card hoverable">
-                        <div class="card-image">
-                            <img src="@Url.Action("GetImage", "Event",
+    @foreach (var item in Model)
+    {
+        <div class="row col-md-4">
+            <div>
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <img src="@Url.Action("GetImage", "Event",
                         new { item.Id })" />
-                        </div>
-                        <div class="card-content">
-                                <label class="event-title">@Html.DisplayFor(m=>item.Name)</label>
-                                <p class="event-date">@Html.DisplayFor(m => item.StartDate)</p>
-                                <p class="event-town">@Html.DisplayFor(m => item.City)</p>
-                                <p class="event-description">@Html.DisplayFor(m=>item.ShortDescripton)</p>
-                        </div>
-                        <div class="card-action">
-                            <button class="btn deep-purple lighten-1  btn-sm btn-default">
-                                @Html.ActionLink(Localization.BtnDetailsText, "Event", new { id = item.Id }, null) <span class="glyphicon glyphicon-list"></span>
-                            </button>
-                        </div>
+                    </div>
+                    <div class="card-content">
+                        <label class="event-title">@Html.DisplayFor(m => item.Name)</label>
+                        <p class="event-date">@Html.DisplayFor(m => item.StartDate)</p>
+                        <p class="event-town">@Html.DisplayFor(m => item.City)</p>
+                        <p class="event-description">@Html.DisplayFor(m => item.ShortDescripton)</p>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                            @Html.ActionLink(Localization.BtnDetailsText, "Event", new { id = item.Id }, null) <span class="glyphicon glyphicon-list"></span>
+                        </button>
                     </div>
                 </div>
             </div>
-        }
+        </div>
+    }
 </div>

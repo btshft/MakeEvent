@@ -26,7 +26,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink(Localization.HeaderLinkHome, "Index", "Home")</li>
                 </ul>
                 @Html.Partial("_OrgLoginPartial")
             </div>
@@ -39,25 +39,36 @@
     <footer class="page-footer">
         <div class="container">
             <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">Footer Content</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <div class="col-md-3">
+                    <h5 class="white-text">@Localization.HeaderLinkApplication</h5>
+                    <p class="grey-text text-lighten-4"></p>
                 </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="white-text">Links</h5>
+                <div class="col-md-3">
+                    <h5 class="white-text">@Localization.HeaderLinks</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkAbout</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkHelp</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkEvents</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkOrganizations</a></li>
                     </ul>
+                </div>
+                <div class="">
+                    <h5 class="white-text">@Localization.HeaderLinkSocial</h5>
+                    <a class="btn btn-social-icon btn-google">
+                        <span class="fa fa-google"></span>
+                    </a>
+                    <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
+                    <a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a>
+                    <a class="btn btn-social-icon btn-linkedin"><span class="fa fa-linkedin"></span></a>
+                    <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
+                    <a class="btn btn-social-icon btn-vk"><span class="fa fa-vk"></span></a>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                @DateTime.Now.Year - @Localization.LabelRightsReserved
+                <a class="grey-text text-lighten-4 right" href="#!">@Localization.HeaderLinkHome</a>
             </div>
         </div>
     </footer>
