@@ -101,16 +101,15 @@
                         </a>
                         <span class='label label-info' id="upload-file-info"></span>
                     </div>
-                    @if (Model.ImageData == null)
+                    @if (Model.ImageData == null || Model.ImageData.Length < 1)
                 {
                         <div class="form-control-static">@Localization.LabelNoPicture</div>
-                }
-                else
-                {
+                    }
+                    else
+                    {
                         <img class="img-thumbnail" width="150" height="150"
-                             src="@Url.Action("GetImage", "Event",
-                        new { Model.Id })" />
-                }
+                             src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)" />
+                    }
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
@@ -123,7 +122,7 @@
                     </button>
                 </div>
             </div>
-       </div>
+        </div>
     }
 </div>
 <script type="text/javascript">

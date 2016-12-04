@@ -7,14 +7,14 @@
     <div class="col-md-offset-1">
         <h5>@Localization.MessageConfirmDelete</h5>
         <div class="col-md-offset-1">
-            @if (Model.ImageData == null)
+            @if (Model.ImageData == null || Model.ImageData.Length < 1)
             {
                 <div class="form-control-static">@Localization.LabelNoPicture</div>
             }
             else
             {
                 <img class="img-thumbnail" width="150" height="150"
-                     src="@Url.Action("GetImage", "News", new {Model.Id})" />
+                     src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)" />
             }
             <table class="table highlight">
                 <tr>

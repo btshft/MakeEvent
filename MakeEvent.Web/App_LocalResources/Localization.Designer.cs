@@ -125,6 +125,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Добавить билеты.
+        /// </summary>
+        public static string BtnAddTickets {
+            get {
+                return ResourceManager.GetString("BtnAddTickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Назад.
         /// </summary>
         public static string BtnBackText {

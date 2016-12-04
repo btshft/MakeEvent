@@ -1,7 +1,13 @@
-﻿@model MakeEvent.Web.Models.Organization.EventMvcViewModel
+﻿@using System.Threading
+
+@model MakeEvent.Web.Models.Organization.EventMvcViewModel
 @{
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
+
+    var culture = Thread.CurrentThread.CurrentCulture;
+    var dateformat = culture.DateTimeFormat.ShortDatePattern;
 }
+
 <div class="main-page">
     @using (Html.BeginForm("Edit", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -85,27 +91,30 @@
             <div class="action-block">
 
                 <div class="form-group">
-                    <div style="position:relative;">
+                    <div style="position: relative;">
                         <a class='btn  deep-purple lighten-' href='javascript:;'>
                             @Localization.BtnChoosePicture
                             <input type="file" name="Image" size="40"
-                                   style="position:absolute;z-index:2;top:0;
-                                left:0;filter: alpha(opacity=0); opacity:0;
-                                background-color:transparent;color:transparent;"
+                                   style="position: absolute; z-index: 2; top: 0;left: 0; filter: alpha(opacity=0); opacity: 0;
+                                          background-color: transparent; color: transparent;"
                                    onchange='$("#upload-file-info").html($(this).val());'>
                             <span class="glyphicon glyphicon-paperclip"></span>
                         </a>
                         <span class='label label-info' id="upload-file-info"></span>
                     </div>
-                    <img class="img-thumbnail" width="150" height="150"
-                         src="@Url.Action("GetImage", "Event",
-                        new { Model.Id })" />
+
+                    @if (Model.ImageData != null && Model.ImageData.Length > 0)
+                    {
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)" />
+                    }
                 </div>
 
                 <div class="form-group">
                     <div class="form-group">
-
-                        @Html.ActionLink(Localization.BtnCreateText, "Create", "Ticket", new { id = Model.Id })
+                        <button class="btn indigo darken-1 btn-sm btn-default">
+                            @Html.ActionLink(Localization.BtnAddTickets, "Create", "Ticket", new { id = Model.Id }, null)
+                        </button>
                         <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
                             @Localization.BtnCreateText
                             <span class="glyphicon glyphicon-send"></span>
@@ -123,6 +132,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.DateTime').kendoDatePicker({});
+        $('.DateTime').kendoDatePicker({
+            format: "@dateformat"
+        });
     });
 </script>

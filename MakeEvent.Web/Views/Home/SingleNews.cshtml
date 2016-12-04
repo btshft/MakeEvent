@@ -4,9 +4,11 @@
 }
 <div class="col-md-offset-1">
     <h3>@Html.Raw(Model.LocalizedTitle)</h3>
-    <img width="250" height="250"
-         src="@Url.Action("GetImage", "News",
-                        new { Model.Id })" />
+    @if (Model.ImageData != null && Model.ImageData.Length > 0)
+    {
+        <img width="250" height="250"
+             src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)"/>
+    }
     @Html.Raw(Model.LocalizedContent)
 </div>
 

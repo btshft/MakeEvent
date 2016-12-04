@@ -4,8 +4,10 @@
 }
     <div class="col-md-6">
         <div class="card hoverable">
-            <img src="@Url.Action("GetImage", "Event",
-                              new {Model.Id})" style="max-height: 400px; max-width: 400px;" />
+            @if (Model.ImageData != null && Model.ImageData.Length > 0)
+            {
+                <img src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)" style="max-height: 400px; max-width: 400px;"/>
+            }
             <div class="card-content">
                 <label class="event-title">@Html.DisplayFor(m => Model.Name)</label>
                 <p class="event-date">@Html.DisplayFor(m => Model.StartDate) - @Html.DisplayFor(m => Model.EndDate)</p>
@@ -24,7 +26,7 @@
             <span class="glyphicon glyphicon-pencil"></span>
         </button>
         <button class="btn indigo darken-1 btn-sm btn-default">
-            @Html.ActionLink(Localization.BtnCreateText, "Create", "Ticket", new { id = Model.Id }, null)
+            @Html.ActionLink(Localization.BtnAddTickets, "Create", "Ticket", new { id = Model.Id }, null)
             <span class="glyphicon glyphicon-pencil"></span>
         </button>
         <button class="btn deep-purple lighten-1  btn-sm btn-default">

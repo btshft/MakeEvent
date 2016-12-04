@@ -37,10 +37,14 @@
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkCategories, "Index", "Category")</li>
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "Index", "News")</li>
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkPages, "Index", "Page")</li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogoff</a></li>
                     <li>
                         <a class="dropdown-button" href="#" data-activates="lang-content">
                             @Localization.HeaderLinkLanguage
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            @Localization.HeaderLogoff
                         </a>
                     </li>
                 </ul>
@@ -60,7 +64,6 @@
     </nav>
     <div class="body-content">
         @RenderBody()
-        <hr />
     </div>
     <footer class="page-footer">
         <div class="container">

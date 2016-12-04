@@ -352,4 +352,7 @@
   <data name="ShowCommentForm" xml:space="preserve">
     <value>Комментировать</value>
   </data>
+  <data name="BtnAddTickets" xml:space="preserve">
+    <value>Добавить билеты</value>
+  </data>
 </root>

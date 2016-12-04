@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MakeEvent.Business.Enums;
 using MakeEvent.Web.Models.Organization;
 using System.Collections.Generic;
@@ -65,6 +64,13 @@ namespace MakeEvent.Web.Controllers
             var events = _eventService.All().Data;
             var models = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
 
+            foreach (var model in models.Where(o => o.ImageId > 0))
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
+
             return View(models);
         }
 
@@ -75,12 +81,25 @@ namespace MakeEvent.Web.Controllers
             {
                 var singleNews = _newsService.Get(id.Value).Data;
                 var singleNewsModel = Mapper.Map<NewsMvcViewModel>(singleNews);
+                if (singleNewsModel != null && singleNewsModel.ImageId > 0)
+                {
+                    var image = _imageService.Get(singleNewsModel.ImageId.Value).Data;
+                    singleNewsModel.ImageData = image.Content;
+                    singleNewsModel.ImageMimeType = image.MimeType;
+                }
 
                 return View("SingleNews", singleNewsModel);
             }
 
             var news = _newsService.All().Data;
             var models = Mapper.Map<IEnumerable<NewsMvcViewModel>>(news);
+
+            foreach (var model in models.Where(o => o.ImageId > 0))
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
 
             return View(models);
         }
@@ -109,6 +128,12 @@ namespace MakeEvent.Web.Controllers
             var comments = Mapper.Map<IEnumerable<CommentMvcViewModel>>(
                 _commentService.GetByOrganization(id).Data);
 
+            if (organizationModel != null && organizationModel.ImageId > 0)
+            {
+                var image = _imageService.Get(organizationModel.ImageId.Value).Data;
+                organizationModel.ImageData = image.Content;
+                organizationModel.ImageMimeType = image.MimeType;
+            }
 
             var orgWithCommendModel = Mapper.Map<OrgWithCommentsMvcViewModel>(organizationModel);
             orgWithCommendModel.Comment = new CommentMvcViewModel
@@ -131,7 +156,14 @@ namespace MakeEvent.Web.Controllers
                  ? _eventService.All().Data
                  : _eventService.Filter(filter).Data.Items;
 
-            var eventsModel = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
+            var eventsModel = Mapper.Map<IEnumerable<EventMvcViewModel>>(events).ToList();
+
+            foreach (var model in eventsModel.Where(o => o.ImageId > 0))
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
 
             var composedModel = new EventAndCatMvcViewModel
             {
@@ -154,10 +186,23 @@ namespace MakeEvent.Web.Controllers
 
             var @event = _eventService.Get(id).Data;
             var ticketModel = new SoldTicketMvcViewModel();
+
+            if (categoriesModel.Count > 0)
+                ticketModel.Cost = categoriesModel.First().Price;
+
             var composedModel = Mapper.Map<EventWithTicketsMvcViewModel>(@event);
 
-            composedModel.Ticket  = ticketModel;
-            composedModel.Tickets = categoriesModel;
+            if (composedModel != null && composedModel.ImageId > 0)
+            {
+                var image = _imageService.Get(composedModel.ImageId.Value).Data;
+                composedModel.ImageData = image.Content;
+                composedModel.ImageMimeType = image.MimeType;
+            }
+            else if (composedModel != null)
+            {
+                composedModel.Ticket = ticketModel;
+                composedModel.Tickets = categoriesModel;
+            }
 
             return View("SingleEvent", composedModel);
         }

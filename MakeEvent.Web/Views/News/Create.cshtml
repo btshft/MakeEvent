@@ -3,86 +3,91 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="page-block">
-    @using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Create", "News", FormMethod.Post, new {enctype = "multipart/form-data"}))
     {
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div class="form-horizontal col-md-offset-1">
             <div class="form-group">
-                <div style="position:relative;">
+                <div style="position: relative;">
                     <a class='btn  deep-purple lighten-' href='javascript:;'>
                         @Localization.BtnChoosePicture
                         <input type="file" name="Image" size="40"
-                               style="position:absolute;z-index:2;top:0;
-                                left:0;filter: alpha(opacity=0); opacity:0;
-                                background-color:transparent;color:transparent;"
+                               style="position: absolute; z-index: 2; top: 0;
+                               left: 0; filter: alpha(opacity=0); opacity: 0;
+                               background-color: transparent; color: transparent;"
                                onchange='$("#upload-file-info").html($(this).val());'>
                         <span class="glyphicon glyphicon-paperclip"></span>
                     </a>
                     <span class='label label-info' id="upload-file-info"></span>
                 </div>
-                @if (Model.ImageData == null)
+                @if (Model.ImageData == null || Model.ImageData.Length < 1)
                 {
                     <div class="form-control-static">@Localization.LabelNoPicture</div>
                 }
                 else
                 {
                     <img class="img-thumbnail" width="150" height="150"
-                         src="@Url.Action("GetImage", "News", new { Model.Id })" />
+                         src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)"/>
                 }
             </div>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="active" role="presentation">
-                    <a href="#rusblock" role="tab" data-toggle="tab"><h5>@Localization.LangRu</h5></a>
-                </li>
-                <li class="tab" role="presentation">
-                    <a href="#enblock" role="tab" data-toggle="tab"><h5>@Localization.LangEn</h5></a>
-                </li>
-            </ul><div class="tab-content">
-                <div id="rusblock" role="tabpanel" class="tab-pane active">
+
+            <div class="row form-group">
+                <div class="col s12" style="padding: 0;">
+                    <ul class="tabs blue-text text-darken-2">
+                        <li class="tab col s3">
+                            <a class="active blue-text text-darken-2" href="#rusblock">@Localization.LangRu</a>
+                        </li>
+                        <li class="tab col s3">
+                            <a class="blue-text text-darken-2" href="#enblock">@Localization.LangEn</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="rusblock" class="col s12" style="padding: 20px">
                     <div class="form-group">
-                        <div>
-                            @Html.EditorFor(model => model.TitleRu, new { htmlAttributes = new { @class = "form-control", @placeholder = "Заголовок" } })
+                        <div class="input-field">
+                            @Html.LabelFor(model => model.TitleRu)
+                            @Html.EditorFor(model => model.TitleRu, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.TitleRu, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <div>
-                            @Html.EditorFor(model => model.ShortDescriptionRu, new { htmlAttributes = new { @class = "form-control", @placeholder = "Краткое описание" } })
+                        <div class="input-field">
+                            @Html.LabelFor(model => model.ShortDescriptionRu)
+                            @Html.EditorFor(model => model.ShortDescriptionRu, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.ShortDescriptionRu, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div>
+                        <div class="input-field">
                             @Html.EditorFor(model => model.ContentRu, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.ContentRu, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                <div id="enblock" role="tabpanel" class="tab-pane">
-
+                <div id="enblock" class="col s12" style="padding: 20px">
                     <div class="form-group">
-                        <div>
-                            @Html.EditorFor(model => model.TitleEn, new { htmlAttributes = new { @class = "form-control", @placeholder = "Заголовок" } })
+                        <div class="input-field">
+                            @Html.LabelFor(model => model.TitleEn)
+                            @Html.EditorFor(model => model.TitleEn, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.TitleEn, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <div>
-                            @Html.EditorFor(model => model.ShortDescriptionEn, new { htmlAttributes = new { @class = "form-control", @placeholder = "Краткое описание" } })
+                        <div class="input-field">
+                            @Html.LabelFor(model => model.ShortDescriptionEn)
+                            @Html.EditorFor(model => model.ShortDescriptionEn, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.ShortDescriptionEn, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <div>
+                        <div class="input-field">
                             @Html.EditorFor(model => model.ContentEn, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.ContentEn, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
                     @Localization.BtnSaveText
@@ -96,3 +101,9 @@
         </div>
     }
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('ul.tabs').tabs();
+    });
+</script>

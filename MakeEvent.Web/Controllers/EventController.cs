@@ -1,6 +1,7 @@
 ﻿using MakeEvent.Web.Models.Admin;
 using MakeEvent.Web.Models.Organization;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -40,6 +41,14 @@ namespace MakeEvent.Web.Controllers
 
             var models = Mapper.Map<IEnumerable<EventMvcViewModel>>(events);
 
+            foreach (var model in models.Where(m => m.ImageId > 0))
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
+
             return View(models);
         }
 
@@ -48,7 +57,15 @@ namespace MakeEvent.Web.Controllers
         {
             var @event = _eventService.Get(id).Data;
             var model = Mapper.Map<EventMvcViewModel>(@event);
-            
+
+            if (model != null && model.ImageId > 0)
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
+
             return View(model);
         }
 
@@ -114,6 +131,14 @@ namespace MakeEvent.Web.Controllers
             var @event = _eventService.Get(id).Data;
             var model = Mapper.Map<EventMvcViewModel>(@event);
 
+            if (model != null && model.ImageId > 0)
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
+
             return View(model);
         }
 
@@ -169,6 +194,14 @@ namespace MakeEvent.Web.Controllers
         {
             var @event = _eventService.Get(id).Data;
             var model = Mapper.Map<EventMvcViewModel>(@event);
+
+            if (model != null && model.ImageId > 0)
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
 
             return View(model);
         }

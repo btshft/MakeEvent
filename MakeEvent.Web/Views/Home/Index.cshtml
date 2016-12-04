@@ -22,10 +22,12 @@
         <div class="row col-md-4">
             <div>
                 <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="@Url.Action("GetImage", "Event",
-                        new { item.Id })" />
-                    </div>
+                    @if (item.ImageData != null && item.ImageData.Length > 0)
+                    {
+                        <div class="card-image">
+                            <img src="data:@item.ImageMimeType;base64,@Convert.ToBase64String(item.ImageData)"/>
+                        </div>
+                    }
                     <div class="card-content">
                         <label class="event-title">@Html.DisplayFor(m => item.Name)</label>
                         <p class="event-date">@Html.DisplayFor(m => item.StartDate)</p>
@@ -34,7 +36,7 @@
                     </div>
                     <div class="card-action">
                         <button class="btn deep-purple lighten-1  btn-sm btn-default">
-                            @Html.ActionLink(Localization.BtnDetailsText, "Event", new { id = item.Id }, null) <span class="glyphicon glyphicon-list"></span>
+                            @Html.ActionLink(Localization.BtnDetailsText, "Event", new {id = item.Id}, null) <span class="glyphicon glyphicon-list"></span>
                         </button>
                     </div>
                 </div>

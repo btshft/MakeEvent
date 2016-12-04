@@ -144,6 +144,15 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public JsonResult GetTicketPrice(int ticketCategoryId)
+        {
+            var ticketCategory = _ticketService.GetCategory(ticketCategoryId);
+            return ticketCategory.Succeeded 
+                ? Json(new {data = ticketCategory.Data.Price}, JsonRequestBehavior.AllowGet) 
+                : Json(new {errors = $"No category for id {ticketCategoryId}"}, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Buy(int eventId, EventWithTicketsMvcViewModel model)
         {

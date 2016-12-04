@@ -351,4 +351,7 @@
   <data name="ShowCommentForm" xml:space="preserve">
     <value>Create comment</value>
   </data>
+  <data name="BtnAddTickets" xml:space="preserve">
+    <value>Add tickets</value>
+  </data>
 </root>
