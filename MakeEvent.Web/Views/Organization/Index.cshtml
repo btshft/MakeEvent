@@ -11,7 +11,7 @@
         else
         {
             <img class="img-thumbnail" width="150" height="150"
-                 src="@Url.Action("GetImage", "Organization", new { id = Model.OwnerId })" />
+                 src="data:@Model.ImageMimeType;base64,@Convert.ToBase64String(Model.ImageData)" />
         }
     </div>
 

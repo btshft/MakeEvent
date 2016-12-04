@@ -5,6 +5,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/materialize")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/materialize")
     @Styles.Render("~/Content/admin")
@@ -37,7 +38,23 @@
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "Index", "News")</li>
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkPages, "Index", "Page")</li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogoff</a></li>
+                    <li>
+                        <a class="dropdown-button" href="#" data-activates="lang-content">
+                            @Localization.HeaderLinkLanguage
+                        </a>
+                    </li>
                 </ul>
+
+                <ul id="lang-content" class="dropdown-content">
+                    <li><a href="#" onclick="changeLanguage(2); return false;">@Localization.LangRu</a></li>
+                    <li><a href="#" onclick="changeLanguage(1); return false;">@Localization.LangEn</a></li>
+                </ul>
+                <div style="display: none;">
+                    @using (Html.BeginForm("SetLanguage", "Home", new { returnUrl = Request.RawUrl }, FormMethod.Post, new { id = "change-language-form" }))
+                    {
+                        <input id="language" name="language" value="2" />
+                    }
+                </div>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -81,7 +98,6 @@
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/bundles/materialize")
     <script type="text/javascript">
         $(document).ready(function () {
             var url = window.location;
@@ -91,7 +107,17 @@
                     $(this).parent().addClass('active');
                 }
             });
+
+            $(".dropdown-button").dropdown({
+                belowOrigin: true,
+                constrain_width: false
+            });
         });
+
+        function changeLanguage(languageId) {
+            $("#language").val(languageId);
+            $("#change-language-form").submit();
+        }
     </script>
 </body>
 </html>

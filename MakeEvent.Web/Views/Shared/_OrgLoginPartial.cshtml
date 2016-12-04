@@ -1,10 +1,14 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    <div style="display: none">
+        @using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        { }
+    </div>
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink(Localization.HeaderLinkEvents, "Index", "Event", new { orgId = User.Identity.GetUserId() }, null)
+            <a href="#" onclick="$('#logoutForm').submit(); return false;">@Localization.HeaderLogout</a>
         </li>
         <li>
             @Html.ActionLink(Localization.HeaderLinkTickets, "Index", "Ticket", new { orgId = User.Identity.GetUserId() }, null)

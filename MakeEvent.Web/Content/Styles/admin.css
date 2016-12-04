@@ -183,3 +183,11 @@ div.panel.panel-default table.striped > tbody > tr:nth-child(odd) {
 .action-block {
   margin-left: 240px;
 }
+#lang-content > li > a {
+  color: black !important;
+  background: white;
+}
+.btn-80-15 {
+  width: 200px !important;
+  height: 40px !important;
+}

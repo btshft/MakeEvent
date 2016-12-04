@@ -345,6 +345,9 @@
   <data name="LabelRightsReserved" xml:space="preserve">
     <value>All rights reserved</value>
   </data>
+  <data name="HeaderLinkLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="ShowCommentForm" xml:space="preserve">
     <value>Create comment</value>
   </data>

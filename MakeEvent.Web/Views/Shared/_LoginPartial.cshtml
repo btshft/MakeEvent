@@ -5,7 +5,7 @@
     {
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.RouteLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", new { action = "Index", controller = "Organization", orgId = User.Identity.GetUserId() })
+                @Html.RouteLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", new { action = "Index", controller = "Organization", id = User.Identity.GetUserId() })
             </li>
             <li>
                 <a href="javascript:document.getElementById('logoutForm').submit()"> @Localization.HeaderLogout</a>

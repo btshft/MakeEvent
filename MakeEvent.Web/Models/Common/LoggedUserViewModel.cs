@@ -1,6 +1,6 @@
 ﻿using MakeEvent.Web.Attributes;
 
-namespace MakeEvent.Web.Models
+namespace MakeEvent.Web.Models.Common
 {
     public class LoggedUserViewModel
     {

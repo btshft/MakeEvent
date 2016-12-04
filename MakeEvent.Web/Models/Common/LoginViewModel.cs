@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MakeEvent.Web.Attributes;
 
-namespace MakeEvent.Web.Models
+namespace MakeEvent.Web.Models.Common
 {
     public class LoginViewModel
     {

@@ -182,19 +182,5 @@ namespace MakeEvent.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public ActionResult GetImage(int id)
-        {
-            var eventResult = _eventService.Get(id);
-            var @event = eventResult.Data;
-            var imageResult = (@event != null && eventResult.Succeeded && @event.ImageId.HasValue)
-                ? _imageService.Get(@event.ImageId.Value)
-                : null;
-
-            return (imageResult != null && imageResult.Succeeded)
-                ? File(imageResult.Data.Content, imageResult.Data.MimeType)
-                : null;
-        }
     }
 }
