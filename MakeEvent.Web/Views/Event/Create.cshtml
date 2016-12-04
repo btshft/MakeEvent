@@ -1,6 +1,12 @@
-﻿@model MakeEvent.Web.Models.Organization.EventMvcViewModel
+﻿@using System.Globalization
+@using System.Threading
+
+@model MakeEvent.Web.Models.Organization.EventMvcViewModel
 @{
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
+
+    var culture = Thread.CurrentThread.CurrentCulture;
+    var dateformat = culture.DateTimeFormat.ShortDatePattern;
 }
 <div class="main-page">
     @using (Html.BeginForm("Create", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -126,9 +132,8 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.DateTime').kendoDatePicker({});
+        $('.DateTime').kendoDatePicker({
+            format: "@dateformat"
+        });
     });
 </script>
-<link href="~/Content/Styles/kendo.material.min.css" rel="stylesheet" />
-<link href="~/Content/Styles/kendo.common.min.css" rel="stylesheet" />
-<script src="~/Scripts/kendo.all.min.js"></script>

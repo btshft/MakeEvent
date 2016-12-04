@@ -55,13 +55,8 @@ namespace MakeEvent.Web.Controllers
         [HttpGet, Authorize(Roles = "Organization")]
         public ActionResult Create()
         {
-            var categories = _categoryService.All().Data;
-            var categoriesModel = Mapper.Map<IEnumerable<EventCategoryMvcViewModel>>(categories);
-            var categoriesSelectList = new SelectList(categoriesModel, "Id", "LocalizedName");
-
-            ViewBag.Categories = categoriesSelectList;
-
             var organizationId = User.Identity.GetUserId();
+            SetupCategoriesDropdown();
 
             return View(new EventMvcViewModel { OrganizationId = organizationId });
         }
@@ -70,7 +65,10 @@ namespace MakeEvent.Web.Controllers
         public ActionResult Create(EventMvcViewModel model)
         {
             if (ModelState.IsValid == false)
+            {
+                SetupCategoriesDropdown();
                 return View(model);
+            }
 
             OperationResult<ImageDto> imageResult = null;
             if (Request.Files.Count > 0)
@@ -82,9 +80,9 @@ namespace MakeEvent.Web.Controllers
 
             if (imageResult != null && !imageResult.Succeeded)
             {
-                ModelState.AddModelError("", $"Ошибки при добавлении новости:</br>"
+                ModelState.AddModelError("", $"Ошибки при добавлении события:</br>"
                                             + $"{string.Join("</br>", imageResult.Errors)}");
-
+                SetupCategoriesDropdown();
                 return View(model);
             }
 
@@ -97,6 +95,7 @@ namespace MakeEvent.Web.Controllers
             {
                 ModelState.AddModelError("", $"Ошибки при добавлении события:</br>"
                                             + $"{string.Join("</br>", eventResult.Errors)}");
+                SetupCategoriesDropdown();
                 return View(model);
             }
 
@@ -122,7 +121,10 @@ namespace MakeEvent.Web.Controllers
         public ActionResult Edit(int id, EventMvcViewModel model)
         {
             if (ModelState.IsValid == false)
+            {
+                SetupCategoriesDropdown();
                 return View(model);
+            }
 
             if (model.Id == 0)
             {
@@ -142,7 +144,7 @@ namespace MakeEvent.Web.Controllers
             {
                 ModelState.AddModelError("", $"Ошибки при обновлении события:</br>"
                                            + $"{string.Join("</br>", imageResult.Errors)}");
-
+                SetupCategoriesDropdown();
                 return View(model);
             }
 
@@ -155,6 +157,7 @@ namespace MakeEvent.Web.Controllers
             {
                 ModelState.AddModelError("", $"Ошибки при обновлении события:</br>"
                                             + $"{string.Join("</br>", eventResult.Errors)}");
+                SetupCategoriesDropdown();
                 return View(model);
             }
 
@@ -181,6 +184,14 @@ namespace MakeEvent.Web.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        private void SetupCategoriesDropdown()
+        {
+            var categories = _categoryService.All().Data;
+            var categoriesModel = Mapper.Map<IEnumerable<EventCategoryMvcViewModel>>(categories);
+            var categoriesSelectList = new SelectList(categoriesModel, "Id", "LocalizedName");
+            ViewBag.Categories = categoriesSelectList;
         }
     }
 }

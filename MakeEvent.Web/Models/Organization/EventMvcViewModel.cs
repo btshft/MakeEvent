@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Foolproof;
 
 namespace MakeEvent.Web.Models.Organization
 {
@@ -13,7 +15,9 @@ namespace MakeEvent.Web.Models.Organization
         public string Description     { get; set; }
         public string ShortDescripton { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; } 
+
+        [GreaterThan("StartDate")]
         public DateTime EndDate   { get; set; }
 
         public string City   { get; set; }

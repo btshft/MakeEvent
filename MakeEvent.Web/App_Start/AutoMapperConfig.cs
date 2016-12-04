@@ -16,9 +16,6 @@ namespace MakeEvent.Web
 {
     public class AutoMapperConfig
     {
-        private static readonly string NotLocalized 
-            = Localization.NotLocalized;
-
         public static void RegisterMappings()
         { 
             Mapper.Initialize(cfg =>
@@ -116,7 +113,7 @@ namespace MakeEvent.Web
             {
                 case CultureLanguage.EN:
                     destination.LocalizedName = source.EventCategoryLocalizations
-                        .FirstOrDefault(c => c.LanguageId == 1)?.Name ?? NotLocalized;
+                        .FirstOrDefault(c => c.LanguageId == 1)?.Name;
                     break;
 
                 case CultureLanguage.Undefined:
@@ -124,7 +121,7 @@ namespace MakeEvent.Web
                 case null:
                 default:
                     destination.LocalizedName = source.EventCategoryLocalizations
-                        .FirstOrDefault(c => c.LanguageId == 2)?.Name ?? NotLocalized;
+                        .FirstOrDefault(c => c.LanguageId == 2)?.Name;
                     break;
             }
         }
@@ -139,18 +136,18 @@ namespace MakeEvent.Web
             switch (language)
             {
                 case CultureLanguage.EN:
-                    destination.LocalizedTitle = enLocalization?.Header ?? NotLocalized;
-                    destination.LocalizedShortDescription = enLocalization?.ShortDescription ?? NotLocalized;
-                    destination.LocalizedContent = enLocalization?.Content ?? NotLocalized;
+                    destination.LocalizedTitle = enLocalization?.Header;
+                    destination.LocalizedShortDescription = enLocalization?.ShortDescription;
+                    destination.LocalizedContent = enLocalization?.Content;
                     break;
 
                 case CultureLanguage.Undefined:
                 case CultureLanguage.RU:
                 case null:
                 default:
-                    destination.LocalizedTitle = ruLocalization?.Header ?? NotLocalized;
-                    destination.LocalizedShortDescription = ruLocalization?.ShortDescription ?? NotLocalized;
-                    destination.LocalizedContent = ruLocalization?.Content ?? NotLocalized;
+                    destination.LocalizedTitle = ruLocalization?.Header;
+                    destination.LocalizedShortDescription = ruLocalization?.ShortDescription;
+                    destination.LocalizedContent = ruLocalization?.Content;
                     break;
             }
         }
@@ -165,16 +162,16 @@ namespace MakeEvent.Web
             switch (language)
             {
                 case CultureLanguage.EN:
-                    destination.LocalizedTitle = enLocalization?.Title ?? NotLocalized;
-                    destination.LocalizedContent = enLocalization?.Html ?? NotLocalized;
+                    destination.LocalizedTitle = enLocalization?.Title;
+                    destination.LocalizedContent = enLocalization?.Html;
                     break;
 
                 case CultureLanguage.Undefined:
                 case CultureLanguage.RU:
                 case null:
                 default:
-                    destination.LocalizedTitle = ruLocalization?.Title ?? NotLocalized;
-                    destination.LocalizedContent = ruLocalization?.Html ?? NotLocalized;
+                    destination.LocalizedTitle = ruLocalization?.Title;
+                    destination.LocalizedContent = ruLocalization?.Html;
                     break;
             }
         }

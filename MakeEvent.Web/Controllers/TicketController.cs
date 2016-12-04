@@ -7,10 +7,12 @@ using System.Web.Mvc;
 using AutoMapper;
 using MakeEvent.Business.Models;
 using MakeEvent.Business.Services.Interfaces;
+using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models.Common;
 
 namespace MakeEvent.Web.Controllers
 {
+    [RequireHttps, Localized]
     public class TicketController : Controller
     {
         private readonly ITicketService _ticketService;

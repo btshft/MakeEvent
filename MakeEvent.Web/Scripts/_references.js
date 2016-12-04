@@ -1,4 +1,7 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../client scripts/mvcfoolproof.unobtrusive.min.js" />
+/// <reference path="../client scripts/mvcfoolproofjqueryvalidation.min.js" />
+/// <reference path="../client scripts/mvcfoolproofvalidation.min.js" />
 /// <reference path="ai.0.22.9-build00167.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="jquery.min.js" />

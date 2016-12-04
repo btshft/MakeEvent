@@ -37,14 +37,13 @@ namespace MakeEvent.Web
                     "~/Scripts/materialize/materialize.js"));
 
             //Подключение Кендо 
-            bundles.Add(new StyleBundle("~/Content/KendoStyles").Include(
+            bundles.Add(new StyleBundle("~/Content/kendo").Include(
                "~/Content/Styles/kendo.material.min.css",
                "~/Content/Styles/kendo.material.mobile.min.css",
-               "~/Content/Styles/kendo.common.min.css",
-               "~/Content/Styles/main.css"));
+               "~/Content/Styles/kendo.common.min.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                "~/Scripts/kendo.all.min.js",
-                 "~/Scripts/KendoSPA/KendoHelper.js"));
+                "~/Scripts/kendo.all.min.js"));
 
             //ViewModels
             bundles.Add(new ScriptBundle("~/Scripts/MainApp").Include(

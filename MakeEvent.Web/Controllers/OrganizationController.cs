@@ -79,7 +79,7 @@ namespace MakeEvent.Web.Controllers
             if (string.IsNullOrEmpty(model.OwnerId))
             {
                 throw new HttpException((int)HttpStatusCode.InternalServerError, 
-                    "Не указан идентификатор категории");
+                    "Не указан идентификатор пользователя");
             }
 
             OperationResult<ImageDto> imageResult = null;

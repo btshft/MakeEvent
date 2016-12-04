@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using System.Globalization
+@using System.Threading
+@using Microsoft.AspNet.Identity
 
 <!DOCTYPE html>
 <html>
@@ -10,9 +12,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/materialize")
+    @Scripts.Render("~/bundles/kendo")
+
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/materialize")
     @Styles.Render("~/Content/admin")
+    @Styles.Render("~/Content/kendo")
 </head>
 <body>
     <div class="navbar navbar-custom grey lighten-5 navbar-fixed-top">
