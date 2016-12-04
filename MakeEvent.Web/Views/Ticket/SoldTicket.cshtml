@@ -3,59 +3,62 @@
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
 <div class="main-page">
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OwnerFirstName)
-        </dt>
+    <table class="table highlight">
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.OwnerFirstName)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.OwnerFirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.OwnerLastName)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.OwnerLastName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.EventTitle)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.EventTitle)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.BookDate)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.BookDate)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.OwnerFirstName)
-        </dd>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.Cost)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Cost)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OwnerLastName)
-        </dt>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.Status)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Status)
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <button class="btn deep-purple lighten-1  btn-sm btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            @Html.ActionLink(Localization.BtnBackText, "Index")
+        </button>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.OwnerLastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EventTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EventTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id }) |
-    @Html.ActionLink(Localization.BtnBackText, "Index")
-</p>

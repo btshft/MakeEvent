@@ -2,51 +2,39 @@
 @{
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OrganizationId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrganizationId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorEmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorEmail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-    </dl>
+<div class="page-block">
+    <div class="col-md-offset-1">
+        <table class="table highlight">
+            <tr>
+                <td>
+                    <label> @Html.DisplayNameFor(model => model.AuthorName)</label>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.AuthorName)
+                </td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.AuthorEmail)</label></td>
+                <td>@Html.DisplayFor(model => model.AuthorEmail)</td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.Text)</label></td>
+                <td>@Html.DisplayFor(model=>model.Text)</td>
+            </tr>
+            <tr>
+                <td><label>@Html.DisplayNameFor(model => model.CreatedDate)</label></td>
+                <td>@Html.DisplayFor(model => model.CreatedDate)</td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id })
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink(Localization.BtnBackText, "Index")
+            </button>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id }) |
-    @Html.ActionLink(Localization.BtnBackText, "Index")
-</p>

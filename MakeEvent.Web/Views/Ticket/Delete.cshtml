@@ -3,48 +3,51 @@
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
 <h3>@Localization.MessageConfirmDelete</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
+<table class="table highlight">
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Type)</label>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Price)</label>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxCount)
-        </dt>
-
-        <dd>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.MaxCount)</label>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.MaxCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Description)</label>
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Description)
-        </dd>
+        </td>
+    </tr>
 
-    </dl>
+</table>
 
     @using (Html.BeginForm())
     {
-        <div class="form-actions no-color">
-            <input type="submit" value="@Localization.BtnDeleteText" class="btn btn-default" /> |
+        <button class="btn deep-purple lighten-1  btn-sm btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
             @Html.ActionLink(Localization.BtnBackText, "Index")
-        </div>
+        </button>
+                    <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                        @Localization.BtnDeleteText
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
     }
-</div>
+

@@ -8,26 +8,11 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <a href="#" onclick="$('#logoutForm').submit(); return false;">@Localization.HeaderLogout</a>
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderLinkTickets, "Index", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderLinkSoldTickets, "Sold", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderLinkComments, "Index", "Comments", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
+            @Html.ActionLink(@Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
         </li>
         <li>
                 <a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogout</a>
         </li>
     </ul>
-    using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right orgLogout" }))
-    {
-    }
 }
 

@@ -104,6 +104,8 @@
 
                 <div class="form-group">
                     <div class="form-group">
+
+                        @Html.ActionLink(Localization.BtnCreateText, "Create", "Ticket", new { id = Model.Id })
                         <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
                             @Localization.BtnCreateText
                             <span class="glyphicon glyphicon-send"></span>

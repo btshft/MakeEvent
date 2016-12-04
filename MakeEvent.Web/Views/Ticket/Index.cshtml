@@ -3,9 +3,6 @@
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
 <div class="main-page">
-    <p>
-        @Html.ActionLink(Localization.BtnCreateText, "Create")
-    </p>
     <table class="table">
         <tr>
             <th>
@@ -39,9 +36,15 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = item.Id }) |
-                    @Html.ActionLink(Localization.BtnDetailsText, "Details", new { id = item.Id }) |
-                    @Html.ActionLink(Localization.BtnDeleteText, "Delete", new { id = item.Id })
+                    <button class="btn  blue darken-3 btn-sm btn-default">
+                        @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = item.Id }) <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                        @Html.ActionLink(Localization.BtnDetailsText, "Details", new { id = item.Id }) <span class="glyphicon glyphicon-list"></span>
+                    </button>
+                    <button class="btn pink lighten-1 btn-sm btn-default">
+                        @Html.ActionLink(Localization.BtnDeleteText, "Delete", new { id = item.Id }) <span class="glyphicon glyphicon-remove"></span>
+                    </button>
                 </td>
             </tr>
         }
