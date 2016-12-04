@@ -18,9 +18,12 @@
                         <a href="@Html.DisplayFor(model => item.Website)">@Html.DisplayFor(model => item.Website)</a>
                     </p>
                 </div>
-                <div class="card-action">
-                    @Html.ActionLink(Localization.BtnDetailsText, "Organization", new { Id = item.OwnerId })
-                </div>
+                    <div class="card-action">
+                        <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                            @Html.ActionLink(Localization.BtnDetailsText, "Organization", new { id = item.OwnerId })
+                             <span class="glyphicon glyphicon-list"></span>
+                        </button>
+                    </div>
             </div>
         </div>
     </div>

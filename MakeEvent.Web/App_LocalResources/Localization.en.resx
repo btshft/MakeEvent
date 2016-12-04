@@ -345,4 +345,7 @@
   <data name="LabelRightsReserved" xml:space="preserve">
     <value>All rights reserved</value>
   </data>
+  <data name="ShowCommentForm" xml:space="preserve">
+    <value>Create comment</value>
+  </data>
 </root>

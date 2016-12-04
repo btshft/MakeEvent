@@ -2,18 +2,21 @@
 
 <div class="main-page">
     <div class="row">
-        <div class="col-md-offset-1 col-md-2">
-            @foreach (var item in Model.Categories)
-            {
-                <div>
-                    @Html.ActionLink(item.LocalizedName, "Events", "Home", new { id = item.Id }, null)
-                </div>
-            }
-        </div>
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+                @foreach (var item in Model.Categories)
+                {
+                    <li data-id="@item.Id">
+                        @Html.ActionLink(item.LocalizedName, "Events", "Home", new { id = item.Id }, null)
+                    </li>
+                }
+            </ul>
+
+</div>
         <div class="col-md-8">
             @foreach (var item in Model.Events)
             {
-                <div class="col s12 m5">
+                <div class="col-md-6">
                     <div class="card hoverable">
                         <div class="card-image">
                             <img class="crdImg" src="@Url.Action("GetImage", "Event",
@@ -32,11 +35,26 @@
                             </p>
                         </div>
                         <div class="card-action">
-                            @Html.ActionLink(Localization.BtnDetailsText, "Event", "Home", new { id = item.Id }, null)
+                            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                                @Html.ActionLink(Localization.BtnDetailsText, "Event","Home", new { id = item.Id }, null) <span class="glyphicon glyphicon-list"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
             }
+
         </div>
     </div>
 </div>
+<script type="text/javascript">
+        $(document).ready(function () {
+            var urlParts = window.location.pathname.split('/');
+            var id = urlParts[urlParts.length - 1];
+            $('.nav-pills li').find('.active').removeClass('active');
+            $('.nav-pills li').each(function () {
+                if ($(this).data('id') == id) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+</script>

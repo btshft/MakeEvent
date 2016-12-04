@@ -18,13 +18,12 @@
         <li>
             @Html.ActionLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
         </li>
-
-        @using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-        {
-            <li>
+        <li>
                 <a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogout</a>
-            </li>
-        }
+        </li>
     </ul>
+    using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right orgLogout" }))
+    {
+    }
 }
 

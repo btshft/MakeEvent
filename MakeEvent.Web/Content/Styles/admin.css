@@ -81,20 +81,32 @@ nav.navbar.navbar-custom.navbar-default ul li.active a:hover {
   margin-left: 17%;
 }
 .main-page {
-  margin-top: 10%;
+  margin-top: 15px;
+}
+.main-page .nav-pills li {
+  background-color: #3949ab ;
+}
+.main-page .nav-pills li a {
+  color: white;
+}
+.main-page .nav-pills li a:hover {
+  background-color: #7e57c2;
+  border-radius: 0px;
+}
+.main-page .nav-pills li.active a {
+  background-color: #ec407a;
+  border-radius: 0px;
 }
 .crdImg {
-  margin-left: 20%;
-  padding-top: 8%;
   width: 200px !important;
 }
 .table td:not(:last-child) {
   width: 24%;
 }
 .body-content {
-  min-height: 249px !important;
+  min-height: 325px !important;
 }
-.page-footer {
+footer.page-footer {
   background-color: #3949ab !important;
 }
 .btn-social-icon {
@@ -140,10 +152,34 @@ nav.navbar.navbar-custom.navbar-default ul li.active a:hover {
 .event-date {
   font-style: italic;
 }
+.card h5 {
+  padding: 10px 0px 0px 10px;
+}
 .card-action .btn a {
   text-decoration: none;
   color: white !important;
 }
 .tickets {
   margin-left: 10px;
+}
+.btn:focus {
+  color: white;
+}
+div.panel.panel-default {
+  border-radius: 0px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+div.panel.panel-default .panel-heading {
+  background-color: #7e57c2;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 0px;
+}
+div.panel.panel-default table.striped > tbody > tr:nth-child(odd) {
+  background-color: rgba(57, 73, 171, 0.7);
+  color: white;
+}
+.action-block {
+  margin-left: 240px;
 }

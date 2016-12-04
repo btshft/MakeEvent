@@ -91,8 +91,14 @@
     @using (Html.BeginForm()) {
 
         <div class="form-actions no-color">
-            <input type="submit" value="@Localization.BtnDeleteText" class="btn btn-default" /> |
-            @Html.ActionLink(Localization.BtnBackText, "Index")
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Localization.BtnDeleteText
+                <span class="glyphicon glyphicon-send"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink(Localization.BtnBackText, "Index")
+            </button>
         </div>
     }
 </div>
