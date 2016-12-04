@@ -155,6 +155,9 @@ footer.page-footer {
 .card h5 {
   padding: 10px 0px 0px 10px;
 }
+.card .card-image {
+  padding: 10px;
+}
 .card-action .btn a {
   text-decoration: none;
   color: white !important;
