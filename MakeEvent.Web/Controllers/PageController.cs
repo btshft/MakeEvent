@@ -11,7 +11,7 @@ using MakeEvent.Web.Models.Admin;
 
 namespace MakeEvent.Web.Controllers
 {
-    [RequireHttps, Localized]
+    [RequireHttps, Localized, AdminAuthorize]
     public class PageController : Controller
     {
         private readonly IPageService _pageService;
@@ -21,6 +21,7 @@ namespace MakeEvent.Web.Controllers
             _pageService = pageService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             var pages = _pageService.All();
@@ -29,6 +30,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult Details(int id)
         {
             var page = _pageService.Get(id).Data;
@@ -37,7 +39,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpGet, AdminAuthorize]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var page = _pageService.Get(id).Data;
@@ -46,7 +48,7 @@ namespace MakeEvent.Web.Controllers
             return View(model);
         }
 
-        [HttpPost, AdminAuthorize]
+        [HttpPost]
         public ActionResult Edit(int id, PageMvcViewModel model)
         {
             if (ModelState.IsValid == false)

@@ -7,12 +7,12 @@ using MakeEvent.Web.Models.Organization;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Common.Models;
 using MakeEvent.Web.Attributes;
-using MakeEvent.Web.Models;
+using MakeEvent.Web.Models.Common;
 
 namespace MakeEvent.Web.Controllers
 {
-    [RequireHttps, Localized]
-    public class OrganizationController : Controller
+    [RequireHttps, Localized, OrganizationAuthorize]
+    public class OrganizationController : BaseController
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly IOrganizationService  _organizationService;
@@ -114,20 +114,6 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetImage(string id)
-        {
-            var organizationResult = _organizationService.Get(id);
-            var organization = organizationResult.Data;
-            var imageResult = (organization != null && organizationResult.Succeeded && organization.ImageId.HasValue)
-                ? _imageService.Get(organization.ImageId.Value)
-                : null;
-
-            return (imageResult != null && imageResult.Succeeded)
-                ? File(imageResult.Data.Content, imageResult.Data.MimeType)
-                : null;
-        }
-
-        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -136,6 +122,7 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -156,12 +143,14 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Register(OrganizationMvcViewModel model)
         {
             if (User.Identity.IsAuthenticated)
@@ -208,18 +197,6 @@ namespace MakeEvent.Web.Controllers
             _authorizationService.Logout();
 
             return RedirectToAction("Index","Home");
-        }
-
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
         }
     }
 }

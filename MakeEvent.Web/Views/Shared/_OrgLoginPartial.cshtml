@@ -1,30 +1,15 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    <div style="display: none">
+        @using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        { }
+    </div>
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink(Localization.HeaderLinkEvents, "Index", "Event", new { orgId = User.Identity.GetUserId() }, null)
+            <a href="#" onclick="$('#logoutForm').submit(); return false;">@Localization.HeaderLogout</a>
         </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderLinkTickets, "Index", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderLinkSoldTickets, "Sold", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderLinkComments, "Index", "Comments", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-        <li>
-            @Html.ActionLink(Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
-        </li>
-
-        @using (Html.BeginForm("LogOff", "Organization", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-        {
-            <li>
-                <a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogout</a>
-            </li>
-        }
     </ul>
 }
 

@@ -8,5 +8,17 @@ namespace MakeEvent.Web.Controllers
     {
         protected CultureLanguage? ThreadLanguage 
             => LanguageHelper.GetThreadLanguage();
+
+        protected ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

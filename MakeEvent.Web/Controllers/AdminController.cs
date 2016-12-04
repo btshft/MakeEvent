@@ -3,11 +3,12 @@ using MakeEvent.Business.Services.Implementations.Identity;
 using MakeEvent.Business.Services.Interfaces;
 using MakeEvent.Web.Attributes;
 using MakeEvent.Web.Models;
+using MakeEvent.Web.Models.Common;
 
 namespace MakeEvent.Web.Controllers
 {
     [RequireHttps, HandleError, AdminAuthorize]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly IAuthorizationService _authorizationService;
 

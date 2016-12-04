@@ -8,13 +8,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/materialize")
-
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/materialize")
     @Styles.Render("~/Content/admin")
 </head>
 <body>
-    <nav class="navbar navbar-default  indigo darken-3 navbar-custom">
+    <nav class="navbar navbar-default indigo darken-3 navbar-custom">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -36,8 +35,24 @@
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "News", "Home")</li>
                     <li>@Html.ActionLink(Localization.HeaderLinkAbout, "Page", "Page", new { name = "About" }, null)</li>
                     <li>@Html.ActionLink(Localization.HeaderLinkHelp, "Page", "Page", new { name = "Help" }, null)</li>
+                    <li>
+                        <a class="dropdown-button" href="#" data-activates="lang-content">
+                            @Localization.HeaderLinkLanguage
+                        </a>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+
+                <ul id="lang-content" class="dropdown-content">
+                    <li><a href="#" onclick="changeLanguage(2); return false;">@Localization.LangRu</a></li>
+                    <li><a href="#" onclick="changeLanguage(1); return false;">@Localization.LangEn</a></li>
+                </ul>
+                <div style="display: none;">
+                    @using (Html.BeginForm("SetLanguage", "Home", new { returnUrl = Request.RawUrl }, FormMethod.Post, new { id = "change-language-form" }))
+                    {
+                        <input id="language" name="language" value="2" />
+                    }
+                </div>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -54,10 +69,10 @@
                 <div class="col-md-3">
                     <h5 class="white-text">@Localization.HeaderLinks</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkAbout</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkHelp</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkEvents</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">@Localization.HeaderLinkOrganizations</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkAbout</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkHelp</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkEvents</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkOrganizations</a></li>
                     </ul>
                 </div>
                 <div class="">
@@ -76,7 +91,7 @@
         <div class="footer-copyright">
             <div class="container">
                 @DateTime.Now.Year - @Localization.LabelRightsReserved
-                <a class="grey-text text-lighten-4 right" href="#!">@Localization.HeaderLinkHome</a>
+                <a class="grey-text text-lighten-4 right" href="#">@Localization.HeaderLinkHome</a>
             </div>
         </div>
     </footer>
@@ -92,7 +107,17 @@
                     $(this).parent().addClass('active');
                 }
             });
+
+            $(".dropdown-button").dropdown({
+                belowOrigin: true,
+                constrain_width: false
+            });
         });
+
+        function changeLanguage(languageId) {
+            $("#language").val(languageId);
+            $("#change-language-form").submit();
+        }
     </script>
 </body>
 </html>

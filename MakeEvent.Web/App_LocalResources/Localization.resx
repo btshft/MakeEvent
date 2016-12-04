@@ -346,4 +346,7 @@
   <data name="LabelRightsReserved" xml:space="preserve">
     <value>Все права защищены</value>
   </data>
+  <data name="HeaderLinkLanguage" xml:space="preserve">
+    <value>Язык</value>
+  </data>
 </root>

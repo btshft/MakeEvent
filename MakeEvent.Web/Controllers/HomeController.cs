@@ -14,7 +14,7 @@ using MakeEvent.Web.Models.Common;
 namespace MakeEvent.Web.Controllers
 {
     [RequireHttps, Localized]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IEventService _eventService;
         private readonly INewsService  _newsService;
@@ -22,6 +22,7 @@ namespace MakeEvent.Web.Controllers
         private readonly ICommentService _commentService;
         private readonly IEventCategoryService _categoryService;
         private readonly ITicketService _ticketService;
+        private readonly IImageService _imageService;
 
         public HomeController(
             IEventService eventService, 
@@ -29,7 +30,8 @@ namespace MakeEvent.Web.Controllers
             IOrganizationService organizationService,
             ICommentService commentService,
             IEventCategoryService categoryService,
-            ITicketService ticketService)
+            ITicketService ticketService, 
+            IImageService imageService)
         {
             _eventService = eventService;
             _newsService  = newsService;
@@ -37,6 +39,7 @@ namespace MakeEvent.Web.Controllers
             _commentService = commentService;
             _categoryService = categoryService;
             _ticketService = ticketService;
+            _imageService = imageService;
         }
 
         [HttpPost]
@@ -53,10 +56,7 @@ namespace MakeEvent.Web.Controllers
                     break;
             }
 
-            if (Uri.IsWellFormedUriString(returnUrl, UriKind.RelativeOrAbsolute))
-                return Redirect(returnUrl);
-
-            return View("Index");
+            return RedirectToLocal(returnUrl);
         }
 
         [HttpGet]
@@ -90,7 +90,14 @@ namespace MakeEvent.Web.Controllers
         {
             var organizations = _organizationService.All().Data;
             var models = Mapper.Map<IEnumerable<OrganizationMvcViewModel>>(organizations);
-            
+
+            foreach (var model in models.Where(o => o.ImageId > 0))
+            {
+                var image = _imageService.Get(model.ImageId.Value).Data;
+                model.ImageData = image.Content;
+                model.ImageMimeType = image.MimeType;
+            }
+
             return View(models);
         }
 

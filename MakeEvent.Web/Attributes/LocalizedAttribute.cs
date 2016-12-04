@@ -20,7 +20,7 @@ namespace MakeEvent.Web.Attributes
             var routeLanguage   = (string)filterContext.RouteData.Values["localization"];
 
             if (string.IsNullOrEmpty(sessionLanguage) == false
-                && string.IsNullOrEmpty(routeLanguage))
+                && sessionLanguage.Equals(routeLanguage, StringComparison.CurrentCultureIgnoreCase) == false)
             {
                 RedirectToSessionLanguage(filterContext);
                 return;
@@ -70,8 +70,16 @@ namespace MakeEvent.Web.Attributes
                 id = filterContext.RouteData.Values["id"]
             };
 
+            var routeDictionary = new RouteValueDictionary(routeValues);
+            var queryString = filterContext.HttpContext.Request.QueryString;
+
+            foreach (var key in queryString.AllKeys)
+            {
+                routeDictionary.Add(key, queryString[key]);
+            }
+
             filterContext.Result = new RedirectToRouteResult(
-                "DefaultLocalized", new RouteValueDictionary(routeValues));
+                "DefaultLocalized", routeDictionary);
 
         }
 
@@ -89,8 +97,16 @@ namespace MakeEvent.Web.Attributes
                 id = filterContext.RouteData.Values["id"]
             };
 
+            var routeDictionary = new RouteValueDictionary(routeValues);
+            var queryString = filterContext.HttpContext.Request.QueryString;
+
+            foreach (var key in queryString.AllKeys)
+            {
+                routeDictionary.Add(key, queryString[key]);
+            }
+
             filterContext.Result = new RedirectToRouteResult(
-                "DefaultLocalized", new RouteValueDictionary(routeValues));
+                "DefaultLocalized", routeDictionary);
         }
     }
 }

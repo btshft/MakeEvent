@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web;
 using AutoMapper;
 using MakeEvent.Business.Enums;
@@ -9,7 +8,6 @@ using MakeEvent.Domain.Models;
 using MakeEvent.Web.App_LocalResources;
 using MakeEvent.Web.Extensions;
 using MakeEvent.Web.Helpers;
-using MakeEvent.Web.Models;
 using MakeEvent.Web.Models.Admin;
 using MakeEvent.Web.Models.Common;
 using MakeEvent.Web.Models.Organization;
@@ -32,9 +30,6 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<OrganizationDto, Organization>();
 
-                cfg.CreateMap<OrganizationViewModel, OrganizationDto>();
-                cfg.CreateMap<OrganizationDto, OrganizationViewModel>();
-
                 cfg.CreateMap<OrganizationDto, OrganizationMvcViewModel>();
                 cfg.CreateMap<OrganizationMvcViewModel, OrganizationDto>();
                 cfg.CreateMap<OrganizationMvcViewModel, OrgWithCommentsMvcViewModel>();
@@ -42,8 +37,6 @@ namespace MakeEvent.Web
                 
                 cfg.CreateMap<Event, EventDto>();
                 cfg.CreateMap<EventDto, Event>();
-                cfg.CreateMap<EventDto, EventViewModel>();
-                cfg.CreateMap<EventViewModel, EventDto>();
 
                 cfg.CreateMap<EventDto, EventMvcViewModel>();
                 cfg.CreateMap<EventMvcViewModel, EventDto>();
@@ -54,9 +47,6 @@ namespace MakeEvent.Web
                 cfg.CreateMap<EventCategoryDto, EventCategory>()
                     .ForMember(d => d.EventCategoryLocalizations, opt => opt.Ignore());
 
-                cfg.CreateMap<EventCategoryDto, EventCategoryViewModel>();
-                cfg.CreateMap<EventCategoryViewModel, EventCategoryDto>();
-
                 cfg.CreateMap<EventCategoryDto, EventCategoryMvcViewModel>()
                     .AfterMap(TransformToModel)
                     .AfterMap(Localize);
@@ -66,15 +56,10 @@ namespace MakeEvent.Web
 
                 cfg.CreateMap<EventCategoryLocalization, EventCategoryLocalizationDto>();
                 cfg.CreateMap<EventCategoryLocalizationDto, EventCategoryLocalization>();
-                cfg.CreateMap<EventCategoryLocalizationDto, EventCategoryLocalizationViewModel>();
-                cfg.CreateMap<EventCategoryLocalizationViewModel, EventCategoryLocalizationDto>();
 
                 cfg.CreateMap<News, NewsDto>();
                 cfg.CreateMap<NewsDto, News>()
                     .ForMember(d => d.NewsLocalizations, opt => opt.Ignore());
-
-                cfg.CreateMap<NewsDto, NewsViewModel>();
-                cfg.CreateMap<NewsViewModel, NewsDto>();
 
                 cfg.CreateMap<NewsDto, NewsMvcViewModel>()
                     .AfterMap(TransformToModel)
@@ -85,16 +70,10 @@ namespace MakeEvent.Web
                 
                 cfg.CreateMap<NewsLocalization,    NewsLocalizationDto>();
                 cfg.CreateMap<NewsLocalizationDto, NewsLocalization>();
-                cfg.CreateMap<NewsLocalizationDto, NewsLocalizationViewModel>();
-                cfg.CreateMap<NewsLocalizationViewModel, NewsLocalizationDto>();
 
                 cfg.CreateMap<PageLocalization,    PageLocalizationDto>();
                 cfg.CreateMap<PageLocalizationDto, PageLocalization>();
-                cfg.CreateMap<PageLocalizationDto, PageLocalizationViewModel>()
-                    .AfterMap((source, dest) => dest.Html = WebUtility.HtmlDecode(source.Html));
 
-                cfg.CreateMap<PageLocalizationViewModel, PageLocalizationDto>()
-                    .AfterMap((source, dest) => dest.Html = WebUtility.HtmlEncode(source.Html));
 
                 cfg.CreateMap<Page, PageDto>();
                 cfg.CreateMap<PageDto, Page>();
