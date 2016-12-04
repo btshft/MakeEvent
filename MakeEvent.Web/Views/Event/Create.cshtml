@@ -87,35 +87,31 @@
                     @Html.ValidationMessageFor(model => model.Office, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group">
-                <div style="position:relative;">
-                    <a class='btn  deep-purple lighten-' href='javascript:;'>
-                        @Localization.BtnChoosePicture
-                        <input type="file" name="Image" size="40"
-                               style="position:absolute;z-index:2;top:0;
+            <div class="action-block">
+                <div class="form-group">
+                    <div style="position:relative;">
+                        <a class='btn  deep-purple lighten-' href='javascript:;'>
+                            @Localization.BtnChoosePicture
+                            <input type="file" name="Image" size="40"
+                                   style="position:absolute;z-index:2;top:0;
                                 left:0;filter: alpha(opacity=0); opacity:0;
                                 background-color:transparent;color:transparent;"
-                               onchange='$("#upload-file-info").html($(this).val());'>
-                        <span class="glyphicon glyphicon-paperclip"></span>
-                    </a>
-                    <span class='label label-info' id="upload-file-info"></span>
-                </div>
-                @if (Model.ImageData == null)
+                                   onchange='$("#upload-file-info").html($(this).val());'>
+                            <span class="glyphicon glyphicon-paperclip"></span>
+                        </a>
+                        <span class='label label-info' id="upload-file-info"></span>
+                    </div>
+                    @if (Model.ImageData == null)
                 {
-                    <div class="form-control-static">@Localization.LabelNoPicture</div>
+                        <div class="form-control-static">@Localization.LabelNoPicture</div>
                 }
                 else
                 {
-                    <img class="img-thumbnail" width="150" height="150"
-                         src="@Url.Action("GetImage", "Event",
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="@Url.Action("GetImage", "Event",
                         new { Model.Id })" />
                 }
-            </div>
-
-
-
-            <div class="form-group">
+                </div>
                 <div class="form-group">
                     <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
                         @Localization.BtnCreateText
@@ -127,7 +123,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+       </div>
     }
 </div>
 <script type="text/javascript">

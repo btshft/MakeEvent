@@ -5,8 +5,6 @@
 @using (Html.BeginForm())
 {
     <div class="form-horizontal">
-        <h4>Comment</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
@@ -50,13 +48,14 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@Localization.BtnSaveText" class="btn btn-default" />
-            </div>
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Localization.BtnSaveText
+                <span class="glyphicon glyphicon-send"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink(Localization.BtnBackText, "Index")
+            </button>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink(Localization.BtnBackText, "Index")
-</div>

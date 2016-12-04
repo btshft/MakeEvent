@@ -349,4 +349,7 @@
   <data name="HeaderLinkLanguage" xml:space="preserve">
     <value>Язык</value>
   </data>
+  <data name="ShowCommentForm" xml:space="preserve">
+    <value>Комментировать</value>
+  </data>
 </root>

@@ -8,7 +8,10 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <a href="#" onclick="$('#logoutForm').submit(); return false;">@Localization.HeaderLogout</a>
+            @Html.ActionLink(@Localization.HeaderUserGreeting + User.Identity.GetUserName() + "!", "Index", "Organization", new { orgId = User.Identity.GetUserId() }, null)
+        </li>
+        <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">@Localization.HeaderLogout</a>
         </li>
     </ul>
 }

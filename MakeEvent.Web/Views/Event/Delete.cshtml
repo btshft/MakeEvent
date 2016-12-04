@@ -3,96 +3,35 @@
     Layout = "~/Views/Shared/_OrgLayout.cshtml";
 }
 <h3>@Localization.MessageConfirmDelete</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+<div class="col-md-6">
+    <div class="card hoverable">
+        <img src="@Url.Action("GetImage", "Event",
+                              new {Model.Id})" style="max-height: 400px; max-width: 400px;" />
+        <div class="card-content">
+            <label class="event-title">@Html.DisplayFor(m => Model.Name)</label>
+            <p class="event-date">@Html.DisplayFor(m => Model.StartDate) - @Html.DisplayFor(m => Model.EndDate)</p>
+            <p class="event-adress">
+                @Html.DisplayFor(m => Model.City)
+                @Html.DisplayFor(m => Model.Street)
+                @Html.DisplayFor(m => Model.Office)
+            </p>
+            <p class="event-description">@Html.DisplayFor(m => Model.Description)</p>
+        </div>
+    </div>
+</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OrganizationId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrganizationId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDescripton)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShortDescripton)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Office)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Office)
-        </dd>
-
-    </dl>
 
     @using (Html.BeginForm()) {
 
         <div class="form-actions no-color">
-            <input type="submit" value="@Localization.BtnDeleteText" class="btn btn-default" /> |
-            @Html.ActionLink(Localization.BtnBackText, "Index")
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Localization.BtnDeleteText
+                <span class="glyphicon glyphicon-send"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink(Localization.BtnBackText, "Index")
+            </button>
         </div>
     }
-</div>
+

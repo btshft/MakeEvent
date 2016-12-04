@@ -692,6 +692,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Комментировать.
+        /// </summary>
+        public static string ShowCommentForm {
+            get {
+                return ResourceManager.GetString("ShowCommentForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Описание.
         /// </summary>
         public static string TicketCategoryVmDescription {

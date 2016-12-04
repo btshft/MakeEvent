@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<MakeEvent.Web.Models.Organization.OrganizationMvcViewModel>
-@foreach (var item in Model)
-{
-    <div class="row">
-        <div class="col s12 m5">
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
             <div class="card hoverable">
                 @if (item.ImageData != null && item.ImageData.Length > 0)
                 {
@@ -20,9 +20,13 @@
                     </p>
                 </div>
                 <div class="card-action">
-                    @Html.ActionLink(Localization.BtnDetailsText, "Organization", new { Id = item.OwnerId })
+                    <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                        @Html.ActionLink(Localization.BtnDetailsText, "Organization", new { id = item.OwnerId })
+                        <span class="glyphicon glyphicon-list"></span>
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
-}
+
+    }
+</div>
