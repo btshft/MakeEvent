@@ -354,4 +354,97 @@
   <data name="BtnAddTickets" xml:space="preserve">
     <value>Add tickets</value>
   </data>
+  <data name="EventVmCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="EventVmDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EventVmEndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="EventVmName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EventVmOffice" xml:space="preserve">
+    <value>Office</value>
+  </data>
+  <data name="EventVmShortDescription" xml:space="preserve">
+    <value>Short description</value>
+  </data>
+  <data name="EventVmStardDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="EventVmStreet" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="OrganizationVmBillNumber" xml:space="preserve">
+    <value>Bill number</value>
+  </data>
+  <data name="OrganizationVmCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="OrganizationVmConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="OrganizationVmDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="OrganizationVmEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="OrganizationVmName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="OrganizationVmOffice" xml:space="preserve">
+    <value>Office</value>
+  </data>
+  <data name="OrganizationVmPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="OrganizationVmPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="OrganizationVmStreet" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="OrganizationVmWebsite" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="TicketVmBookDate" xml:space="preserve">
+    <value>Book date</value>
+  </data>
+  <data name="TicketVmCategory" xml:space="preserve">
+    <value>Ticket type</value>
+  </data>
+  <data name="TicketVmCost" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="TicketVmEventTitle" xml:space="preserve">
+    <value>Event title</value>
+  </data>
+  <data name="TicketVmMaxCount" xml:space="preserve">
+    <value>Max ticket count</value>
+  </data>
+  <data name="TicketVmOwnerEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="TicketVmOwnerFirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="TicketVmOwnerLastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="TicketVmOwnerPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="TicketVmPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="TicketVmStatus" xml:space="preserve">
+    <value>Ticket status</value>
+  </data>
+  <data name="TicketVmType" xml:space="preserve">
+    <value>Type</value>
+  </data>
 </root>

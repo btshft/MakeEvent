@@ -278,6 +278,78 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Город.
+        /// </summary>
+        public static string EventVmCity {
+            get {
+                return ResourceManager.GetString("EventVmCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Описание.
+        /// </summary>
+        public static string EventVmDescription {
+            get {
+                return ResourceManager.GetString("EventVmDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата окончания.
+        /// </summary>
+        public static string EventVmEndDate {
+            get {
+                return ResourceManager.GetString("EventVmEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название.
+        /// </summary>
+        public static string EventVmName {
+            get {
+                return ResourceManager.GetString("EventVmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дом.
+        /// </summary>
+        public static string EventVmOffice {
+            get {
+                return ResourceManager.GetString("EventVmOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Кратное описание.
+        /// </summary>
+        public static string EventVmShortDescription {
+            get {
+                return ResourceManager.GetString("EventVmShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата начала.
+        /// </summary>
+        public static string EventVmStardDate {
+            get {
+                return ResourceManager.GetString("EventVmStardDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Улица.
+        /// </summary>
+        public static string EventVmStreet {
+            get {
+                return ResourceManager.GetString("EventVmStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Отзывы.
         /// </summary>
         public static string HeaderComments {
@@ -638,6 +710,105 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Номер счёта.
+        /// </summary>
+        public static string OrganizationVmBillNumber {
+            get {
+                return ResourceManager.GetString("OrganizationVmBillNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Город.
+        /// </summary>
+        public static string OrganizationVmCity {
+            get {
+                return ResourceManager.GetString("OrganizationVmCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подвердите пароль.
+        /// </summary>
+        public static string OrganizationVmConfirmPassword {
+            get {
+                return ResourceManager.GetString("OrganizationVmConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Описание.
+        /// </summary>
+        public static string OrganizationVmDescription {
+            get {
+                return ResourceManager.GetString("OrganizationVmDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string OrganizationVmEmail {
+            get {
+                return ResourceManager.GetString("OrganizationVmEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название.
+        /// </summary>
+        public static string OrganizationVmName {
+            get {
+                return ResourceManager.GetString("OrganizationVmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дом.
+        /// </summary>
+        public static string OrganizationVmOffice {
+            get {
+                return ResourceManager.GetString("OrganizationVmOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль.
+        /// </summary>
+        public static string OrganizationVmPassword {
+            get {
+                return ResourceManager.GetString("OrganizationVmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Телефон.
+        /// </summary>
+        public static string OrganizationVmPhone {
+            get {
+                return ResourceManager.GetString("OrganizationVmPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Улица.
+        /// </summary>
+        public static string OrganizationVmStreet {
+            get {
+                return ResourceManager.GetString("OrganizationVmStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Веб-сайт.
+        /// </summary>
+        public static string OrganizationVmWebsite {
+            get {
+                return ResourceManager.GetString("OrganizationVmWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Содержимое страницы.
         /// </summary>
         public static string PageContent {
@@ -733,6 +904,114 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string TicketCategoryVmType {
             get {
                 return ResourceManager.GetString("TicketCategoryVmType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата покупки.
+        /// </summary>
+        public static string TicketVmBookDate {
+            get {
+                return ResourceManager.GetString("TicketVmBookDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип билета.
+        /// </summary>
+        public static string TicketVmCategory {
+            get {
+                return ResourceManager.GetString("TicketVmCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Стоимость.
+        /// </summary>
+        public static string TicketVmCost {
+            get {
+                return ResourceManager.GetString("TicketVmCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название события.
+        /// </summary>
+        public static string TicketVmEventTitle {
+            get {
+                return ResourceManager.GetString("TicketVmEventTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Максимальное количество.
+        /// </summary>
+        public static string TicketVmMaxCount {
+            get {
+                return ResourceManager.GetString("TicketVmMaxCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string TicketVmOwnerEmail {
+            get {
+                return ResourceManager.GetString("TicketVmOwnerEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имя.
+        /// </summary>
+        public static string TicketVmOwnerFirstName {
+            get {
+                return ResourceManager.GetString("TicketVmOwnerFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string TicketVmOwnerLastName {
+            get {
+                return ResourceManager.GetString("TicketVmOwnerLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Телефон.
+        /// </summary>
+        public static string TicketVmOwnerPhone {
+            get {
+                return ResourceManager.GetString("TicketVmOwnerPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цена.
+        /// </summary>
+        public static string TicketVmPrice {
+            get {
+                return ResourceManager.GetString("TicketVmPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус билета.
+        /// </summary>
+        public static string TicketVmStatus {
+            get {
+                return ResourceManager.GetString("TicketVmStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип билета.
+        /// </summary>
+        public static string TicketVmType {
+            get {
+                return ResourceManager.GetString("TicketVmType", resourceCulture);
             }
         }
         

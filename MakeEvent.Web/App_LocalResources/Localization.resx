@@ -355,4 +355,97 @@
   <data name="BtnAddTickets" xml:space="preserve">
     <value>Добавить билеты</value>
   </data>
+  <data name="EventVmCity" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="EventVmDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="EventVmEndDate" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="EventVmName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="EventVmOffice" xml:space="preserve">
+    <value>Дом</value>
+  </data>
+  <data name="EventVmShortDescription" xml:space="preserve">
+    <value>Кратное описание</value>
+  </data>
+  <data name="EventVmStardDate" xml:space="preserve">
+    <value>Дата начала</value>
+  </data>
+  <data name="EventVmStreet" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="OrganizationVmBillNumber" xml:space="preserve">
+    <value>Номер счёта</value>
+  </data>
+  <data name="OrganizationVmCity" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="OrganizationVmConfirmPassword" xml:space="preserve">
+    <value>Подвердите пароль</value>
+  </data>
+  <data name="OrganizationVmDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="OrganizationVmEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="OrganizationVmName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="OrganizationVmOffice" xml:space="preserve">
+    <value>Дом</value>
+  </data>
+  <data name="OrganizationVmPassword" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="OrganizationVmPhone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="OrganizationVmStreet" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="OrganizationVmWebsite" xml:space="preserve">
+    <value>Веб-сайт</value>
+  </data>
+  <data name="TicketVmBookDate" xml:space="preserve">
+    <value>Дата покупки</value>
+  </data>
+  <data name="TicketVmCategory" xml:space="preserve">
+    <value>Тип билета</value>
+  </data>
+  <data name="TicketVmCost" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="TicketVmEventTitle" xml:space="preserve">
+    <value>Название события</value>
+  </data>
+  <data name="TicketVmMaxCount" xml:space="preserve">
+    <value>Максимальное количество</value>
+  </data>
+  <data name="TicketVmOwnerEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="TicketVmOwnerFirstName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="TicketVmOwnerLastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="TicketVmOwnerPhone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="TicketVmPrice" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="TicketVmStatus" xml:space="preserve">
+    <value>Статус билета</value>
+  </data>
+  <data name="TicketVmType" xml:space="preserve">
+    <value>Тип билета</value>
+  </data>
 </root>
