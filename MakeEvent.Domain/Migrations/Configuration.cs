@@ -25,8 +25,8 @@ namespace MakeEvent.Domain.Migrations
         protected override void Seed(ApplicationDbContext context)
         {
             context.Languages.AddOrUpdate(p => p.Name, 
-                new Language { ShortName = "EN", Name = "Àíãëèéñêèé"},
-                new Language { ShortName = "RU", Name = "Ðóññêèé" });
+                new Language { ShortName = "EN", Name = "ÐÐ½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹"},
+                new Language { ShortName = "RU", Name = "Ð ÑƒÑÑÐºÐ¸Ð¹" });
 
             context.Pages.AddOrUpdate(p => p.Name, 
                 new Page { Name = "About", IsEditable = true },
@@ -68,19 +68,19 @@ namespace MakeEvent.Domain.Migrations
             var localizations = new List<EventCategoryLocalization>
             {
                 new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = "UnspecifiedEn", Name = "Uncategorized", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = "UnspecifiedRu", Name = "Áåç êàòåãîðèè", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = unspectifiedId, Key = "UnspecifiedRu", Name = "Ð‘ÐµÐ· ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¸", LanguageId = 2 },
 
                 new EventCategoryLocalization { EventCategoryId = concertsId, Key = "ConcertsEn", Name = "Concerts", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = concertsId, Key = "ConcertsRu", Name = "Êîíöåðòû", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = concertsId, Key = "ConcertsRu", Name = "ÐšÐ¾Ð½Ñ†ÐµÑ€Ñ‚Ñ‹", LanguageId = 2 },
 
                 new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = "CelebrationsEn", Name = "Celebrations", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = "CelebrationsRu", Name = "Ïðàçäíèêè", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = celebrationsId, Key = "CelebrationsRu", Name = "ÐŸÑ€Ð°Ð·Ð´Ð½Ð¸ÐºÐ¸", LanguageId = 2 },
 
                 new EventCategoryLocalization { EventCategoryId = lectionsId, Key = "LectionsEn", Name = "Lections", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = "LectionsRu", Name = "Ëåêöèè", LanguageId = 2 },
+                new EventCategoryLocalization { EventCategoryId = lectionsId, Key = "LectionsRu", Name = "Ð›ÐµÐºÑ†Ð¸Ð¸", LanguageId = 2 },
 
                 new EventCategoryLocalization { EventCategoryId = workshopsId, Key = "WorkshopsEn", Name = "Workshops", LanguageId = 1 },
-                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = "WorkshopsRu", Name = "Ìàñòåð-êëàññû", LanguageId = 2 }
+                new EventCategoryLocalization { EventCategoryId = workshopsId, Key = "WorkshopsRu", Name = "ÐœÐ°ÑÑ‚ÐµÑ€-ÐºÐ»Ð°ÑÑÑ‹", LanguageId = 2 }
             };
 
             context.EventCategoryLocalizations.AddOrUpdate(c => c.Key, localizations.ToArray());
