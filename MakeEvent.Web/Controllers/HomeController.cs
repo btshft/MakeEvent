@@ -179,7 +179,9 @@ namespace MakeEvent.Web.Controllers
         {
             var categories = _ticketService.GetCategoriesByEvent(id).Data;
             var categoriesModel = Mapper.Map<IEnumerable<TicketCategoryMvcViewModel>>(categories).ToList();
-            var categoriesList  = new SelectList(categoriesModel, "Id", "Type");
+            var categoriesList = (categoriesModel.Count > 0)
+                ? new SelectList(categoriesModel, "Id", "Type")
+                : null;
 
             ViewBag.EventId = id;
             ViewBag.TicketTypes = categoriesList;

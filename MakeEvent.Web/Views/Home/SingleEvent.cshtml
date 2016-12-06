@@ -70,27 +70,37 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Ticket.CategoryId, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.Ticket.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Ticket.CategoryId, ViewBag.TicketTypes as SelectList, new {@class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.Ticket.CategoryId, "", new {@class = "text-danger"})
+                    @Html.DropDownListFor(model => model.Ticket.CategoryId, ViewBag.TicketTypes as SelectList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Ticket.CategoryId, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Ticket.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Ticket.Cost, new {htmlAttributes = new {@class = "form-control", disabled = "true"}})
+                    @Html.EditorFor(model => model.Ticket.Cost, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a href="javascript:document.getElementById('createform').submit()" class="btn btn-default blue darken-3">Create</a>
+                    <a href="javascript:document.getElementById('createform').submit()" class="btn btn-default blue darken-3">@Localization.BtnBuyTicketText</a>
                 </div>
             </div>
         </div>
     }
 }
+else
+{
+    <p>На данное мероприятие пока что нельзя записаться.</p>
+}
 <script type="text/javascript">
+
+    function updatePrice(ticketSelect) {
+        $.getJSON("@Url.Action("GetTicketPrice", "Ticket")" + "?ticketCategoryId=" + ticketSelect.val(),
+            function (data) { $("#Ticket_Cost").val(data.data); });
+    }
+
     $(document).ready(function () {
         $('.ticketform').hide();
         $('.buy').click(function () {
@@ -101,5 +111,12 @@
                 $('.ticketform').hide();
             }
         });
-    })
+
+        $("#Ticket_CategoryId").change(function () {
+            updatePrice($(this));
+        });
+
+        updatePrice($("#Ticket_CategoryId"));
+
+    });
 </script>
