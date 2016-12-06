@@ -935,6 +935,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Описание.
+        /// </summary>
+        public static string TicketVmDescription {
+            get {
+                return ResourceManager.GetString("TicketVmDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Название события.
         /// </summary>
         public static string TicketVmEventTitle {

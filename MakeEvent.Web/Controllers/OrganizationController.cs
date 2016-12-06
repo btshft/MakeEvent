@@ -34,6 +34,9 @@ namespace MakeEvent.Web.Controllers
             if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index", "Home");
 
+            if (User.IsInRole("Admin"))
+                return RedirectToAction("Index", "Category");
+
             var organization = _organizationService.Get(id).Data;
             var image = (organization != null && organization.ImageId.HasValue)
                 ? _imageService.Get(organization.ImageId.Value).Data

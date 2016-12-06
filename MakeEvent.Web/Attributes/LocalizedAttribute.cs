@@ -13,9 +13,6 @@ namespace MakeEvent.Web.Attributes
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Request.HttpMethod == "POST")
-                return;
-
             var sessionLanguage = (string)filterContext.HttpContext?.Session["localization"];
             var routeLanguage   = (string)filterContext.RouteData.Values["localization"];
 

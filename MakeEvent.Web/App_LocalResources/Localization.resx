@@ -448,4 +448,7 @@
   <data name="TicketVmType" xml:space="preserve">
     <value>Тип билета</value>
   </data>
+  <data name="TicketVmDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
 </root>
