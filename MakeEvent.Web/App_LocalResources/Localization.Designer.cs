@@ -251,6 +251,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Все.
+        /// </summary>
+        public static string EventCategoriesAll {
+            get {
+                return ResourceManager.GetString("EventCategoriesAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Название категории.
         /// </summary>
         public static string EventCategoryName {

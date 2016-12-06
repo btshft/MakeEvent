@@ -10,6 +10,9 @@
                         @Html.ActionLink(item.LocalizedName, "Events", "Home", new { id = item.Id }, null)
                     </li>
                 }
+                <li>
+                    @Html.ActionLink(Localization.EventCategoriesAll, "Events", "Home", new { id = (int?)null}, null)
+                </li>
             </ul>
 
         </div>

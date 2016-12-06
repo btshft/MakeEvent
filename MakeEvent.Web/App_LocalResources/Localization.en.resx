@@ -447,6 +447,9 @@
   <data name="TicketVmType" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="EventCategoriesAll" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="TicketVmDescription" xml:space="preserve">
     <value>Description</value>
   </data>
