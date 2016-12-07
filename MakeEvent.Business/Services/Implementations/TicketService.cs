@@ -124,10 +124,11 @@ namespace MakeEvent.Business.Services.Implementations
         public OperationResult<IList<TicketDto>> GetTicketsByOrganization(string organizationId)
         {
             var tickets = _repository.Get<Ticket>(t => t.Category.Event.OrganizationId.Equals(organizationId))
-                .ProjectTo<TicketDto>()
                 .ToList();
 
-            return OperationResult.Success<IList<TicketDto>>(tickets);
+            var dtos = Mapper.Map<IEnumerable<TicketDto>>(tickets).ToList();
+
+            return OperationResult.Success<IList<TicketDto>>(dtos);
         }
 
         public OperationResult<TicketDto> GetTicket(int tickedId)

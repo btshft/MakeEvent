@@ -44,6 +44,15 @@ namespace MakeEvent.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult SoldDetails(int id)
+        {
+            var ticket = _ticketService.GetTicket(id).Data;
+            var model = Mapper.Map<SoldTicketMvcViewModel>(ticket);
+
+            return View("SoldTicket", model);
+        }
+
+        [HttpGet]
         public ActionResult Create(int id)
         {
             return View(new TicketCategoryMvcViewModel { EventId = id });
