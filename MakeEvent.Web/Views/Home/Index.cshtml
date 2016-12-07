@@ -10,10 +10,10 @@
         @Localization.BannerDescription
     </p>
     <div class="form-group">
-        <button class="btn btn-80-15">@Localization.BannerStartText</button>
+        <button class="btn btn-80-15">@Html.ActionLink(Localization.BannerStartText, "Login", "Organization", routeValues: null, htmlAttributes: new { id = "registerLink" })</button>
     </div>
     <div class="form-group">
-        <button class="btn btn-80-15">@Localization.BannerHowItWorksText</button>
+        <button class="btn btn-80-15">@Html.ActionLink(Localization.BannerHowItWorksText, "Page", "Page", new { name = "Help" }, null)</button>
     </div>
 </div>
 <div class="events-wrapper">

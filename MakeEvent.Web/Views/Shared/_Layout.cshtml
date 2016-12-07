@@ -69,10 +69,10 @@
                 <div class="col-md-3">
                     <h5 class="white-text">@Localization.HeaderLinks</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkAbout</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkHelp</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkEvents</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">@Localization.HeaderLinkOrganizations</a></li>
+                        <li>@Html.ActionLink(Localization.HeaderLinkAbout, "Page", "Page", new { name = "About" }, new { @class = "grey-text text-lighten-3" })</li>
+                        <li>@Html.ActionLink(Localization.HeaderLinkHelp, "Page", "Page", new { name = "Help" }, new { @class = "grey-text text-lighten-3" })</li>
+                        <li>@Html.ActionLink(Localization.HeaderLinkEvents, "Events", "Home",null, new { @class = "grey-text text-lighten-3" })</li>
+                        <li>@Html.ActionLink(Localization.HeaderLinkOrganizations, "Organizations", "Home",null,new {@class= "grey-text text-lighten-3" })</li>
                     </ul>
                 </div>
                 <div class="">
@@ -91,7 +91,7 @@
         <div class="footer-copyright">
             <div class="container">
                 @DateTime.Now.Year - @Localization.LabelRightsReserved
-                <a class="grey-text text-lighten-4 right" href="#">@Localization.HeaderLinkHome</a>
+                @Html.ActionLink(Localization.HeaderLinkMain, "Index", "Home",null,new { @class = "grey-text text-lighten-4 right" })
             </div>
         </div>
     </footer>
