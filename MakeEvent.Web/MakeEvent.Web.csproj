@@ -279,8 +279,10 @@
     <Compile Include="Models\Common\LoggedUserViewModel.cs" />
     <Compile Include="Models\Common\LoginViewModel.cs" />
     <Compile Include="Models\Admin\CommentMvcViewModel.cs" />
+    <Compile Include="Models\Organization\BookedServiceMvcViewModel.cs" />
     <Compile Include="Models\Organization\EventMvcViewModel.cs" />
     <Compile Include="Models\Organization\OrganizationMvcViewModel.cs" />
+    <Compile Include="Models\Organization\ServiceMvcViewModel.cs" />
     <Compile Include="Models\Organization\SoldTicketMvcViewModel.cs" />
     <Compile Include="Models\Organization\TicketCategoryMvcViewModel.cs" />
     <Compile Include="Models\Admin\EventCategoryMvcViewModel.cs" />

@@ -453,4 +453,22 @@
   <data name="TicketVmDescription" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="BServiceVmDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="BServiceVmFio" xml:space="preserve">
+    <value>Your name</value>
+  </data>
+  <data name="BServiceVmPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ServiceVmDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ServiceVmName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ServiceVmPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
 </root>

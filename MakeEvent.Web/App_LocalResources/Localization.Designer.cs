@@ -125,6 +125,33 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дата.
+        /// </summary>
+        public static string BServiceVmDate {
+            get {
+                return ResourceManager.GetString("BServiceVmDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваше ФИО.
+        /// </summary>
+        public static string BServiceVmFio {
+            get {
+                return ResourceManager.GetString("BServiceVmFio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цена.
+        /// </summary>
+        public static string BServiceVmPrice {
+            get {
+                return ResourceManager.GetString("BServiceVmPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавить билеты.
         /// </summary>
         public static string BtnAddTickets {
@@ -877,6 +904,33 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string PageTitleRu {
             get {
                 return ResourceManager.GetString("PageTitleRu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Описание.
+        /// </summary>
+        public static string ServiceVmDescription {
+            get {
+                return ResourceManager.GetString("ServiceVmDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Название.
+        /// </summary>
+        public static string ServiceVmName {
+            get {
+                return ResourceManager.GetString("ServiceVmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цена.
+        /// </summary>
+        public static string ServiceVmPrice {
+            get {
+                return ResourceManager.GetString("ServiceVmPrice", resourceCulture);
             }
         }
         

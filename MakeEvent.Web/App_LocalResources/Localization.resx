@@ -454,4 +454,22 @@
   <data name="TicketVmDescription" xml:space="preserve">
     <value>Описание</value>
   </data>
+  <data name="BServiceVmDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="BServiceVmFio" xml:space="preserve">
+    <value>Ваше ФИО</value>
+  </data>
+  <data name="BServiceVmPrice" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="ServiceVmDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ServiceVmName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="ServiceVmPrice" xml:space="preserve">
+    <value>Цена</value>
+  </data>
 </root>
