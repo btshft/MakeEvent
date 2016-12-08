@@ -1,20 +1,14 @@
 ﻿@model MakeEvent.Web.Models.Organization.ServiceMvcViewModel
-
+@{
+    Layout = "~/Views/Shared/_OrgLayout.cshtml";
+}
 @using (Html.BeginForm()) 
 {
-    @Html.AntiForgeryToken()
-    
+   
     <div class="form-horizontal">
-        <h4>ServiceMvcViewModel</h4>
-        <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.OwnerId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(m => m.OwnerId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,13 +35,15 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+                @Localization.BtnSaveText
+                <span class="glyphicon glyphicon-send"></span>
+            </button>
+            <button class="btn deep-purple lighten-1  btn-sm btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                @Html.ActionLink(Localization.BtnBackText, "Index")
+            </button>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

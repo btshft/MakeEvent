@@ -458,7 +458,7 @@
     <value>Дата</value>
   </data>
   <data name="BServiceVmFio" xml:space="preserve">
-    <value>Ваше ФИО</value>
+    <value>ФИО</value>
   </data>
   <data name="BServiceVmPrice" xml:space="preserve">
     <value>Цена</value>

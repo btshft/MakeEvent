@@ -457,7 +457,7 @@
     <value>Date</value>
   </data>
   <data name="BServiceVmFio" xml:space="preserve">
-    <value>Your name</value>
+    <value>Name</value>
   </data>
   <data name="BServiceVmPrice" xml:space="preserve">
     <value>Price</value>

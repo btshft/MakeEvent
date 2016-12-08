@@ -134,7 +134,7 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ваше ФИО.
+        ///   Looks up a localized string similar to ФИО.
         /// </summary>
         public static string BServiceVmFio {
             get {
