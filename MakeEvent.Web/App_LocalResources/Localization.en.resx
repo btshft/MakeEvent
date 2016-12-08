@@ -471,4 +471,13 @@
   <data name="ServiceVmPrice" xml:space="preserve">
     <value>Price</value>
   </data>
+  <data name="BServiceVmName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="HeaderLinkBookedServices" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="HeaderLinkServices" xml:space="preserve">
+    <value>Services</value>
+  </data>
 </root>

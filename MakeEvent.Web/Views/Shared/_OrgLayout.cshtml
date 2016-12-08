@@ -46,6 +46,12 @@
                         @Html.ActionLink(Localization.HeaderLinkSoldTickets, "Sold", "Ticket", new { orgId = User.Identity.GetUserId() }, null)
                     </li>
                     <li>
+                        @Html.ActionLink(Localization.HeaderLinkServices, "Index", "Service", new { orgId = User.Identity.GetUserId() }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink(Localization.HeaderLinkBookedServices, "BookedList", "Service", new { orgId = User.Identity.GetUserId() }, null)
+                    </li>
+                    <li>
                         @Html.ActionLink(Localization.HeaderLinkComments, "Index", "Comments", new { orgId = User.Identity.GetUserId() }, null)
                     </li>
                     <li>

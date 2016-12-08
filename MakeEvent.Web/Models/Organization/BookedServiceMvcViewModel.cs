@@ -11,6 +11,9 @@ namespace MakeEvent.Web.Models.Organization
         public int Id { get; set; }
         public int ServiceId { get; set; }
 
+        [LocalizedDisplay("BServiceVmName", typeof(App_LocalResources.Localization))]
+        public string ServiceName { get; set; }
+
         [LocalizedDisplay("BServiceVmFio", typeof(App_LocalResources.Localization))]
         public string CustomerFio { get; set; }
 

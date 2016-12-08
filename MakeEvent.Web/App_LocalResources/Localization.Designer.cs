@@ -143,6 +143,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Название.
+        /// </summary>
+        public static string BServiceVmName {
+            get {
+                return ResourceManager.GetString("BServiceVmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Цена.
         /// </summary>
         public static string BServiceVmPrice {
@@ -422,6 +431,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заказы.
+        /// </summary>
+        public static string HeaderLinkBookedServices {
+            get {
+                return ResourceManager.GetString("HeaderLinkBookedServices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Комментарии.
         /// </summary>
         public static string HeaderLinkComments {
@@ -499,6 +517,15 @@ namespace MakeEvent.Web.App_LocalResources {
         public static string HeaderLinks {
             get {
                 return ResourceManager.GetString("HeaderLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Услуги.
+        /// </summary>
+        public static string HeaderLinkServices {
+            get {
+                return ResourceManager.GetString("HeaderLinkServices", resourceCulture);
             }
         }
         
