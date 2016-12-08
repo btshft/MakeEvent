@@ -480,4 +480,7 @@
   <data name="HeaderLinkServices" xml:space="preserve">
     <value>Services</value>
   </data>
+  <data name="BtnMakeOrder" xml:space="preserve">
+    <value>Make order</value>
+  </data>
 </root>

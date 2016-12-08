@@ -242,6 +242,15 @@ namespace MakeEvent.Web.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заказать.
+        /// </summary>
+        public static string BtnMakeOrder {
+            get {
+                return ResourceManager.GetString("BtnMakeOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сохранить.
         /// </summary>
         public static string BtnSaveText {

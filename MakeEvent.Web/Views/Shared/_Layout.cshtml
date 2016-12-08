@@ -8,9 +8,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/materialize")
+    @Scripts.Render("~/bundles/kendo")
+
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/materialize")
     @Styles.Render("~/Content/admin")
+    @Styles.Render("~/Content/kendo")
 </head>
 <body>
     <nav class="navbar navbar-default indigo darken-3 navbar-custom">
@@ -31,6 +34,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(Localization.HeaderLinkMain, "Index", "Home")</li>
                     <li>@Html.ActionLink(Localization.HeaderLinkEvents, "Events", "Home")</li>
+                    <li>@Html.ActionLink(Localization.HeaderLinkServices, "Services", "Home", null, new { @class = "grey-text text-lighten-3" })</li>
                     <li>@Html.ActionLink(Localization.HeaderLinkOrganizations, "Organizations", "Home")</li>
                     <li>@Html.ActionLink(Localization.AdminHeaderLinkNews, "News", "Home")</li>
                     <li>@Html.ActionLink(Localization.HeaderLinkAbout, "Page", "Page", new { name = "About" }, null)</li>
@@ -72,6 +76,7 @@
                         <li>@Html.ActionLink(Localization.HeaderLinkAbout, "Page", "Page", new { name = "About" }, new { @class = "grey-text text-lighten-3" })</li>
                         <li>@Html.ActionLink(Localization.HeaderLinkHelp, "Page", "Page", new { name = "Help" }, new { @class = "grey-text text-lighten-3" })</li>
                         <li>@Html.ActionLink(Localization.HeaderLinkEvents, "Events", "Home",null, new { @class = "grey-text text-lighten-3" })</li>
+                        <li>@Html.ActionLink(Localization.HeaderLinkServices, "Services", "Home", null, new { @class = "grey-text text-lighten-3" })</li>
                         <li>@Html.ActionLink(Localization.HeaderLinkOrganizations, "Organizations", "Home",null,new {@class= "grey-text text-lighten-3" })</li>
                     </ul>
                 </div>

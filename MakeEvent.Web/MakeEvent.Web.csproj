@@ -762,6 +762,8 @@
     <Content Include="Views\Service\Delete.cshtml" />
     <Content Include="Views\Service\BookedList.cshtml" />
     <Content Include="Views\Service\BookedService.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\SingleService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

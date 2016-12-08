@@ -481,4 +481,7 @@
   <data name="HeaderLinkServices" xml:space="preserve">
     <value>Услуги</value>
   </data>
+  <data name="BtnMakeOrder" xml:space="preserve">
+    <value>Заказать</value>
+  </data>
 </root>
