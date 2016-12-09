@@ -264,6 +264,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
@@ -272,6 +273,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="App_Start\Dependencies.cs" />
+    <Compile Include="Helpers\HashHelper.cs" />
     <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Models\Common\EventAndCatMvcViewModel.cs" />
     <Compile Include="Models\Common\EventWithTicketsMvcViewModel.cs" />
@@ -286,8 +288,10 @@
     <Compile Include="Models\Admin\EventCategoryMvcViewModel.cs" />
     <Compile Include="Models\Admin\NewsMvcViewModel.cs" />
     <Compile Include="Models\Admin\PageMvcViewModel.cs" />
+    <Compile Include="Models\Yandex\YandexPaymentNotificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\WebConfiguration.cs" />
+    <Compile Include="Settings\YandexWallet.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -752,6 +756,8 @@
     <Content Include="Views\Home\SingleOrg.cshtml" />
     <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Views\Home\Organizations.cshtml" />
+    <Content Include="Views\Payment\Pay.cshtml" />
+    <Content Include="Views\Payment\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

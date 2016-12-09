@@ -58,15 +58,19 @@
 {
     <button class="btn buy blue darken-3">@Localization.BtnBuyTicketText</button>
 
-    using (Html.BeginForm("Buy", "Ticket", new { eventId = ViewBag.EventId }, FormMethod.Post, new { id = "createform" }))
-    {
-        <div class="form-horizontal ticketform">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <form id="createForm" method="POST" action="https://demomoney.yandex.ru/quickpay/confirm.xml">
+        <div class="form-horizontal ticketform" style="margin-top: 20px;">
+            <input id="label" name="label" value="0" type="hidden">
+            <input name="receiver" value="4100324078426" type="hidden">
+            <input name="formcomment" value="Оплата билета" type="hidden"/>
+            <input name="quickpay-form" value="shop" type="hidden">
+            <input name="targets" value="Оплата билета" type="hidden">
+            <input name="paymentType" value="PC" type="hidden"/>
             <div class="form-group">
-                @Html.LabelFor(model => model.Ticket.OwnerFirstName, htmlAttributes: new {@class = "control-label col-md-2"})
+                @Html.LabelFor(model => model.Ticket.OwnerFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Ticket.OwnerFirstName, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.Ticket.OwnerFirstName, "", new {@class = "text-danger"})
+                    @Html.EditorFor(model => model.Ticket.OwnerFirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ticket.OwnerFirstName, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
@@ -80,22 +84,22 @@
                 @Html.LabelFor(model => model.Ticket.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Ticket.CategoryId, ViewBag.TicketTypes as SelectList, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Ticket.CategoryId, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Ticket.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
+                <label for="sum" class="control-label col-md-2">Сумма</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Ticket.Cost, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
+                    <input id="sum" name="sum" class="form-control" value="" readonly="readonly">
                 </div>
             </div>
+            <input type="hidden" name="paymentType" value="PC">
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <a href="javascript:document.getElementById('createform').submit()" class="btn btn-default blue darken-3">@Localization.BtnBuyTicketText</a>
+                    <a href="javascript:submitTicketForm();" class="btn btn-default blue darken-3">@Localization.BtnBuyTicketText</a>
                 </div>
             </div>
         </div>
-    }
+    </form>
 }
 else
 {
@@ -105,7 +109,20 @@ else
 
     function updatePrice(ticketSelect) {
         $.getJSON("@Url.Action("GetTicketPrice", "Ticket")" + "?ticketCategoryId=" + ticketSelect.val(),
-            function (data) { $("#Ticket_Cost").val(data.data); });
+            function (data) { $("#sum").attr('value', data.data); });
+    }
+
+    function setLabelValue() {
+        var firstName = $("#Ticket_OwnerFirstName").val();
+        var lastName = $("#Ticket_OwnerLastName").val();
+        var categoryId = $("#Ticket_CategoryId").val();
+
+        $("#label").val(categoryId + "-" + lastName + "-" + firstName);
+    }
+
+    function submitTicketForm() {
+        setLabelValue();
+        $("#createForm").submit();
     }
 
     $(document).ready(function () {
@@ -124,6 +141,5 @@ else
         });
 
         updatePrice($("#Ticket_CategoryId"));
-
     });
 </script>

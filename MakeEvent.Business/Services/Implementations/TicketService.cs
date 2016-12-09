@@ -99,8 +99,9 @@ namespace MakeEvent.Business.Services.Implementations
             if (ticketCategory.MaxCount == ticketCategory.BookedCount)
                 return OperationResult.Fail<TicketDto>("Все билеты данного типа уже забронированы.");
 
+            ticket.IsPaid = false;
             ticket.BookDate = DateTime.Now;
-            ticketCategory.BookedCount = ticketCategory.BookedCount + 1;
+            //ticketCategory.BookedCount = ticketCategory.BookedCount + 1;
 
             var domainTicket = Mapper.Map<Ticket>(ticket);
 

@@ -16,6 +16,8 @@ namespace MakeEvent.Domain.Models
         public string OwnerPhone     { get; set; }
         public string OwnerEmail     { get; set; }
 
+        public bool IsPaid           { get; set; }
+
         public DateTime? BookDate    { get; set; }
 
         [ForeignKey("CategoryId")]

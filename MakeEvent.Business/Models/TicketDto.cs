@@ -16,6 +16,8 @@ namespace MakeEvent.Business.Models
         public decimal Cost          { get; set; }
         public string  Status        { get; set; }
 
+        public bool    IsPaid        { get; set; }
+
         public DateTime? BookDate    { get; set; }
     }
 }
