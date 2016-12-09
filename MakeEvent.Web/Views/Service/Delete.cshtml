@@ -1,0 +1,45 @@
+﻿@model MakeEvent.Web.Models.Organization.ServiceMvcViewModel
+@{
+    Layout = "~/Views/Shared/_OrgLayout.cshtml";
+}
+<h3>@Localization.MessageConfirmDelete</h3>
+<table class="table highlight">
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Name)</label>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Description)</label>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Description)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Price)</label>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Price)
+        </td>
+    </tr>
+
+</table>
+    @using (Html.BeginForm())
+    {
+        <button class="btn deep-purple lighten-1  btn-sm btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            @Html.ActionLink(Localization.BtnBackText, "Index")
+        </button>
+        <button type="submit" class="btn indigo darken-1 btn-sm btn-default">
+            @Localization.BtnDeleteText
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    }
+
+

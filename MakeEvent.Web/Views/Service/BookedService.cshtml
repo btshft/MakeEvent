@@ -1,0 +1,46 @@
+﻿@model MakeEvent.Web.Models.Organization.BookedServiceMvcViewModel
+@{
+    Layout = "~/Views/Shared/_OrgLayout.cshtml";
+}
+<div class="main-page">
+    <table class="table highlight">
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.CustomerFio)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CustomerFio)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.ServiceName)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ServiceName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.Date)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Date)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>@Html.DisplayNameFor(model => model.Price)</label>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Price)
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <button class="btn deep-purple lighten-1  btn-sm btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            @Html.ActionLink(Localization.BtnBackText, "Index")
+        </button>
+    </div>
+</div>

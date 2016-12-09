@@ -1,0 +1,42 @@
+﻿@model MakeEvent.Web.Models.Organization.ServiceMvcViewModel
+@{
+    Layout = "~/Views/Shared/_OrgLayout.cshtml";
+}
+<table class="table highlight">
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Name)</label>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Description)</label>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Description)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>@Html.DisplayNameFor(model => model.Price)</label>
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Price)
+        </td>
+    </tr>
+
+</table>
+<div class="form-group">
+    <button class="btn indigo darken-1 btn-sm btn-default">
+        @Html.ActionLink(Localization.BtnEditText, "Edit", new { id = Model.Id })
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+    <button class="btn deep-purple lighten-1  btn-sm btn-default">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        @Html.ActionLink(Localization.BtnBackText, "Index")
+    </button>
+</div>
+

@@ -208,6 +208,39 @@ namespace MakeEvent.Web.Controllers
 
             return View("SingleEvent", composedModel);
         }
+        [HttpGet]
+        public ActionResult Services()
+        {
+            var models = new List<ServiceMvcViewModel>();
+            models.Add(new ServiceMvcViewModel
+            {
+                Id = 0,
+                OwnerId = "hfdhhfdhf",
+                Name = "First Service",
+                Description = "tratatatata",
+                Price = 10000
+            });
+            models.Add(new ServiceMvcViewModel
+            {
+                Id = 1,
+                OwnerId = "hfdhhfdhf",
+                Name = "Second Service",
+                Description = "second tratatatata",
+                Price = 10
+            });
+            return View("Services", models);
+        }
+        [HttpGet]
+        public ActionResult Service(int id)
+        {
+            return View("SingleService", new BookedServiceMvcViewModel
+            {
+                Id = 0,
+                ServiceId = 0,
+                ServiceName = "Test service",
+                Price = 1000
+            });
+        }
     }
 
 }
