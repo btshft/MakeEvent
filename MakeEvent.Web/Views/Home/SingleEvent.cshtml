@@ -105,20 +105,7 @@ else
 
     function updatePrice(ticketSelect) {
         $.getJSON("@Url.Action("GetTicketPrice", "Ticket")" + "?ticketCategoryId=" + ticketSelect.val(),
-            function (data) { $("#sum").attr('value', data.data); });
-    }
-
-    function setLabelValue() {
-        var firstName = $("#Ticket_OwnerFirstName").val();
-        var lastName = $("#Ticket_OwnerLastName").val();
-        var categoryId = $("#Ticket_CategoryId").val();
-
-        $("#label").val(categoryId + "-" + lastName + "-" + firstName);
-    }
-
-    function submitTicketForm() {
-        setLabelValue();
-        $("#createForm").submit();
+            function (data) { $("#Ticket_Cost").val(data.data); });
     }
 
     $(document).ready(function () {
@@ -137,5 +124,6 @@ else
         });
 
         updatePrice($("#Ticket_CategoryId"));
+
     });
 </script>
