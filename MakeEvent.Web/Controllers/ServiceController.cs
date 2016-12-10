@@ -3,166 +3,166 @@ using MakeEvent.Web.Models.Organization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using MakeEvent.Business.Models;
+using MakeEvent.Business.Services.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace MakeEvent.Web.Controllers
 {
+    [RequireHttps, Localized]
     public class ServiceController : Controller
     {
-        // GET: Service
-        [RequireHttps, Localized]
+        private readonly IServiceService _serviceService;
+
+        public ServiceController(IServiceService serviceService)
+        {
+            _serviceService = serviceService;
+        }
+
+        [HttpGet]
         public ActionResult Index(string orgId)
         {
-            var models = new List<ServiceMvcViewModel>();
-            models.Add(new ServiceMvcViewModel
-            {
-                Id=0,
-                OwnerId="hfdhhfdhf",
-                Name="First Service",
-                Description="tratatatata",
-                Price=10000
-            });
-            models.Add(new ServiceMvcViewModel
-            {
-                Id = 1,
-                OwnerId = "hfdhhfdhf",
-                Name = "Second Service",
-                Description = "second tratatatata",
-                Price = 10
-            });
+            if (string.IsNullOrEmpty(orgId))
+                return RedirectToAction("Index", "Home");
+
+            var services = _serviceService.GetByOrganizationId(orgId).Data;
+            var models = Mapper.Map<IEnumerable<ServiceMvcViewModel>>(services);
+            
             return View(models);
         }
 
-        // GET: Service/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(new ServiceMvcViewModel
-            {
-                Id = 1,
-                OwnerId = "hfdhhfdhf",
-                Name = "Second Service",
-                Description = "second tratatatata",
-                Price = 10
-            });
+            var service = _serviceService.Get(id).Data;
+            var model = Mapper.Map<ServiceMvcViewModel>(service);
+
+            return View(model);
         }
 
-        // GET: Service/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View(new ServiceMvcViewModel());
+            return View(new ServiceMvcViewModel { OwnerId = User.Identity.GetUserId() });
         }
 
-        // POST: Service/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ServiceMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            var result = _serviceService.Save(Mapper.Map<ServiceDto>(model));
+
+            if (!result.Succeeded)
             {
-                return View();
+                ModelState.AddModelError("", $"Ошибки при добавлении услуги:</br>"
+                                            + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
             }
+
+            return RedirectToAction("Index", new {orgId = model.OwnerId});
         }
 
-        // GET: Service/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(new ServiceMvcViewModel
-            {
-                Id = 1,
-                OwnerId = "hfdhhfdhf",
-                Name = "Second Service",
-                Description = "second tratatatata",
-                Price = 10
-            });
+            var service = _serviceService.Get(id).Data;
+            var model = Mapper.Map<ServiceMvcViewModel>(service);
+
+            return View(model);
         }
 
-        // POST: Service/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ServiceMvcViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (ModelState.IsValid == false)
+                return View(model);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (model.Id == 0)
             {
-                return View();
+                throw new HttpException((int)HttpStatusCode.InternalServerError,
+                    "Не указан идентификатор услуги");
             }
+
+            var result = _serviceService.Save(Mapper.Map<ServiceDto>(model));
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", $"Ошибки при обновлении услуги:</br>"
+                                            + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
+
+            return RedirectToAction("Index", new { orgId = model.OwnerId });
         }
 
-        // GET: Service/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View(new ServiceMvcViewModel
-            {
-                Id = 1,
-                OwnerId = "hfdhhfdhf",
-                Name = "Second Service",
-                Description = "second tratatatata",
-                Price = 10
-            });
+            var service = _serviceService.Get(id).Data;
+            var model = Mapper.Map<ServiceMvcViewModel>(service);
+
+            return View(model);
         }
 
-        // POST: Service/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, ServiceMvcViewModel model)
         {
-            try
+            var result = _serviceService.Delete(id);
+            if (!result.Succeeded)
             {
-                // TODO: Add delete logic here
+                ModelState.AddModelError("", $"Ошибки при удалении услуги:</br>"
+                                           + $"{string.Join("</br>", result.Errors)}");
+                return View(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", new { orgId = model.OwnerId });
         }
+
         [HttpGet]
         public ActionResult BookedList(string orgId)
         {
-            var models = new List<BookedServiceMvcViewModel>();
-            models.Add(new BookedServiceMvcViewModel
-            {
-                Id = 0,
-                ServiceId = 0,
-                CustomerFio="Petroev Ivan Ivan",
-                ServiceName="Test service",
-                Date= DateTime.Now,
-                Price=1000
-            });
-            models.Add(new BookedServiceMvcViewModel
-            {
-                Id = 0,
-                ServiceId = 0,
-                CustomerFio = "Petroev Ivan Ivan",
-                ServiceName = "Test service",
-                Date = DateTime.Now,
-                Price = 1000
-            });
-            return View("BookedList",models);
+            if (string.IsNullOrEmpty(orgId))
+                return RedirectToAction("Index", "Home");
+
+            var services = _serviceService.GetBookedByOrganizationId(orgId).Data;
+            var models = Mapper.Map<IEnumerable<BookedServiceMvcViewModel>>(services);
+           
+            return View("BookedList", models);
         }
 
         [HttpGet]
         public ActionResult BookedDetails(int id)
         {
-            return View("BookedService",new BookedServiceMvcViewModel
+            var service = _serviceService.GetBooked(id).Data;
+            var model = Mapper.Map<BookedServiceMvcViewModel>(service);
+
+            return View("BookedService", model);
+        }
+
+        [HttpPost]
+        public ActionResult BookService(BookedServiceMvcViewModel model)
+        {
+            if (!ModelState.IsValid)
             {
-                Id = 0,
-                ServiceId = 0,
-                CustomerFio = "Petroev Ivan Ivan",
-                ServiceName = "Test service",
-                Date = DateTime.Now,
-                Price = 1000
-            });
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return RedirectToAction("Service", "Home", new {id = model.ServiceId, error = string.Join(", ", errors)});
+            }
+
+            var service = Mapper.Map<BookedServiceDto>(model);
+            var result = _serviceService.BookService(service);
+
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("Service", "Home", new { id = model.ServiceId, error = "Не удалось заказать услугу." });
+            }
+
+            return RedirectToAction("Services", "Home");
         }
     }
 }

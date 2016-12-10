@@ -101,6 +101,7 @@
     <Compile Include="Enums\CultureLanguage.cs" />
     <Compile Include="Filtering\Builders\EventFilterBuilder.cs" />
     <Compile Include="Filtering\Builders\PageFilterBuilder.cs" />
+    <Compile Include="Models\BookedServiceDto.cs" />
     <Compile Include="Models\CommentDto.cs" />
     <Compile Include="Models\EventCategoryDto.cs" />
     <Compile Include="Models\EventCategoryLocalizationDto.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Models\OrganizationDto.cs" />
     <Compile Include="Models\PageDto.cs" />
     <Compile Include="Models\PageLocalizationDto.cs" />
+    <Compile Include="Models\ServiceDto.cs" />
     <Compile Include="Models\TicketDto.cs" />
     <Compile Include="Models\TicketCategoryDto.cs" />
     <Compile Include="Services\Implementations\AuthorizationService.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Services\Implementations\NewsService.cs" />
     <Compile Include="Services\Implementations\OrganizationService.cs" />
     <Compile Include="Services\Implementations\PageService.cs" />
+    <Compile Include="Services\Implementations\ServiceService.cs" />
     <Compile Include="Services\Implementations\TicketService.cs" />
     <Compile Include="Services\Interfaces\IAuthorizationService.cs" />
     <Compile Include="Services\Interfaces\ICommentService.cs" />
@@ -135,6 +138,7 @@
     <Compile Include="Services\Implementations\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implementations\SmsService.cs" />
+    <Compile Include="Services\Interfaces\IServiceService.cs" />
     <Compile Include="Services\Interfaces\ITicketService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -72,6 +72,7 @@
       <DependentUpon>201609251807395_BaseEntityAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BookedService.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Event.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageLocalization.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

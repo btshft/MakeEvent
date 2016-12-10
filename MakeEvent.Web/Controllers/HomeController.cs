@@ -22,6 +22,7 @@ namespace MakeEvent.Web.Controllers
         private readonly IEventCategoryService _categoryService;
         private readonly ITicketService _ticketService;
         private readonly IImageService _imageService;
+        private readonly IServiceService _serviceService;
 
         public HomeController(
             IEventService eventService, 
@@ -30,7 +31,8 @@ namespace MakeEvent.Web.Controllers
             ICommentService commentService,
             IEventCategoryService categoryService,
             ITicketService ticketService, 
-            IImageService imageService)
+            IImageService imageService,
+            IServiceService serviceService)
         {
             _eventService = eventService;
             _newsService  = newsService;
@@ -39,6 +41,7 @@ namespace MakeEvent.Web.Controllers
             _categoryService = categoryService;
             _ticketService = ticketService;
             _imageService = imageService;
+            _serviceService = serviceService;
         }
 
         [HttpPost]
@@ -91,7 +94,7 @@ namespace MakeEvent.Web.Controllers
                 return View("SingleNews", singleNewsModel);
             }
 
-            var news = _newsService.All().Data;
+            var news = _newsService.All().Data.OrderByDescending(c => c.Id);
             var models = Mapper.Map<IEnumerable<NewsMvcViewModel>>(news);
 
             foreach (var model in models.Where(o => o.ImageId > 0))
@@ -208,38 +211,35 @@ namespace MakeEvent.Web.Controllers
 
             return View("SingleEvent", composedModel);
         }
+
         [HttpGet]
         public ActionResult Services()
         {
-            var models = new List<ServiceMvcViewModel>();
-            models.Add(new ServiceMvcViewModel
-            {
-                Id = 0,
-                OwnerId = "hfdhhfdhf",
-                Name = "First Service",
-                Description = "tratatatata",
-                Price = 10000
-            });
-            models.Add(new ServiceMvcViewModel
-            {
-                Id = 1,
-                OwnerId = "hfdhhfdhf",
-                Name = "Second Service",
-                Description = "second tratatatata",
-                Price = 10
-            });
+            var services = _serviceService.All().Data;
+            var models = Mapper.Map<IEnumerable<ServiceMvcViewModel>>(services);
+            
             return View("Services", models);
         }
+
         [HttpGet]
-        public ActionResult Service(int id)
+        public ActionResult Service(int id, string error)
         {
-            return View("SingleService", new BookedServiceMvcViewModel
+            var service = _serviceService.Get(id);
+            if (service.Succeeded && string.IsNullOrEmpty(error))
             {
-                Id = 0,
-                ServiceId = 0,
-                ServiceName = "Test service",
-                Price = 1000
-            });
+                var model = new BookedServiceMvcViewModel
+                {
+                    ServiceId = service.Data.Id,
+                    ServiceName = service.Data.Name,
+                    Price = service.Data.Price
+                };
+
+                return View("SingleService", model);
+            }
+
+            return (string.IsNullOrEmpty(error))
+                ? (ActionResult)RedirectToAction("Services")
+                : View("SingleService", new BookedServiceMvcViewModel {Error = error});
         }
     }
 

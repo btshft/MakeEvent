@@ -50,6 +50,7 @@ namespace MakeEvent.Web
             container.Register<IImageService,         ImageService>(Lifestyle.Scoped);
             container.Register<ICommentService,       CommentService>(Lifestyle.Scoped);
             container.Register<ITicketService,        TicketService>(Lifestyle.Scoped);
+            container.Register<IServiceService,       ServiceService>(Lifestyle.Scoped);
 
             // Register filter-builders
             container.Register<Common.Filtering.Builder.IFilterBuilder<Page, PageFilter>, PageFilterBuilder>(

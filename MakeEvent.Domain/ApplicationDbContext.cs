@@ -20,6 +20,8 @@ namespace MakeEvent.Domain
         public virtual IDbSet<Ticket> Tickets { get; set; }
         public virtual IDbSet<TicketCategory> TicketCategories { get; set; }
         public virtual IDbSet<Image> Images { get; set; }
+        public virtual IDbSet<Service> Services { get; set; }
+        public virtual IDbSet<BookedService> BookedServices { get; set; }
 
         public virtual IDbSet<PageLocalization> PageLocalizations { get; set; }
         public virtual IDbSet<NewsLocalization> NewsLocalizations { get; set; }

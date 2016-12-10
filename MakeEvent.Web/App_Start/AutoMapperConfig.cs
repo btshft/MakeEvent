@@ -103,6 +103,27 @@ namespace MakeEvent.Web
                 cfg.CreateMap<TicketDto, Ticket>();
                 cfg.CreateMap<TicketDto, SoldTicketMvcViewModel>();
                 cfg.CreateMap<SoldTicketMvcViewModel, TicketDto>();
+
+                cfg.CreateMap<Service, ServiceDto>();
+                cfg.CreateMap<ServiceDto, Service>();
+                cfg.CreateMap<ServiceDto, ServiceMvcViewModel>()
+                    .ForMember(d => d.OwnerId, opt => opt.MapFrom(s => s.OrganizationId));
+
+                cfg.CreateMap<ServiceMvcViewModel, ServiceDto>()
+                    .ForMember(d => d.OrganizationId, opt => opt.MapFrom(s => s.OwnerId));
+
+                cfg.CreateMap<BookedService, BookedServiceDto>()
+                    .AfterMap((s, d) =>
+                    {
+                        d.ServiceName = s.Service.Name;
+                        d.Price = s.Service.Price;
+                    });
+
+                cfg.CreateMap<BookedServiceDto, BookedService>();
+                cfg.CreateMap<BookedServiceDto, BookedServiceMvcViewModel>()
+                    .ForMember(d => d.BookDate, opt => opt.MapFrom(s => s.BookedDate));
+
+                cfg.CreateMap<BookedServiceMvcViewModel, BookedServiceDto>();
             });
         }
 

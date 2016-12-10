@@ -1,8 +1,5 @@
 ﻿using MakeEvent.Web.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MakeEvent.Web.Models.Organization
 {
@@ -18,9 +15,11 @@ namespace MakeEvent.Web.Models.Organization
         public string CustomerFio { get; set; }
 
         [LocalizedDisplay("BServiceVmDate", typeof(App_LocalResources.Localization))]
-        public DateTime Date { get; set; }
+        public DateTime? BookDate { get; set; }
 
         [LocalizedDisplay("BServiceVmPrice", typeof(App_LocalResources.Localization))]
         public decimal Price { get; set; }
+
+        public string Error { get; set; }
     }
 }
